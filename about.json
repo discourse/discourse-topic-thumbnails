@@ -2,10 +2,7 @@
   "name": "Topic Thumbnails",
   "about_url": null,
   "license_url": null,
-  "assets": {
-  },
-  "color_schemes": {
-  },
+  "component": true,
   "modifiers": {
     "topic_thumbnail_sizes": [
       [200, 200],
