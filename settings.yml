@@ -1,0 +1,11 @@
+show_thumbnails_desktop:
+  default: true
+
+show_thumbnails_mobile:
+  default: false
+
+show_excerpts_desktop:
+  default: true
+
+show_excerpts_mobile:
+  default: false

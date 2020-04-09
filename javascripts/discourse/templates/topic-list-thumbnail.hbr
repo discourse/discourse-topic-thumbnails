@@ -1,0 +1,18 @@
+{{#if view.shouldDisplay}}
+  <a href="{{view.url}}">
+    <div class="topic-list-thumbnail">
+      <img class="background-thumbnail" 
+            src="{{view.fallbackSrc}}" 
+            srcset="{{view.srcSet}}" 
+            width={{view.width}} 
+            height={{view.height}} 
+          />
+      <img class="main-thumbnail" 
+            src="{{view.fallbackSrc}}" 
+            srcset="{{view.srcSet}}" 
+            width={{view.width}} 
+            height={{view.height}} 
+          />
+    </div>
+  </a>
+{{/if}}

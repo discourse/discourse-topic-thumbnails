@@ -1,0 +1,16 @@
+.topic-list-thumbnail{
+  width: 45px;
+  height: 45px;
+}
+
+@if $show_excerpts_mobile {
+  .topic-list .topic-excerpt {
+    width: 100%;
+  }
+}
+
+@if $show_thumbnails_mobile and not $show_excerpts_mobile {
+  td .main-link {
+    width: calc(73% - 45px);
+  }
+}
