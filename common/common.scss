@@ -45,18 +45,3 @@
     object-fit: contain;
   }
 }
-
-.thumb-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 5px;
-}
-
-.thumb-list {
-    display: flex;
-
-}
-.dimension {
-    font-size: $font-down-1;
-    text-align: center;
-}
