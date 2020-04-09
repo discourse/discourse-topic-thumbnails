@@ -61,8 +61,11 @@ export default EmberObject.extend({
       : topic.get("lastUnreadUrl");
   },
 
-  @discourseComputed("site.mobileView")
-  shouldDisplay(mobile){
+  @discourseComputed("site.mobileView", "location")
+  shouldDisplay(mobile, location){
+    if(settings.enable_grid && location==="before-link") return false;
+    if (!settings.enable_grid && location==="before-columns") return false;
+
     return mobile ? settings.show_thumbnails_mobile : settings.show_thumbnails_desktop;
   }
 });

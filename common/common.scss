@@ -45,3 +45,80 @@
     object-fit: contain;
   }
 }
+
+@if $enable_grid == "true" {
+  table.topic-list {
+    thead, tr.topic-list-item-separator{ display: none }
+
+    tbody {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-column-gap: 5px;
+      grid-row-gap: 5px;
+
+      border: 0;
+    }
+    
+    tr {
+      display: grid;
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      // height: 0;
+      // padding-bottom: 100%;
+      height: 250px;
+
+      grid-template-areas: 
+        " image image "
+        " title activity";
+      
+      grid-template-rows: 1fr auto;
+      grid-template-columns: 1fr auto;
+      
+      background-color: $primary-low;
+      border: 1px solid $primary-low;
+    }
+
+    .topic-list-thumbnail{
+      z-index: 0;
+      // position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      grid-area: image;
+      overflow: visible;
+      .background-thumbnail{
+        height: calc(150%);
+      }
+    }
+
+    .activity, .main-link {
+      z-index: 2;
+      background-color: rgba($primary-very-low, 0.85);
+    }
+
+    .posters, .posts-map, .views, .topic-excerpt {
+      display:none;
+    }
+
+    .main-link {
+      grid-area: title;
+
+      padding: 10px;
+    }
+
+    .num.activity {
+      grid-area: activity;
+
+      display: flex;
+      width: auto;
+      padding: 10px;
+
+      a {
+        padding: 0;
+        margin-top: auto;
+      }
+    }
+  }
+}

@@ -4,6 +4,9 @@ show_thumbnails_desktop:
 show_thumbnails_mobile:
   default: false
 
+enable_grid:
+  default: false
+
 show_excerpts_desktop:
   default: true
 
