@@ -96,6 +96,7 @@
     .activity, .main-link {
       z-index: 2;
       background-color: rgba($primary-very-low, 0.85);
+      max-width: none;
     }
 
     .posters, .posts-map, .views, .topic-excerpt {
