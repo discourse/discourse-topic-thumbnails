@@ -3,7 +3,7 @@ import EmberObject from "@ember/object";
 
 export default EmberObject.extend({
   // Make sure to update about.json thumbnail sizes if you change these variables
-  displayWidth: 200, 
+  displayWidth: settings.enable_grid ? 400 : 200, 
   responsiveRatios: [1, 1.5, 2],
 
   @discourseComputed("topic.thumbnails")

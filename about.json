@@ -10,7 +10,9 @@
     "topic_thumbnail_sizes": [
       [200, 200],
       [300, 300],
-      [400, 400]
+      [400, 400],
+      [600, 600],
+      [800, 800]
     ],
     "serialize_topic_excerpts": true
   }
