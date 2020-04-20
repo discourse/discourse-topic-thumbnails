@@ -7,47 +7,47 @@ export default EmberObject.extend({
   responsiveRatios: [1, 1.5, 2],
 
   @discourseComputed("topic.thumbnails")
-  srcSet(thumbnails){
+  srcSet(thumbnails) {
     const srcSetArray = [];
 
-    this.responsiveRatios.forEach(ratio => {      
+    this.responsiveRatios.forEach((ratio) => {
       const target = ratio * this.displayWidth;
-      const match = thumbnails.find(t => t.url && t.max_width === target)
-      if(match){
+      const match = thumbnails.find((t) => t.url && t.max_width === target);
+      if (match) {
         srcSetArray.push(`${match.url} ${ratio}x`);
       }
-    })
-    
-    if(srcSetArray.length === 0){
-      srcSetArray.push(`${this.original.url} 1x`)
+    });
+
+    if (srcSetArray.length === 0) {
+      srcSetArray.push(`${this.original.url} 1x`);
     }
 
-    return srcSetArray.join(",")
+    return srcSetArray.join(",");
   },
 
   @discourseComputed("topic.thumbnails")
-  original(thumbnails){
+  original(thumbnails) {
     return thumbnails[0];
   },
 
   @discourseComputed("original")
-  width(original){
+  width(original) {
     return original.width;
   },
-  
+
   @discourseComputed("original")
-  height(original){
+  height(original) {
     return original.height;
   },
 
   @discourseComputed("topic.thumbnails")
-  fallbackSrc(thumbnails){
-    const largeEnough = thumbnails.filter(t => {
-      if(!t.url) return false;
-      return t.max_width > (this.displayWidth * this.responsiveRatios.lastObject)
+  fallbackSrc(thumbnails) {
+    const largeEnough = thumbnails.filter((t) => {
+      if (!t.url) return false;
+      return t.max_width > this.displayWidth * this.responsiveRatios.lastObject;
     });
 
-    if(largeEnough.lastObject){
+    if (largeEnough.lastObject) {
       return largeEnough.lastObject.url;
     }
 
@@ -55,17 +55,19 @@ export default EmberObject.extend({
   },
 
   @discourseComputed("topic")
-  url(topic){
+  url(topic) {
     return topic.linked_post_number
       ? topic.urlForPostNumber(topic.linked_post_number)
       : topic.get("lastUnreadUrl");
   },
 
   @discourseComputed("site.mobileView", "location")
-  shouldDisplay(mobile, location){
-    if(settings.enable_grid && location==="before-link") return false;
-    if (!settings.enable_grid && location==="before-columns") return false;
+  shouldDisplay(mobile, location) {
+    if (settings.enable_grid && location === "before-link") return false;
+    if (!settings.enable_grid && location === "before-columns") return false;
 
-    return mobile ? settings.show_thumbnails_mobile : settings.show_thumbnails_desktop;
-  }
+    return mobile
+      ? settings.show_thumbnails_mobile
+      : settings.show_thumbnails_desktop;
+  },
 });

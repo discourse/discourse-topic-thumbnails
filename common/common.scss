@@ -4,8 +4,7 @@
   margin-right: 10px;
   width: 140px;
   height: 100px;
-  overflow:hidden;
-  
+  overflow: hidden;
 
   // Blurred background image
   .background-thumbnail {
@@ -19,7 +18,7 @@
     width: calc(100% + 4 * #{$blur_size});
     height: calc(100% + 4 * #{$blur_size});
     top: calc(-2 * #{$blur_size});
-    left: calc(-2 * #{$blur_size}); 
+    left: calc(-2 * #{$blur_size});
   }
 
   // Tint background to blend with $secondary
@@ -35,7 +34,6 @@
     background: $secondary;
     opacity: 0.4;
   }
-  
 
   .main-thumbnail {
     position: absolute;
@@ -48,7 +46,10 @@
 
 @if $enable_grid == "true" {
   table.topic-list {
-    thead, tr.topic-list-item-separator{ display: none }
+    thead,
+    tr.topic-list-item-separator {
+      display: none;
+    }
 
     tbody {
       display: grid;
@@ -58,7 +59,7 @@
 
       border: 0;
     }
-    
+
     tr {
       display: grid;
       position: relative;
@@ -68,18 +69,18 @@
       // padding-bottom: 100%;
       height: 250px;
 
-      grid-template-areas: 
+      grid-template-areas:
         " image image "
         " title activity";
-      
+
       grid-template-rows: 1fr auto;
       grid-template-columns: 1fr auto;
-      
+
       background-color: $primary-low;
       border: 1px solid $primary-low;
     }
 
-    .topic-list-thumbnail{
+    .topic-list-thumbnail {
       z-index: 0;
       // position: absolute;
       width: 100%;
@@ -88,19 +89,23 @@
       left: 0;
       grid-area: image;
       overflow: visible;
-      .background-thumbnail{
+      .background-thumbnail {
         height: calc(150%);
       }
     }
 
-    .activity, .main-link {
+    .activity,
+    .main-link {
       z-index: 2;
       background-color: rgba($primary-very-low, 0.85);
       max-width: none;
     }
 
-    .posters, .posts-map, .views, .topic-excerpt {
-      display:none;
+    .posters,
+    .posts-map,
+    .views,
+    .topic-excerpt {
+      display: none;
     }
 
     .main-link {
