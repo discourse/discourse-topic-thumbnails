@@ -84,7 +84,6 @@
     display: grid;
     position: relative;
     overflow: hidden;
-    border: 0;
     height: 250px;
 
     grid-template-areas:
@@ -96,6 +95,10 @@
 
     background-color: $primary-low;
     border: 1px solid $primary-low;
+
+    &.selected {
+      border: 1px solid $quaternary;
+    }
   }
 
   .topic-list-thumbnail {
