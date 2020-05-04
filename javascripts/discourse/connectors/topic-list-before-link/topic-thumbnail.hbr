@@ -1,3 +1,2 @@
-{{~#if context.topic.thumbnails}}
-  {{~raw "topic-list-thumbnail" topic=context.topic location="before-link"}}
-{{~/if}}
+{{~raw "topic-list-thumbnail" topic=context.topic location="before-link"}}
+

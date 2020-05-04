@@ -1,130 +1,147 @@
-.topic-list-thumbnail {
-  position: relative;
-  float: left;
-  margin-right: 10px;
-  width: 140px;
-  height: 100px;
-  overflow: hidden;
+.topic-thumbnails-list,
+.topic-thumbnails-grid {
+  .topic-list-thumbnail {
+    background: $primary-low;
+    position: relative;
+    float: left;
+    margin-right: 10px;
+    width: 140px;
+    height: 100px;
+    overflow: hidden;
 
-  // Blurred background image
-  .background-thumbnail {
-    z-index: 0;
-    position: absolute;
-    object-fit: cover;
+    // Blurred background image
+    .background-thumbnail {
+      z-index: 0;
+      position: absolute;
+      object-fit: cover;
 
-    $blur_size: 4px;
+      $blur_size: 4px;
 
-    filter: blur(#{$blur_size});
-    width: calc(100% + 4 * #{$blur_size});
-    height: calc(100% + 4 * #{$blur_size});
-    top: calc(-2 * #{$blur_size});
-    left: calc(-2 * #{$blur_size});
-  }
+      filter: blur(#{$blur_size});
+      width: calc(100% + 4 * #{$blur_size});
+      height: calc(100% + 4 * #{$blur_size});
+      top: calc(-2 * #{$blur_size});
+      left: calc(-2 * #{$blur_size});
+    }
 
-  // Tint background to blend with $secondary
-  &:after {
-    z-index: 1;
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: $secondary;
-    opacity: 0.4;
-  }
+    // Tint background to blend with $secondary
+    &:after {
+      z-index: 1;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: $secondary;
+      opacity: 0.4;
+    }
 
-  .main-thumbnail {
-    position: absolute;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    .main-thumbnail {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .thumbnail-placeholder {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 2;
+      color: $primary-medium;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .d-icon {
+        width: 60%;
+        height: 60%;
+      }
+    }
   }
 }
 
-@if $enable_grid == "true" {
-  table.topic-list {
-    thead,
-    tr.topic-list-item-separator {
-      display: none;
+.topic-thumbnails-grid {
+  margin-top: 5px;
+
+  thead,
+  tr.topic-list-item-separator {
+    display: none;
+  }
+
+  tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
+    border: 0;
+  }
+
+  tr {
+    display: grid;
+    position: relative;
+    overflow: hidden;
+    border: 0;
+    height: 250px;
+
+    grid-template-areas:
+      " image image "
+      " title activity";
+
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr auto;
+
+    background-color: $primary-low;
+    border: 1px solid $primary-low;
+  }
+
+  .topic-list-thumbnail {
+    z-index: 0;
+    // position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    grid-area: image;
+    overflow: visible;
+    .background-thumbnail {
+      height: calc(150%);
     }
+  }
 
-    tbody {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      grid-column-gap: 5px;
-      grid-row-gap: 5px;
+  .activity,
+  .main-link {
+    z-index: 2;
+    background-color: rgba($primary-very-low, 0.85);
+    max-width: none;
+  }
 
-      border: 0;
-    }
+  .posters,
+  .posts-map,
+  .views,
+  .topic-excerpt {
+    display: none;
+  }
 
-    tr {
-      display: grid;
-      position: relative;
-      overflow: hidden;
-      border: 0;
-      // height: 0;
-      // padding-bottom: 100%;
-      height: 250px;
+  .main-link {
+    grid-area: title;
 
-      grid-template-areas:
-        " image image "
-        " title activity";
+    padding: 10px;
+  }
 
-      grid-template-rows: 1fr auto;
-      grid-template-columns: 1fr auto;
+  .num.activity {
+    grid-area: activity;
 
-      background-color: $primary-low;
-      border: 1px solid $primary-low;
-    }
+    display: flex;
+    width: auto;
+    padding: 10px;
 
-    .topic-list-thumbnail {
-      z-index: 0;
-      // position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      grid-area: image;
-      overflow: visible;
-      .background-thumbnail {
-        height: calc(150%);
-      }
-    }
-
-    .activity,
-    .main-link {
-      z-index: 2;
-      background-color: rgba($primary-very-low, 0.85);
-      max-width: none;
-    }
-
-    .posters,
-    .posts-map,
-    .views,
-    .topic-excerpt {
-      display: none;
-    }
-
-    .main-link {
-      grid-area: title;
-
-      padding: 10px;
-    }
-
-    .num.activity {
-      grid-area: activity;
-
-      display: flex;
-      width: auto;
-      padding: 10px;
-
-      a {
-        padding: 0;
-        margin-top: auto;
-      }
+    a {
+      padding: 0;
+      margin-top: auto;
     }
   }
 }

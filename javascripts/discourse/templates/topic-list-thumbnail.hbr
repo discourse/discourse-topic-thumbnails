@@ -1,18 +1,26 @@
 {{#if view.shouldDisplay}}
   <div class="topic-list-thumbnail">
     <a href="{{view.url}}">
-      <img class="background-thumbnail" 
-            src="{{view.fallbackSrc}}" 
-            srcset="{{view.srcSet}}" 
-            width={{view.width}} 
-            height={{view.height}} 
-          />
-      <img class="main-thumbnail" 
-            src="{{view.fallbackSrc}}" 
-            srcset="{{view.srcSet}}" 
-            width={{view.width}} 
-            height={{view.height}} 
-          />
+      {{#if view.hasThumbnail}}
+        <img class="background-thumbnail" 
+              src="{{view.fallbackSrc}}" 
+              srcset="{{view.srcSet}}" 
+              width={{view.width}} 
+              height={{view.height}} 
+              loading="lazy"
+            />
+        <img class="main-thumbnail" 
+              src="{{view.fallbackSrc}}" 
+              srcset="{{view.srcSet}}" 
+              width={{view.width}} 
+              height={{view.height}} 
+              loading="lazy"
+            />
+      {{else}}
+        <div class="thumbnail-placeholder">
+          {{d-icon (theme-setting "placeholder_icon")}}
+        </div>
+      {{/if}}
     </a>
   </div>
 {{/if}}

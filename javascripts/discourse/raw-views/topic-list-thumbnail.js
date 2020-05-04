@@ -1,10 +1,36 @@
 import discourseComputed from "discourse-common/utils/decorators";
 import EmberObject from "@ember/object";
+import { inject as service } from "@ember/service";
+import { and } from "@ember/object/computed";
 
 export default EmberObject.extend({
+  topicThumbnailsService: service("topic-thumbnails"),
+
+  shouldDisplay: and(
+    "topicThumbnailsService.shouldDisplay",
+    "enabledForOutlet"
+  ),
+
   // Make sure to update about.json thumbnail sizes if you change these variables
-  displayWidth: settings.enable_grid ? 400 : 200, 
+  displayWidth: settings.enable_grid ? 400 : 200,
   responsiveRatios: [1, 1.5, 2],
+
+  @discourseComputed(
+    "location",
+    "site.mobileView",
+    "topicThumbnailsService.displayGrid",
+    "topicThumbnailsService.displayList"
+  )
+  enabledForOutlet(location, mobile, displayGrid, displayList) {
+    if (displayGrid && location === "before-columns") return true;
+    if (displayList && location === "before-link") return true;
+    return false;
+  },
+
+  @discourseComputed("topic.thumbnails")
+  hasThumbnail(thumbnails) {
+    return !!thumbnails;
+  },
 
   @discourseComputed("topic.thumbnails")
   srcSet(thumbnails) {
@@ -59,15 +85,5 @@ export default EmberObject.extend({
     return topic.linked_post_number
       ? topic.urlForPostNumber(topic.linked_post_number)
       : topic.get("lastUnreadUrl");
-  },
-
-  @discourseComputed("site.mobileView", "location")
-  shouldDisplay(mobile, location) {
-    if (settings.enable_grid && location === "before-link") return false;
-    if (!settings.enable_grid && location === "before-columns") return false;
-
-    return mobile
-      ? settings.show_thumbnails_mobile
-      : settings.show_thumbnails_desktop;
   },
 });

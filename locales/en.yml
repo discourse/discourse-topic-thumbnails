@@ -1,0 +1,8 @@
+en: 
+  theme_metadata: 
+    description: Theme component which adds thumbnails to topic lists. You can enable it globally, or per-category
+    settings:
+      default_thumbnail_mode: Which thumbnail display mode should be used by default?
+      list_categories: The list view will be used in these categories
+      grid_categories: The grid view will be used in these categories
+      mobile_thumbnails: Enable thumbnails on mobile devices

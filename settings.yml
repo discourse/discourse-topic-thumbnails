@@ -1,14 +1,23 @@
-show_thumbnails_desktop:
+default_thumbnail_mode:
+  default: grid
+  type: enum
+  choices:
+    - grid
+    - list
+    - none
+
+list_categories:
+  type: list
+  list_type: category
+  default: ""
+
+grid_categories:
+  type: list
+  list_type: category
+  default: ""
+
+placeholder_icon:
+  default: "comments"
+
+mobile_thumbnails:
   default: true
-
-show_thumbnails_mobile:
-  default: false
-
-enable_grid:
-  default: false
-
-show_excerpts_desktop:
-  default: true
-
-show_excerpts_mobile:
-  default: false
