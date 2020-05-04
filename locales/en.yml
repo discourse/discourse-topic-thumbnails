@@ -5,4 +5,5 @@ en:
       default_thumbnail_mode: Which thumbnail display mode should be used by default?
       list_categories: The list view will be used in these categories
       grid_categories: The grid view will be used in these categories
+      placeholder_icon: Icon to display on topics without thumbnail images
       mobile_thumbnails: Enable thumbnails on mobile devices
