@@ -12,7 +12,11 @@ export default EmberObject.extend({
   ),
 
   // Make sure to update about.json thumbnail sizes if you change these variables
-  displayWidth: settings.enable_grid ? 400 : 200,
+  @discourseComputed("topicThumbnailsService.displayGrid")
+  displayWidth(displayGrid) {
+    return displayGrid ? 400 : 200;
+  },
+
   responsiveRatios: [1, 1.5, 2],
 
   @discourseComputed(
@@ -32,12 +36,12 @@ export default EmberObject.extend({
     return !!thumbnails;
   },
 
-  @discourseComputed("topic.thumbnails")
-  srcSet(thumbnails) {
+  @discourseComputed("topic.thumbnails", "displayWidth")
+  srcSet(thumbnails, displayWidth) {
     const srcSetArray = [];
 
     this.responsiveRatios.forEach((ratio) => {
-      const target = ratio * this.displayWidth;
+      const target = ratio * displayWidth;
       const match = thumbnails.find((t) => t.url && t.max_width === target);
       if (match) {
         srcSetArray.push(`${match.url} ${ratio}x`);
