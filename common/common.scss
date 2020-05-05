@@ -121,6 +121,7 @@
   .activity,
   .main-link {
     z-index: 2;
+    position: relative;
     background-color: rgba($primary-very-low, 0.85);
     max-width: none;
   }
