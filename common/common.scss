@@ -160,6 +160,7 @@
     --masonry-column-width
   */
 
+  position: relative;
   height: var(--masonry-tallest-column);
 
   .topic-list-item {
