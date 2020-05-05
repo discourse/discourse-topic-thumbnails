@@ -3,15 +3,21 @@ default_thumbnail_mode:
   type: enum
   choices:
     - grid
+    - masonry
     - list
     - none
 
-list_categories:
+grid_categories:
   type: list
   list_type: category
   default: ""
 
-grid_categories:
+masonry_categories:
+  type: list
+  list_type: category
+  default: ""
+
+list_categories:
   type: list
   list_type: category
   default: ""

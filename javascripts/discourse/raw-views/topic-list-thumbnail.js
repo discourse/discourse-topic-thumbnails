@@ -12,9 +12,9 @@ export default EmberObject.extend({
   ),
 
   // Make sure to update about.json thumbnail sizes if you change these variables
-  @discourseComputed("topicThumbnailsService.displayGrid")
-  displayWidth(displayGrid) {
-    return displayGrid ? 400 : 200;
+  @discourseComputed("topicThumbnailsService.displayList")
+  displayWidth(displayList) {
+    return displayList ? 200 : 400;
   },
 
   responsiveRatios: [1, 1.5, 2],
@@ -23,10 +23,12 @@ export default EmberObject.extend({
     "location",
     "site.mobileView",
     "topicThumbnailsService.displayGrid",
-    "topicThumbnailsService.displayList"
+    "topicThumbnailsService.displayList",
+    "topicThumbnailsService.displayMasonry"
   )
-  enabledForOutlet(location, mobile, displayGrid, displayList) {
-    if (displayGrid && location === "before-columns") return true;
+  enabledForOutlet(location, mobile, displayGrid, displayList, displayMasonry) {
+    if ((displayGrid || displayMasonry) && location === "before-columns")
+      return true;
     if (displayList && location === "before-link") return true;
     return false;
   },

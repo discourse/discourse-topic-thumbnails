@@ -11,6 +11,10 @@ const gridCategories = settings.grid_categories
   .split("|")
   .map((id) => parseInt(id, 10));
 
+const masonryCategories = settings.masonry_categories
+  .split("|")
+  .map((id) => parseInt(id, 10));
+
 export default Service.extend({
   router: service("router"),
 
@@ -30,7 +34,9 @@ export default Service.extend({
 
   @discourseComputed("viewingCategoryId")
   displayMode(viewingCategoryId) {
-    if (gridCategories.includes(viewingCategoryId)) {
+    if (masonryCategories.includes(viewingCategoryId)) {
+      return "masonry";
+    } else if (gridCategories.includes(viewingCategoryId)) {
       return "grid";
     } else if (listCategories.includes(viewingCategoryId)) {
       return "list";
@@ -62,5 +68,10 @@ export default Service.extend({
   @discourseComputed("shouldDisplay", "displayMode")
   displayGrid(shouldDisplay, displayMode) {
     return shouldDisplay && displayMode === "grid";
+  },
+
+  @discourseComputed("shouldDisplay", "displayMode")
+  displayMasonry(shouldDisplay, displayMode) {
+    return shouldDisplay && displayMode === "masonry";
   },
 });

@@ -1,5 +1,6 @@
 .topic-thumbnails-list,
-.topic-thumbnails-grid {
+.topic-thumbnails-grid,
+.topic-thumbnails-masonry {
   .topic-list-thumbnail {
     background: $primary-low;
     position: relative;
@@ -63,7 +64,8 @@
   }
 }
 
-.topic-thumbnails-grid {
+.topic-thumbnails-grid,
+.topic-thumbnails-masonry {
   margin-top: 5px;
 
   thead,
@@ -146,5 +148,37 @@
       padding: 0;
       margin-top: auto;
     }
+  }
+}
+
+.topic-thumbnails-masonry {
+  /*
+    Variables set by javascript:
+    --masonry-num-columns
+    --masonry-tallest-column
+    --masonry-grid-spacing
+    --masonry-column-width
+  */
+
+  height: var(--masonry-tallest-column);
+
+  .topic-list-item {
+    /*
+      Variables set by javascript:
+      --masonry-height 
+      --masonry-height-above  
+      --masonry-column-index
+    */
+
+    position: absolute;
+
+    height: var(--masonry-height);
+    width: var(--masonry-column-width);
+
+    left: calc(
+      (var(--masonry-column-width) + var(--masonry-grid-spacing)) *
+        var(--masonry-column-index)
+    );
+    top: var(--masonry-height-above);
   }
 }
