@@ -81,7 +81,7 @@ export default {
         if (!this.topicThumbnailsService.displayMasonry) return;
         this.updateElementHeight();
 
-        if (ResizeObserver) {
+        if (window.ResizeObserver) {
           const observer = new ResizeObserver(() => this.updateElementHeight());
           observer.observe(this.element);
           this.set("resizeObserver", observer);
