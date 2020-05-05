@@ -56,7 +56,7 @@ export default {
     api.modifyClass("component:topic-list", {
       topicThumbnailsService: service("topic-thumbnails"),
 
-      masonryTargetColumnWidth: 250,
+      masonryTargetColumnWidth: 300,
       masonryGridSpacingPixels: 5,
       masonryTitleSpacePixels: 62,
       masonryDefaultAspect: 1.3,
