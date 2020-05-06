@@ -20,21 +20,11 @@ export default Service.extend({
 
   @discourseComputed(
     "router.currentRouteName",
-    "router.currentRoute.params.category_slug_path_with_id",
-    "router.currentRoute.params.slug"
+    "router.currentRoute.attributes.category.id"
   )
-  viewingCategoryId(currentRouteName, categorySlugPathWithId, categorySlug) {
-    if (!currentRouteName.match(/^discovery\..*[cC]ategory$/)) return;
-
-    if (categorySlugPathWithId) {
-      const parsed = parseInt(categorySlugPathWithId.split("/").lastObject, 10);
-      if (parsed) return parsed;
-    }
-
-    if (categorySlug) {
-      const matched = Category.findSingleBySlug(categorySlug);
-      if (matched) return matched.id;
-    }
+  viewingCategoryId(currentRouteName, categoryId) {
+    if (!currentRouteName.match(/^discovery\./)) return;
+    return categoryId;
   },
 
   @discourseComputed("viewingCategoryId")
