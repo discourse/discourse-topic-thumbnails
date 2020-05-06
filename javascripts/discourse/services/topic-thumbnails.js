@@ -24,11 +24,16 @@ export default Service.extend({
     "router.currentRoute.params.slug"
   )
   viewingCategoryId(currentRouteName, categorySlugPathWithId, categorySlug) {
-    if (currentRouteName === "discovery.category") {
-      return (
-        parseInt(categorySlugPathWithId.split("/").lastObject, 10) ||
-        Category.findSingleBySlug(categorySlug)
-      );
+    if (!currentRouteName.match(/^discovery\..*[cC]ategory$/)) return;
+
+    if (categorySlugPathWithId) {
+      const parsed = parseInt(categorySlugPathWithId.split("/").lastObject, 10);
+      if (parsed) return parsed;
+    }
+
+    if (categorySlug) {
+      const matched = Category.findSingleBySlug(categorySlug);
+      if (matched) return matched.id;
     }
   },
 
