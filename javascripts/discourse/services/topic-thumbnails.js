@@ -1,7 +1,7 @@
 import Service from "@ember/service";
 import { inject as service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
-import Category from "discourse/models/category";
+import Site from "discourse/models/site";
 
 const listCategories = settings.list_categories
   .split("|")
@@ -45,9 +45,9 @@ export default Service.extend({
     return displayMode !== "none";
   },
 
-  @discourseComputed("site.mobileView")
-  enabledForDevice(mobile) {
-    return mobile ? settings.mobile_thumbnails : true;
+  @discourseComputed()
+  enabledForDevice() {
+    return Site.current().mobileView ? settings.mobile_thumbnails : true;
   },
 
   @discourseComputed("enabledForRoute", "enabledForDevice")
