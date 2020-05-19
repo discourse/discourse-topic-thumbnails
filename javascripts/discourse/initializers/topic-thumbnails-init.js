@@ -58,7 +58,7 @@ export default {
 
       masonryTargetColumnWidth: 300,
       masonryGridSpacingPixels: 10,
-      masonryTitleSpacePixels: 62,
+      masonryTitleSpacePixels: 76,
       masonryDefaultAspect: 1.3,
       masonryMinAspect: 0.7,
 

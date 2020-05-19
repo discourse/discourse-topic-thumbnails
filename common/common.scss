@@ -90,7 +90,8 @@
 
     grid-template-areas:
       " image image "
-      " title activity";
+      " title activity"
+      " title posters";
 
     grid-template-rows: 1fr auto;
     grid-template-columns: 1fr auto;
@@ -119,14 +120,38 @@
   }
 
   .activity,
-  .main-link {
+  .main-link,
+  .posters {
     z-index: 2;
     position: relative;
     background-color: rgba($primary-very-low, 0.85);
     max-width: none;
   }
 
-  .posters,
+  &.topic-list .posters {
+    height: auto;
+    padding-top: 0;
+    grid-area: posters;
+
+    padding: 0 10px 10px 10px;
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+
+    a {
+      display: block;
+      width: auto;
+      margin: 0;
+
+      &:first-of-type {
+        display: block;
+      }
+      &:not(:first-of-type) {
+        display: none;
+      }
+    }
+  }
+
   .posts-map,
   .views,
   .topic-excerpt {
@@ -135,14 +160,18 @@
 
   .main-link {
     grid-area: title;
-
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .num.activity {
     grid-area: activity;
 
     display: flex;
+    justify-content: flex-end;
+
     width: auto;
     padding: 10px;
 
