@@ -27,8 +27,13 @@ export default Service.extend({
     return categoryId;
   },
 
-  @discourseComputed("viewingCategoryId")
-  displayMode(viewingCategoryId) {
+  @discourseComputed(
+    "viewingCategoryId",
+    "router.currentRoute.metadata.customThumbnailMode"
+  )
+  displayMode(viewingCategoryId, customThumbnailMode) {
+    if (customThumbnailMode) return customThumbnailMode;
+
     if (masonryCategories.includes(viewingCategoryId)) {
       return "masonry";
     } else if (gridCategories.includes(viewingCategoryId)) {
