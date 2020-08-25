@@ -1,5 +1,9 @@
 {{#if view.shouldDisplay}}
-  <div class="topic-list-thumbnail">
+  {{#if view.hasThumbnail}}
+    <div class="topic-list-thumbnail has-thumbnail">
+  {{else}}
+    <div class="topic-list-thumbnail no-thumbnail">
+  {{/if}}
     <a href="{{view.url}}">
       {{#if view.hasThumbnail}}
         <img class="background-thumbnail" 
