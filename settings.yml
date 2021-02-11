@@ -22,6 +22,21 @@ list_categories:
   list_type: category
   default: ""
 
+grid_tags:
+  type: list
+  list_type: tag
+  default: ""
+
+masonry_tags:
+  type: list
+  list_type: tag
+  default: ""
+
+list_tags:
+  type: list
+  list_type: tag
+  default: ""
+
 placeholder_icon:
   default: "comments"
 
