@@ -36,7 +36,7 @@ export default Service.extend({
     "router.currentRoute.attributes.id"
   )
   viewingTagId(currentRouteName, tagId) {
-    if (!currentRouteName.match(/^tag\.show/)) return;
+    if (!currentRouteName.match(/^tags?\.show/)) return;
     return tagId;
   },
 
