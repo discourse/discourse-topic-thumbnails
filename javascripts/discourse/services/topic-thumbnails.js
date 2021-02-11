@@ -15,6 +15,10 @@ const masonryCategories = settings.masonry_categories
   .split("|")
   .map((id) => parseInt(id, 10));
 
+const listTags = settings.list_tags.split("|");
+const gridTags = settings.grid_tags.split("|");
+const masonryTags = settings.masonry_tags.split("|");
+
 export default Service.extend({
   router: service("router"),
 
@@ -28,10 +32,20 @@ export default Service.extend({
   },
 
   @discourseComputed(
+    "router.currentRouteName",
+    "router.currentRoute.attributes.id"
+  )
+  viewingTagId(currentRouteName, tagId) {
+    if (!currentRouteName.match(/^tags?\.show/)) return;
+    return tagId;
+  },
+
+  @discourseComputed(
     "viewingCategoryId",
+    "viewingTagId",
     "router.currentRoute.metadata.customThumbnailMode"
   )
-  displayMode(viewingCategoryId, customThumbnailMode) {
+  displayMode(viewingCategoryId, viewingTagId, customThumbnailMode) {
     if (customThumbnailMode) return customThumbnailMode;
 
     if (masonryCategories.includes(viewingCategoryId)) {
@@ -39,6 +53,12 @@ export default Service.extend({
     } else if (gridCategories.includes(viewingCategoryId)) {
       return "grid";
     } else if (listCategories.includes(viewingCategoryId)) {
+      return "list";
+    } else if (masonryTags.includes(viewingTagId)) {
+      return "masonry";
+    } else if (gridTags.includes(viewingTagId)) {
+      return "grid";
+    } else if (listTags.includes(viewingTagId)) {
       return "list";
     } else {
       return settings.default_thumbnail_mode;
