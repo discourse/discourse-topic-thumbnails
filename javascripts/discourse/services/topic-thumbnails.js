@@ -22,6 +22,14 @@ const masonryTags = settings.masonry_tags.split("|");
 export default Service.extend({
   router: service("router"),
 
+  @discourseComputed("router.currentRouteName")
+  isTopicListRoute(currentRouteName) {
+    return (
+      currentRouteName.match(/^discovery\./) ||
+      currentRouteName.match(/^tags?\.show/)
+    );
+  },
+
   @discourseComputed(
     "router.currentRouteName",
     "router.currentRoute.attributes.category.id"
@@ -43,9 +51,15 @@ export default Service.extend({
   @discourseComputed(
     "viewingCategoryId",
     "viewingTagId",
-    "router.currentRoute.metadata.customThumbnailMode"
+    "router.currentRoute.metadata.customThumbnailMode",
+    "isTopicListRoute"
   )
-  displayMode(viewingCategoryId, viewingTagId, customThumbnailMode) {
+  displayMode(
+    viewingCategoryId,
+    viewingTagId,
+    customThumbnailMode,
+    isTopicListRoute
+  ) {
     if (customThumbnailMode) return customThumbnailMode;
 
     if (masonryCategories.includes(viewingCategoryId)) {
@@ -60,8 +74,10 @@ export default Service.extend({
       return "grid";
     } else if (listTags.includes(viewingTagId)) {
       return "list";
-    } else {
+    } else if (isTopicListRoute || settings.enable_outside_topic_lists) {
       return settings.default_thumbnail_mode;
+    } else {
+      return "none";
     }
   },
 

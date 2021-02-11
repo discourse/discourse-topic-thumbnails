@@ -37,6 +37,8 @@ list_tags:
   list_type: tag
   default: ""
 
+enable_outside_topic_lists: false
+
 placeholder_icon:
   default: "comments"
 
