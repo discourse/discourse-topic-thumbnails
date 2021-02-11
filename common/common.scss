@@ -182,8 +182,39 @@
   }
 }
 
-.topic-thumbnails-masonry {
-  /*
+@supports (grid-template-rows: masonry) {
+  .topic-thumbnails-masonry {
+    tbody {
+      grid-template-rows: masonry;
+    }
+
+    tr {
+      height: auto;
+    }
+
+    .topic-list-thumbnail {
+      float: none;
+      width: 100%;
+      min-height: 150px;
+      max-height: 500px;
+
+      .background-thumbnail {
+        display: absolute;
+        height: calc(200%);
+      }
+
+      .main-thumbnail {
+        position: relative;
+        width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+}
+
+@supports not (grid-template-rows: masonry) {
+  .topic-thumbnails-masonry {
+    /*
     Variables set by javascript:
     --masonry-num-columns
     --masonry-tallest-column
@@ -191,26 +222,27 @@
     --masonry-column-width
   */
 
-  position: relative;
-  height: var(--masonry-tallest-column);
+    position: relative;
+    height: var(--masonry-tallest-column);
 
-  .topic-list-item {
-    /*
+    .topic-list-item {
+      /*
       Variables set by javascript:
       --masonry-height 
       --masonry-height-above  
       --masonry-column-index
     */
 
-    position: absolute;
+      position: absolute;
 
-    height: var(--masonry-height);
-    width: var(--masonry-column-width);
+      height: var(--masonry-height);
+      width: var(--masonry-column-width);
 
-    left: calc(
-      (var(--masonry-column-width) + var(--masonry-grid-spacing)) *
-        var(--masonry-column-index)
-    );
-    top: var(--masonry-height-above);
+      left: calc(
+        (var(--masonry-column-width) + var(--masonry-grid-spacing)) *
+          var(--masonry-column-index)
+      );
+      top: var(--masonry-height-above);
+    }
   }
 }
