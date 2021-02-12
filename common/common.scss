@@ -2,7 +2,7 @@
 .topic-thumbnails-grid,
 .topic-thumbnails-masonry {
   .topic-list-thumbnail {
-    background: $primary-low;
+    background: var(--primary-low);
     position: relative;
     float: left;
     margin-right: 10px;
@@ -35,7 +35,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: $secondary;
+      background: var(--secondary);
       opacity: 0.4;
     }
 
@@ -52,7 +52,7 @@
       height: 100%;
       position: absolute;
       z-index: 2;
-      color: $primary-medium;
+      color: var(--primary-medium);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -96,12 +96,12 @@
     grid-template-rows: 1fr auto;
     grid-template-columns: 1fr auto;
 
-    background-color: $primary-low;
-    border: 1px solid $primary-low;
+    background-color: var(--primary-low);
+    border: 1px solid var(--primary-low);
 
     &.selected,
     &.last-visit.selected {
-      border: 1px solid $quaternary;
+      border: 1px solid var(--quaternary);
     }
   }
 
@@ -124,7 +124,7 @@
   .posters {
     z-index: 2;
     position: relative;
-    background-color: rgba($primary-very-low, 0.85);
+    background-color: rgba(var(--primary-low-rgb), 0.85);
     max-width: none;
   }
 
