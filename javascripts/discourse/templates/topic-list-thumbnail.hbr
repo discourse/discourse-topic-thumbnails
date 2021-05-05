@@ -1,6 +1,6 @@
 {{#if view.shouldDisplay}}
   {{#if view.hasThumbnail}}
-    <div class="topic-list-thumbnail has-thumbnail">
+    <div class="topic-list-thumbnail has-thumbnail {{#if view.isLandscape}}landscape{{/if}}">
   {{else}}
     <div class="topic-list-thumbnail no-thumbnail">
   {{/if}}

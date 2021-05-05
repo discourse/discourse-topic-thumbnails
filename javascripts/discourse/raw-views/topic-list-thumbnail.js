@@ -22,12 +22,13 @@ export default EmberObject.extend({
   @discourseComputed(
     "location",
     "site.mobileView",
+    "topicThumbnailsService.displayMinimalGrid",
     "topicThumbnailsService.displayGrid",
     "topicThumbnailsService.displayList",
     "topicThumbnailsService.displayMasonry"
   )
-  enabledForOutlet(location, mobile, displayGrid, displayList, displayMasonry) {
-    if ((displayGrid || displayMasonry) && location === "before-columns")
+  enabledForOutlet(location, mobile, displayMinimalGrid, displayGrid, displayList, displayMasonry) {
+    if ((displayGrid || displayMasonry || displayMinimalGrid) && location === "before-columns")
       return true;
     if (displayList && location === "before-link") return true;
     return false;
@@ -66,7 +67,10 @@ export default EmberObject.extend({
   width(original) {
     return original.width;
   },
-
+  @discourseComputed("original")
+  isLandscape(original) {
+    return original.width >= original.height;
+  },
   @discourseComputed("original")
   height(original) {
     return original.height;
