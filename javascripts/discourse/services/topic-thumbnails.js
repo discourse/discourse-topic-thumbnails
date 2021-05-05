@@ -76,6 +76,8 @@ export default Service.extend({
       return "list";
     } else if (masonryTags.includes(viewingTagId)) {
       return "masonry";
+    } else if (minimalGridTags.includes(viewingTagId)) {
+      return "minimal-grid";
     } else if (gridTags.includes(viewingTagId)) {
       return "grid";
     } else if (listTags.includes(viewingTagId)) {

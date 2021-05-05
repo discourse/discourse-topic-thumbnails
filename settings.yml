@@ -2,15 +2,11 @@ default_thumbnail_mode:
   default: grid
   type: enum
   choices:
-    - minimal
+    - minimal-grid
     - grid
     - masonry
     - list
-    - none
-
-minimal_thumbnail:
-  type: bool
-  default: false
+    - none 
 
 minimal_grid_categories:
   type: list

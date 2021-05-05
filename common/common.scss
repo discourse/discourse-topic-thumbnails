@@ -11,6 +11,15 @@
     height: 100px;
     overflow: hidden;
 
+    &.landscape {
+      .background-thumbnail {
+        display: none;
+      }
+      .main-thumbnail {
+        object-fit: cover;
+      }
+    }
+
     // Blurred background image
     .background-thumbnail {
       z-index: 0;

@@ -1,35 +1,25 @@
 {{#if view.shouldDisplay}}
   {{#if view.hasThumbnail}}
-    <div class="topic-list-thumbnail has-thumbnail">
+    <div class="topic-list-thumbnail has-thumbnail {{#if view.isLandscape}}landscape{{/if}}">
   {{else}}
     <div class="topic-list-thumbnail no-thumbnail">
   {{/if}}
     <a href="{{view.url}}">
       {{#if view.hasThumbnail}}
-        {{#if (theme-setting "minimal_thumbnail")}}
-          <img class="main-thumbnail minimal-thumbnail" 
-                src="{{view.fallbackSrc}}" 
-                srcset="{{view.srcSet}}" 
-                width={{view.width}} 
-                height={{view.height}} 
-                loading="lazy"
-              />
-        {{else}}
-          <img class="background-thumbnail" 
-                src="{{view.fallbackSrc}}" 
-                srcset="{{view.srcSet}}" 
-                width={{view.width}} 
-                height={{view.height}} 
-                loading="lazy"
-              />
-          <img class="main-thumbnail" 
-                src="{{view.fallbackSrc}}" 
-                srcset="{{view.srcSet}}" 
-                width={{view.width}} 
-                height={{view.height}} 
-                loading="lazy"
-              />
-        {{/if}}
+        <img class="background-thumbnail" 
+              src="{{view.fallbackSrc}}" 
+              srcset="{{view.srcSet}}" 
+              width={{view.width}} 
+              height={{view.height}} 
+              loading="lazy"
+            />
+        <img class="main-thumbnail" 
+              src="{{view.fallbackSrc}}" 
+              srcset="{{view.srcSet}}" 
+              width={{view.width}} 
+              height={{view.height}} 
+              loading="lazy"
+            />
       {{else}}
         <div class="thumbnail-placeholder">
           {{d-icon (theme-setting "placeholder_icon")}}

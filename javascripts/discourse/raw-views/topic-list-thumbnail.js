@@ -67,7 +67,10 @@ export default EmberObject.extend({
   width(original) {
     return original.width;
   },
-
+  @discourseComputed("original")
+  isLandscape(original) {
+    return original.width >= original.height;
+  },
   @discourseComputed("original")
   height(original) {
     return original.height;
