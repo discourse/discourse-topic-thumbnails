@@ -2,3 +2,58 @@
   width: 45px;
   height: 45px;
 }
+
+.topic-thumbnails-minimal {
+  tbody {
+    grid-template-columns: auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+    tr {
+      grid-template-columns: auto 30px;
+      grid-template-rows: 1fr 30px;
+      grid-template-areas: "image image"
+      "title posts";
+      height: 150px;
+      .topic-thumbnail-likes {
+        grid-area: posts;
+        font-size: $font-down-3;
+        .d-icon {
+          font-size: 12px;
+        }
+      }
+      .main-link {
+        padding: 0 !important;
+        .title {
+          color: var(--primary);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: $font-down-3;
+          width: 90%;
+          padding: 0;
+        }
+      }
+      .posts-map {
+        display: none;
+        margin-top: 1px;
+        span.number {
+          color: var(--primary-low-mid);
+          display: flex;
+          font-size: $font-down-4;
+          &:before {
+            content: "";
+            background-color: var(--primary-low-mid);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            mask-image: url('data:image/svg+xml; utf8, <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="comment" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-comment fa-w-16 fa-2x"><path fill="gray" d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z" class=""></path></svg>');
+            -webkit-mask-image: url('data:image/svg+xml; utf8, <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="comment" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-comment fa-w-16 fa-2x"><path fill="gray" d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z" class=""></path></svg>');
+            display: block;
+            height: 12px;
+            width: 12px;
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+  }
+}

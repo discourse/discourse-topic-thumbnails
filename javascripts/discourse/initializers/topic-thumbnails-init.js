@@ -29,10 +29,12 @@ export default {
     api.modifyClass("component:topic-list", {
       topicThumbnailsService: service("topic-thumbnails"),
       classNameBindings: [
+        "isMinimalGrid:topic-thumbnails-minimal",
         "isThumbnailGrid:topic-thumbnails-grid",
         "isThumbnailList:topic-thumbnails-list",
         "isMasonryList:topic-thumbnails-masonry",
       ],
+      isMinimalGrid: readOnly("topicThumbnailsService.displayMinimalGrid"),
       isThumbnailGrid: readOnly("topicThumbnailsService.displayGrid"),
       isThumbnailList: readOnly("topicThumbnailsService.displayList"),
       isMasonryList: readOnly("topicThumbnailsService.displayMasonry"),
@@ -48,7 +50,8 @@ export default {
         if (
           wasMobileView &&
           (this.topicThumbnailsService.displayGrid ||
-            this.topicThumbnailsService.displayMasonry)
+            this.topicThumbnailsService.displayMasonry ||
+            this.topicThumbnailsService.displayMinimalGrid)
         ) {
           setResolverOption("mobileView", false);
         }

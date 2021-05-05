@@ -3,6 +3,10 @@ import { inject as service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
 import Site from "discourse/models/site";
 
+const minimalGridCategories = settings.minimal_grid_categories
+  .split("|")
+  .map((id) => parseInt(id,10));
+
 const listCategories = settings.list_categories
   .split("|")
   .map((id) => parseInt(id, 10));
@@ -15,6 +19,7 @@ const masonryCategories = settings.masonry_categories
   .split("|")
   .map((id) => parseInt(id, 10));
 
+const minimalGridTags = settings.minimal_grid_tags.split("|");
 const listTags = settings.list_tags.split("|");
 const gridTags = settings.grid_tags.split("|");
 const masonryTags = settings.masonry_tags.split("|");
@@ -61,8 +66,9 @@ export default Service.extend({
     isTopicListRoute
   ) {
     if (customThumbnailMode) return customThumbnailMode;
-
-    if (masonryCategories.includes(viewingCategoryId)) {
+    if (minimalGridCategories.includes(viewingCategoryId)) {
+      return "minimal-grid";
+    } else if (masonryCategories.includes(viewingCategoryId)) {
       return "masonry";
     } else if (gridCategories.includes(viewingCategoryId)) {
       return "grid";
@@ -70,6 +76,8 @@ export default Service.extend({
       return "list";
     } else if (masonryTags.includes(viewingTagId)) {
       return "masonry";
+    } else if (minimalGridTags.includes(viewingTagId)) {
+      return "minimal-grid";
     } else if (gridTags.includes(viewingTagId)) {
       return "grid";
     } else if (listTags.includes(viewingTagId)) {
@@ -94,6 +102,11 @@ export default Service.extend({
   @discourseComputed("enabledForRoute", "enabledForDevice")
   shouldDisplay(enabledForRoute, enabledForDevice) {
     return enabledForRoute && enabledForDevice;
+  },
+
+  @discourseComputed("shouldDisplay", "displayMode")
+  displayMinimalGrid(shouldDisplay, displayMode) {
+    return shouldDisplay && displayMode === "minimal-grid";
   },
 
   @discourseComputed("shouldDisplay", "displayMode")
