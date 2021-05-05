@@ -243,14 +243,11 @@
     position: relative;
     overflow: hidden;
     height: 250px;
-
     grid-template-areas:
-      " image image "
-      " title activity"
-      " title posters";
-
+        " image image image"
+        " title likes posts";
     grid-template-rows: 1fr 45px;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 70% 15% 15%;
     border-bottom: none;
 
     &.closed {
@@ -280,11 +277,36 @@
   .link-bottom-line {
     display: none;
   }
+
+  .topic-thumbnail-likes {
+    grid-area: likes;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: var(--primary-low-mid);
+    .number {
+      font-weight: bold;
+    }
+    .d-icon {
+      font-size: 19px;
+      margin-right:0.5em;
+    }
+  }
+
   .posts-map {
     padding: 0;
+    grid-area: posts;
+    width: auto;
+    .badge-posts {
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
     span.number {
       color: var(--primary-low-mid);
       display: flex;
+      justify-content: flex-end;
+      align-items: center;
       &:before {
         content: "";
         background-color: var(--primary-low-mid);

@@ -50,7 +50,8 @@ export default {
         if (
           wasMobileView &&
           (this.topicThumbnailsService.displayGrid ||
-            this.topicThumbnailsService.displayMasonry)
+            this.topicThumbnailsService.displayMasonry ||
+            this.topicThumbnailsService.displayMinimalGrid)
         ) {
           setResolverOption("mobileView", false);
         }
