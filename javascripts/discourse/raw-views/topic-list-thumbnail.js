@@ -22,12 +22,13 @@ export default EmberObject.extend({
   @discourseComputed(
     "location",
     "site.mobileView",
+    "topicThumbnailsService.displayMinimalGrid",
     "topicThumbnailsService.displayGrid",
     "topicThumbnailsService.displayList",
     "topicThumbnailsService.displayMasonry"
   )
-  enabledForOutlet(location, mobile, displayGrid, displayList, displayMasonry) {
-    if ((displayGrid || displayMasonry) && location === "before-columns")
+  enabledForOutlet(location, mobile, displayMinimalGrid, displayGrid, displayList, displayMasonry) {
+    if ((displayGrid || displayMasonry || displayMinimalGrid) && location === "before-columns")
       return true;
     if (displayList && location === "before-link") return true;
     return false;

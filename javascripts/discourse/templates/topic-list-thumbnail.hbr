@@ -6,20 +6,30 @@
   {{/if}}
     <a href="{{view.url}}">
       {{#if view.hasThumbnail}}
-        <img class="background-thumbnail" 
-              src="{{view.fallbackSrc}}" 
-              srcset="{{view.srcSet}}" 
-              width={{view.width}} 
-              height={{view.height}} 
-              loading="lazy"
-            />
-        <img class="main-thumbnail" 
-              src="{{view.fallbackSrc}}" 
-              srcset="{{view.srcSet}}" 
-              width={{view.width}} 
-              height={{view.height}} 
-              loading="lazy"
-            />
+        {{#if (theme-setting "minimal_thumbnail")}}
+          <img class="main-thumbnail minimal-thumbnail" 
+                src="{{view.fallbackSrc}}" 
+                srcset="{{view.srcSet}}" 
+                width={{view.width}} 
+                height={{view.height}} 
+                loading="lazy"
+              />
+        {{else}}
+          <img class="background-thumbnail" 
+                src="{{view.fallbackSrc}}" 
+                srcset="{{view.srcSet}}" 
+                width={{view.width}} 
+                height={{view.height}} 
+                loading="lazy"
+              />
+          <img class="main-thumbnail" 
+                src="{{view.fallbackSrc}}" 
+                srcset="{{view.srcSet}}" 
+                width={{view.width}} 
+                height={{view.height}} 
+                loading="lazy"
+              />
+        {{/if}}
       {{else}}
         <div class="thumbnail-placeholder">
           {{d-icon (theme-setting "placeholder_icon")}}
