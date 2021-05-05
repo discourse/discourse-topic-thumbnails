@@ -1,6 +1,0 @@
-<div class="topic-thumbnail-likes">
-  {{d-icon "heart"}}
-  <span class="number">
-    {{context.topic.like_count}}
-  </span>
-</div>
