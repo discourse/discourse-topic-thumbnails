@@ -253,9 +253,11 @@
     grid-template-rows: 1fr 45px;
     grid-template-columns: 70% 15% 15%;
     border-bottom: none;
-
     &.closed {
       display: none;
+    }
+    &.visited {
+      background-color: transparent !important;
     }
   }
 
