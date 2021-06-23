@@ -9,7 +9,7 @@
     grid-column-gap: 10px;
     grid-row-gap: 5px;
     tr {
-      grid-template-columns: auto 30px;
+      grid-template-columns: 1fr 45px;
       grid-template-rows: 1fr 30px;
       grid-template-areas: "image image"
       "title posts";
@@ -23,14 +23,11 @@
       }
       .main-link {
         padding: 0 !important;
-        .title {
+        .link-top-line {
           color: var(--primary);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+        }
+        .title {
           font-size: $font-down-3;
-          width: 90%;
-          padding: 0;
         }
       }
       .posts-map {
