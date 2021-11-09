@@ -3,12 +3,25 @@
   height: 45px;
 }
 
+.topic-thumbnails-list {
+  .topic-list-body .topic-list-item {
+    .right {
+      grid-template-columns: 15% 65% 20%;
+      grid-template-rows: 15% 40% 45%;
+      grid-template-areas: "thumbnail title replies" "thumbnail data data";
+      .topic-list-thumbnail {
+        grid-area: thumbnail;
+      }
+    }
+  }
+}
+
 .topic-thumbnails-minimal {
-  tbody {
+  & > :nth-child(2) { // targets tbody, needs to change to .topic-list-body on topic-list refactor
     grid-template-columns: auto auto;
     grid-column-gap: 10px;
     grid-row-gap: 5px;
-    tr {
+    .topic-list-item { // targets what was previously just `tr`
       grid-template-columns: 1fr 45px;
       grid-template-rows: 1fr 30px;
       grid-template-areas: "image image"
