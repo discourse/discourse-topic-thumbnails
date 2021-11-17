@@ -17,11 +17,10 @@
 }
 
 .topic-thumbnails-minimal {
-  & > :nth-child(2) { // targets tbody, needs to change to .topic-list-body on topic-list refactor
-    grid-template-columns: auto auto;
+  .topic-list-body {
     grid-column-gap: 10px;
     grid-row-gap: 5px;
-    .topic-list-item { // targets what was previously just `tr`
+    .topic-list-item {
       grid-template-columns: 1fr 45px;
       grid-template-rows: 1fr 30px;
       grid-template-areas: "image image"
