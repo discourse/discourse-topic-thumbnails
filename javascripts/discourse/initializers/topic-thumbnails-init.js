@@ -47,6 +47,7 @@ export default {
 
       // Hack to disable the mobile topic-list-item template
       // Our grid styling is responsive, and uses the desktop HTML structure
+      @observes("topic.pinned")
       renderTopicListItem() {
         const wasMobileView = getResolverOption("mobileView");
         if (
