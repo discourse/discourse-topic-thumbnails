@@ -46,11 +46,12 @@ export default Service.extend({
 
   @discourseComputed(
     "router.currentRouteName",
-    "router.currentRoute.attributes.id"
+    "router.currentRoute.attributes.id", // For discourse instances earlier than https://github.com/discourse/discourse/commit/f7b5ff39cf
+    "router.currentRoute.attributes.tag.id"
   )
-  viewingTagId(currentRouteName, tagId) {
+  viewingTagId(currentRouteName, legacyTagId, tagId) {
     if (!currentRouteName.match(/^tags?\.show/)) return;
-    return tagId;
+    return tagId || legacyTagId;
   },
 
   @discourseComputed(
