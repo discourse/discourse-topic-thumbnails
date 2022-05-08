@@ -97,7 +97,7 @@ export default {
 
         didInsertElement() {
           this._super();
-          if (!this.topicThumbnailsService.displayMasonry) return;
+          if (!this.topicThumbnailsService.displayMasonry) {return;}
           this.updateElementHeight();
 
           if (window.ResizeObserver) {
@@ -125,8 +125,8 @@ export default {
 
         @observes("topics.[]", "masonryContainerWidth")
         masonryTopicsChanged() {
-          if (!this.topicThumbnailsService.displayMasonry) return;
-          if (!this.masonryContainerWidth) return;
+          if (!this.topicThumbnailsService.displayMasonry) {return;}
+          if (!this.masonryContainerWidth) {return;}
           once(this, this.calculateMasonryLayout);
         },
 
@@ -182,7 +182,7 @@ export default {
           tallestColumn,
           columnWidth
         ) {
-          if (!useMasonry) return;
+          if (!useMasonry) {return;}
 
           return (
             `--masonry-num-columns: ${Math.round(numColumns)}; ` +
@@ -199,7 +199,7 @@ export default {
 
         @discourseComputed("topic.masonryData")
         masonryStyle(masonryData) {
-          if (!masonryData) return;
+          if (!masonryData) {return;}
 
           return (
             `--masonry-height: ${Math.round(masonryData.height)}px; ` +

@@ -1,11 +1,10 @@
-import Service from "@ember/service";
-import { inject as service } from "@ember/service";
+import Service, { inject as service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
 import Site from "discourse/models/site";
 
 const minimalGridCategories = settings.minimal_grid_categories
   .split("|")
-  .map((id) => parseInt(id,10));
+  .map((id) => parseInt(id, 10));
 
 const listCategories = settings.list_categories
   .split("|")
@@ -40,7 +39,9 @@ export default Service.extend({
     "router.currentRoute.attributes.category.id"
   )
   viewingCategoryId(currentRouteName, categoryId) {
-    if (!currentRouteName.match(/^discovery\./)) return;
+    if (!currentRouteName.match(/^discovery\./)) {
+      return;
+    }
     return categoryId;
   },
 
@@ -50,7 +51,9 @@ export default Service.extend({
     "router.currentRoute.attributes.tag.id"
   )
   viewingTagId(currentRouteName, legacyTagId, tagId) {
-    if (!currentRouteName.match(/^tags?\.show/)) return;
+    if (!currentRouteName.match(/^tags?\.show/)) {
+      return;
+    }
     return tagId || legacyTagId;
   },
 
@@ -66,7 +69,9 @@ export default Service.extend({
     customThumbnailMode,
     isTopicListRoute
   ) {
-    if (customThumbnailMode) return customThumbnailMode;
+    if (customThumbnailMode) {
+      return customThumbnailMode;
+    }
     if (minimalGridCategories.includes(viewingCategoryId)) {
       return "minimal-grid";
     } else if (masonryCategories.includes(viewingCategoryId)) {
