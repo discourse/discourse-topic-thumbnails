@@ -228,7 +228,7 @@
 
 .topic-thumbnails-minimal {
   margin-top: 5px;
-  
+
   .topic-list-header,
   .topic-list-item-separator {
     display: none;
@@ -248,8 +248,8 @@
     overflow: hidden;
     height: 250px;
     grid-template-areas:
-        " image image image"
-        " title likes posts";
+      " image image image"
+      " title likes posts";
     grid-template-rows: 1fr 45px;
     grid-template-columns: 70% 15% 15%;
     border-bottom: none;
@@ -296,7 +296,7 @@
     }
     .d-icon {
       font-size: 13px;
-      margin-right:0.5em;
+      margin-right: 0.5em;
     }
   }
 

@@ -6,7 +6,7 @@ default_thumbnail_mode:
     - grid
     - masonry
     - list
-    - none 
+    - none
 
 minimal_grid_categories:
   type: list

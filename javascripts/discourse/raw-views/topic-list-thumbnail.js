@@ -27,10 +27,23 @@ export default EmberObject.extend({
     "topicThumbnailsService.displayList",
     "topicThumbnailsService.displayMasonry"
   )
-  enabledForOutlet(location, mobile, displayMinimalGrid, displayGrid, displayList, displayMasonry) {
-    if ((displayGrid || displayMasonry || displayMinimalGrid) && location === "before-columns")
-      {return true;}
-    if (displayList && location === "before-link") {return true;}
+  enabledForOutlet(
+    location,
+    mobile,
+    displayMinimalGrid,
+    displayGrid,
+    displayList,
+    displayMasonry
+  ) {
+    if (
+      (displayGrid || displayMasonry || displayMinimalGrid) &&
+      location === "before-columns"
+    ) {
+      return true;
+    }
+    if (displayList && location === "before-link") {
+      return true;
+    }
     return false;
   },
 
@@ -79,7 +92,9 @@ export default EmberObject.extend({
   @discourseComputed("topic.thumbnails")
   fallbackSrc(thumbnails) {
     const largeEnough = thumbnails.filter((t) => {
-      if (!t.url) {return false;}
+      if (!t.url) {
+        return false;
+      }
       return t.max_width > this.displayWidth * this.responsiveRatios.lastObject;
     });
 
