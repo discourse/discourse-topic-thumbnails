@@ -23,8 +23,9 @@
     .topic-list-item {
       grid-template-columns: 1fr 45px;
       grid-template-rows: 1fr 30px;
-      grid-template-areas: "image image"
-      "title posts";
+      grid-template-areas:
+        "image image"
+        "title posts";
       height: 150px;
       .topic-thumbnail-likes {
         grid-area: posts;
