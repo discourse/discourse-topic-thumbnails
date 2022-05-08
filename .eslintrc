@@ -1,10 +1,8 @@
 {
   "extends": "eslint-config-discourse",
-  "plugins": ["discourse-ember"],
-  "rules": {
-    "discourse-ember/global-ember": 2
-  },
+  "ignorePatterns": ["javascripts/vendor/*"],
   "globals": {
-    "settings": true
+    "settings": "readonly",
+    "themePrefix": "readonly"
   }
 }
