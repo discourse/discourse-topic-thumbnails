@@ -1,34 +1,34 @@
 {{! template-lint-disable deprecated-inline-view-helper }}
 {{#if view.shouldDisplay}}
-  <div
-    class="topic-list-thumbnail
-      {{if view.hasThumbnail "has-thumbnail" "no-thumbnail"}}
-      {{if view.isLandscape "landscape"}}"
-  >
-    <a href={{view.url}}>
-      {{#if view.hasThumbnail}}
-        <img
-          class="background-thumbnail"
-          src={{view.fallbackSrc}}
-          srcset={{view.srcSet}}
-          width={{view.width}}
-          height={{view.height}}
-          loading="lazy"
-        >
-        <img
-          class="main-thumbnail"
-          src={{view.fallbackSrc}}
-          srcset={{view.srcSet}}
-          width={{view.width}}
-          height={{view.height}}
-          loading="lazy"
-        >
-      {{else}}
-        <div class="thumbnail-placeholder">
-          {{d-icon (theme-setting "placeholder_icon")}}
-        </div>
-      {{/if}}
-    </a>
+  {{#if view.hasThumbnail}}
+    <div class="topic-list-thumbnail has-thumbnail {{#if view.isLandscape}}landscape{{/if}}">
+  {{else}}
+    <div class="topic-list-thumbnail no-thumbnail">
+  {{/if}}
+      <a href={{view.url}}>
+        {{#if view.hasThumbnail}}
+          <img
+            class="background-thumbnail"
+            src={{view.fallbackSrc}}
+            srcset={{view.srcSet}}
+            width={{view.width}}
+            height={{view.height}}
+            loading="lazy"
+          >
+          <img
+            class="main-thumbnail"
+            src={{view.fallbackSrc}}
+            srcset={{view.srcSet}}
+            width={{view.width}}
+            height={{view.height}}
+            loading="lazy"
+          >
+        {{else}}
+          <div class="thumbnail-placeholder">
+            {{d-icon (theme-setting "placeholder_icon")}}
+          </div>
+        {{/if}}
+      </a>
   </div>
 
   {{#if view.topicThumbnailsService.displayMinimalGrid}}
