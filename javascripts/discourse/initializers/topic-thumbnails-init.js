@@ -7,6 +7,7 @@ import {
   getResolverOption,
   setResolverOption,
 } from "discourse-common/resolver";
+import { htmlSafe } from "@ember/template";
 
 export default {
   name: "topic-thumbnails-init",
@@ -192,12 +193,12 @@ export default {
             return;
           }
 
-          return (
+          return htmlSafe(
             `--masonry-num-columns: ${Math.round(numColumns)}; ` +
-            `--masonry-grid-spacing: ${gridSpacingPixels}px; ` +
-            `--masonry-tallest-column: ${Math.round(tallestColumn)}px; ` +
-            `--masonry-column-width: ${Math.round(columnWidth)}px; `
-          ).htmlSafe();
+              `--masonry-grid-spacing: ${gridSpacingPixels}px; ` +
+              `--masonry-tallest-column: ${Math.round(tallestColumn)}px; ` +
+              `--masonry-column-width: ${Math.round(columnWidth)}px; `
+          );
         },
       });
 
@@ -211,13 +212,13 @@ export default {
             return;
           }
 
-          return (
+          return htmlSafe(
             `--masonry-height: ${Math.round(masonryData.height)}px; ` +
-            `--masonry-height-above: ${Math.round(
-              masonryData.heightAbove
-            )}px; ` +
-            `--masonry-column-index: ${masonryData.columnIndex};`
-          ).htmlSafe();
+              `--masonry-height-above: ${Math.round(
+                masonryData.heightAbove
+              )}px; ` +
+              `--masonry-column-index: ${masonryData.columnIndex};`
+          );
         },
       });
     }
