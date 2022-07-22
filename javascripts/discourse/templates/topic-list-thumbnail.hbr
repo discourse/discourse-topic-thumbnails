@@ -5,20 +5,20 @@
   {{else}}
     <div class="topic-list-thumbnail no-thumbnail">
   {{/if}}
-      <a href={{view.url}}>
+      <a href="{{view.url}}">
         {{#if view.hasThumbnail}}
           <img
             class="background-thumbnail"
-            src={{view.fallbackSrc}}
-            srcset={{view.srcSet}}
+            src="{{view.fallbackSrc}}"
+            srcset="{{view.srcSet}}"
             width={{view.width}}
             height={{view.height}}
             loading="lazy"
           >
           <img
             class="main-thumbnail"
-            src={{view.fallbackSrc}}
-            srcset={{view.srcSet}}
+            src="{{view.fallbackSrc}}"
+            srcset="{{view.srcSet}}"
             width={{view.width}}
             height={{view.height}}
             loading="lazy"
