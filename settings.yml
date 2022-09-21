@@ -48,6 +48,17 @@ list_tags:
   list_type: tag
   default: ""
 
+suggested_topics_mode:
+  default: ""
+  type: enum
+  choices:
+    - ""
+    - minimal-grid
+    - grid
+    - masonry
+    - list
+    - none
+
 enable_outside_topic_lists: false
 
 placeholder_icon:

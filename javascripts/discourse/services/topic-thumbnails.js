@@ -34,6 +34,11 @@ export default Service.extend({
     );
   },
 
+  @discourseComputed("router.currentRouteName")
+  isTopicRoute(currentRouteName) {
+    return currentRouteName.match(/^topic\./);
+  },
+
   @discourseComputed(
     "router.currentRouteName",
     "router.currentRoute.attributes.category.id"
@@ -61,13 +66,15 @@ export default Service.extend({
     "viewingCategoryId",
     "viewingTagId",
     "router.currentRoute.metadata.customThumbnailMode",
-    "isTopicListRoute"
+    "isTopicListRoute",
+    "isTopicRoute"
   )
   displayMode(
     viewingCategoryId,
     viewingTagId,
     customThumbnailMode,
-    isTopicListRoute
+    isTopicListRoute,
+    isTopicRoute
   ) {
     if (customThumbnailMode) {
       return customThumbnailMode;
@@ -88,6 +95,8 @@ export default Service.extend({
       return "grid";
     } else if (listTags.includes(viewingTagId)) {
       return "list";
+    } else if (isTopicRoute && settings.suggested_topics_mode) {
+      return settings.suggested_topics_mode;
     } else if (isTopicListRoute || settings.enable_outside_topic_lists) {
       return settings.default_thumbnail_mode;
     } else {
