@@ -14,7 +14,7 @@ export default EmberObject.extend({
   // Make sure to update about.json thumbnail sizes if you change these variables
   @discourseComputed("topicThumbnailsService.displayList")
   displayWidth(displayList) {
-    return displayList ? 200 : 400;
+    return displayList ? settings.list_thumbnail_size : 400;
   },
 
   responsiveRatios: [1, 1.5, 2],
