@@ -71,156 +71,152 @@ export default {
     //////////////////////////
     /////////// Masonry Layout
     //////////////////////////
-    if (!CSS.supports("grid-template-rows", "masonry")) {
-      api.modifyClass("component:topic-list", {
-        pluginId: "topic-thumbnails-masonry",
-        topicThumbnailsService: service("topic-thumbnails"),
+    api.modifyClass("component:topic-list", {
+      pluginId: "topic-thumbnails-masonry",
+      topicThumbnailsService: service("topic-thumbnails"),
 
-        masonryTargetColumnWidth: 300,
-        masonryGridSpacingPixels: 10,
-        masonryTitleSpacePixels: 76,
-        masonryDefaultAspect: 1.3,
-        masonryMinAspect: 0.7,
+      masonryTargetColumnWidth: 300,
+      masonryGridSpacingPixels: 10,
+      masonryTitleSpacePixels: 76,
+      masonryDefaultAspect: 1.3,
+      masonryMinAspect: 0.7,
 
-        @discourseComputed("masonryContainerWidth")
-        masonryNumColumns(width) {
-          return Math.floor(width / this.masonryTargetColumnWidth);
-        },
+      @discourseComputed("masonryContainerWidth")
+      masonryNumColumns(width) {
+        return Math.floor(width / this.masonryTargetColumnWidth);
+      },
 
-        @discourseComputed(
-          "masonryNumColumns",
+      @discourseComputed(
+        "masonryNumColumns",
+        "masonryContainerWidth",
+        "masonryGridSpacingPixels"
+      )
+      masonryColumnWidth(numColumns, containerWidth, gridSpacing) {
+        return (containerWidth - (numColumns - 1) * gridSpacing) / numColumns;
+      },
+
+      didInsertElement() {
+        this._super();
+        if (!this.topicThumbnailsService.displayMasonry) {
+          return;
+        }
+        this.updateElementHeight();
+
+        if (window.ResizeObserver) {
+          const observer = new ResizeObserver(() => this.updateElementHeight());
+          observer.observe(this.element);
+          this.set("resizeObserver", observer);
+        }
+      },
+
+      willDestroyElement() {
+        this._super();
+        if (this.resizeObserver) {
+          this.resizeObserver.unobserve(this.element);
+        }
+      },
+
+      updateElementHeight() {
+        this.set(
           "masonryContainerWidth",
-          "masonryGridSpacingPixels"
-        )
-        masonryColumnWidth(numColumns, containerWidth, gridSpacing) {
-          return (containerWidth - (numColumns - 1) * gridSpacing) / numColumns;
-        },
+          this.element.getBoundingClientRect().width
+        );
+      },
 
-        didInsertElement() {
-          this._super();
-          if (!this.topicThumbnailsService.displayMasonry) {
-            return;
-          }
-          this.updateElementHeight();
+      @observes("topics.[]", "masonryContainerWidth")
+      masonryTopicsChanged() {
+        if (!this.topicThumbnailsService.displayMasonry) {
+          return;
+        }
+        if (!this.masonryContainerWidth) {
+          return;
+        }
+        once(this, this.calculateMasonryLayout);
+      },
 
-          if (window.ResizeObserver) {
-            const observer = new ResizeObserver(() =>
-              this.updateElementHeight()
-            );
-            observer.observe(this.element);
-            this.set("resizeObserver", observer);
-          }
-        },
+      calculateMasonryLayout() {
+        const numColumns = this.masonryNumColumns;
+        const gridSpacingPixels = this.masonryGridSpacingPixels;
 
-        willDestroyElement() {
-          this._super();
-          if (this.resizeObserver) {
-            this.resizeObserver.unobserve(this.element);
-          }
-        },
+        const columnHeights = [];
+        for (let n = 0; n < numColumns; n++) {
+          columnHeights[n] = 0;
+        }
 
-        updateElementHeight() {
-          this.set(
-            "masonryContainerWidth",
-            this.element.getBoundingClientRect().width
+        this.filteredTopics.forEach((topic) => {
+          // Pick the column with the lowest height
+          const smallestColumn = columnHeights.indexOf(
+            Math.min(...columnHeights)
           );
-        },
 
-        @observes("topics.[]", "masonryContainerWidth")
-        masonryTopicsChanged() {
-          if (!this.topicThumbnailsService.displayMasonry) {
-            return;
+          // Get the height of this topic
+          let aspect = this.masonryDefaultAspect;
+          if (topic.thumbnails) {
+            aspect = topic.thumbnails[0].width / topic.thumbnails[0].height;
           }
-          if (!this.masonryContainerWidth) {
-            return;
-          }
-          once(this, this.calculateMasonryLayout);
-        },
+          aspect = Math.max(aspect, this.masonryMinAspect);
+          const thisHeight =
+            this.masonryColumnWidth / aspect + this.masonryTitleSpacePixels;
 
-        calculateMasonryLayout() {
-          const numColumns = this.masonryNumColumns;
-          const gridSpacingPixels = this.masonryGridSpacingPixels;
-
-          const columnHeights = [];
-          for (let n = 0; n < numColumns; n++) {
-            columnHeights[n] = 0;
-          }
-
-          this.filteredTopics.forEach((topic) => {
-            // Pick the column with the lowest height
-            const smallestColumn = columnHeights.indexOf(
-              Math.min(...columnHeights)
-            );
-
-            // Get the height of this topic
-            let aspect = this.masonryDefaultAspect;
-            if (topic.thumbnails) {
-              aspect = topic.thumbnails[0].width / topic.thumbnails[0].height;
-            }
-            aspect = Math.max(aspect, this.masonryMinAspect);
-            const thisHeight =
-              this.masonryColumnWidth / aspect + this.masonryTitleSpacePixels;
-
-            topic.set("masonryData", {
-              columnIndex: smallestColumn,
-              height: thisHeight,
-              heightAbove: columnHeights[smallestColumn],
-            });
-
-            columnHeights[smallestColumn] += thisHeight + gridSpacingPixels;
+          topic.set("masonryData", {
+            columnIndex: smallestColumn,
+            height: thisHeight,
+            heightAbove: columnHeights[smallestColumn],
           });
 
-          this.set("masonryTallestColumn", Math.max(...columnHeights));
-        },
+          columnHeights[smallestColumn] += thisHeight + gridSpacingPixels;
+        });
 
-        attributeBindings: ["masonryStyle:style"],
+        this.set("masonryTallestColumn", Math.max(...columnHeights));
+      },
 
-        @discourseComputed(
-          "topicThumbnailsService.displayMasonry",
-          "masonryNumColumns",
-          "masonryGridSpacingPixels",
-          "masonryTallestColumn",
-          "masonryColumnWidth"
-        )
-        masonryStyle(
-          useMasonry,
-          numColumns,
-          gridSpacingPixels,
-          tallestColumn,
-          columnWidth
-        ) {
-          if (!useMasonry) {
-            return;
-          }
+      attributeBindings: ["masonryStyle:style"],
 
-          return htmlSafe(
-            `--masonry-num-columns: ${Math.round(numColumns)}; ` +
-              `--masonry-grid-spacing: ${gridSpacingPixels}px; ` +
-              `--masonry-tallest-column: ${Math.round(tallestColumn)}px; ` +
-              `--masonry-column-width: ${Math.round(columnWidth)}px; `
-          );
-        },
-      });
+      @discourseComputed(
+        "topicThumbnailsService.displayMasonry",
+        "masonryNumColumns",
+        "masonryGridSpacingPixels",
+        "masonryTallestColumn",
+        "masonryColumnWidth"
+      )
+      masonryStyle(
+        useMasonry,
+        numColumns,
+        gridSpacingPixels,
+        tallestColumn,
+        columnWidth
+      ) {
+        if (!useMasonry) {
+          return;
+        }
 
-      api.modifyClass("component:topic-list-item", {
-        pluginId: "topic-thumbnails-masonry",
-        attributeBindings: ["masonryStyle:style"],
+        return htmlSafe(
+          `--masonry-num-columns: ${Math.round(numColumns)}; ` +
+            `--masonry-grid-spacing: ${gridSpacingPixels}px; ` +
+            `--masonry-tallest-column: ${Math.round(tallestColumn)}px; ` +
+            `--masonry-column-width: ${Math.round(columnWidth)}px; `
+        );
+      },
+    });
 
-        @discourseComputed("topic.masonryData")
-        masonryStyle(masonryData) {
-          if (!masonryData) {
-            return;
-          }
+    api.modifyClass("component:topic-list-item", {
+      pluginId: "topic-thumbnails-masonry",
+      attributeBindings: ["masonryStyle:style"],
 
-          return htmlSafe(
-            `--masonry-height: ${Math.round(masonryData.height)}px; ` +
-              `--masonry-height-above: ${Math.round(
-                masonryData.heightAbove
-              )}px; ` +
-              `--masonry-column-index: ${masonryData.columnIndex};`
-          );
-        },
-      });
-    }
+      @discourseComputed("topic.masonryData")
+      masonryStyle(masonryData) {
+        if (!masonryData) {
+          return;
+        }
+
+        return htmlSafe(
+          `--masonry-height: ${Math.round(masonryData.height)}px; ` +
+            `--masonry-height-above: ${Math.round(
+              masonryData.heightAbove
+            )}px; ` +
+            `--masonry-column-index: ${masonryData.columnIndex};`
+        );
+      },
+    });
   },
 };
