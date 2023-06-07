@@ -25,7 +25,7 @@ export default EmberObject.extend({
     "topicThumbnailsService.displayMinimalGrid",
     "topicThumbnailsService.displayGrid",
     "topicThumbnailsService.displayList",
-    "topicThumbnailsService.displayMasonry"
+    "topicThumbnailsService.displayMasonry",
   )
   enabledForOutlet(
     location,

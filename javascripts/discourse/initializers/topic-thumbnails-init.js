@@ -42,6 +42,23 @@ export default {
       isMasonryList: readOnly("topicThumbnailsService.displayMasonry"),
     });
 
+    if (settings.docs_thumbnail_mode !== "none") {
+      api.modifyClass("component:docs-topic-list", {
+        pluginId: "topic-thumbnails",
+        topicThumbnailsService: service("topic-thumbnails"),
+        classNameBindings: [
+          "isMinimalGrid:topic-thumbnails-minimal",
+          "isThumbnailGrid:topic-thumbnails-grid",
+          "isThumbnailList:topic-thumbnails-list",
+          "isMasonryList:topic-thumbnails-masonry",
+        ],
+        isMinimalGrid: readOnly("topicThumbnailsService.displayMinimalGrid"),
+        isThumbnailGrid: readOnly("topicThumbnailsService.displayGrid"),
+        isThumbnailList: readOnly("topicThumbnailsService.displayList"),
+        isMasonryList: readOnly("topicThumbnailsService.displayMasonry")
+      });
+    }
+
     api.modifyClass("component:topic-list-item", {
       pluginId: "topic-thumbnails",
       topicThumbnailsService: service("topic-thumbnails"),
