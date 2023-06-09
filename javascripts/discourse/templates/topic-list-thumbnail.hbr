@@ -31,7 +31,7 @@
       </a>
   </div>
 
-  {{#if view.topicThumbnailsService.displayMinimalGrid}}
+  {{#if view.topicThumbnailsService.showLikes}}
     <div class="topic-thumbnail-likes">
       {{d-icon "heart"}}
       <span class="number">

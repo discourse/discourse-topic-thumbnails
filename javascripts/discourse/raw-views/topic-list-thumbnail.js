@@ -26,6 +26,7 @@ export default EmberObject.extend({
     "topicThumbnailsService.displayGrid",
     "topicThumbnailsService.displayList",
     "topicThumbnailsService.displayMasonry",
+    "topicThumbnailsService.displayBlogStyle"
   )
   enabledForOutlet(
     location,
@@ -33,10 +34,11 @@ export default EmberObject.extend({
     displayMinimalGrid,
     displayGrid,
     displayList,
-    displayMasonry
+    displayMasonry,
+    displayBlogStyle
   ) {
     if (
-      (displayGrid || displayMasonry || displayMinimalGrid) &&
+      (displayGrid || displayMasonry || displayMinimalGrid || displayBlogStyle) &&
       location === "before-columns"
     ) {
       return true;
@@ -110,5 +112,5 @@ export default EmberObject.extend({
     return topic.linked_post_number
       ? topic.urlForPostNumber(topic.linked_post_number)
       : topic.get("lastUnreadUrl");
-  },
+  }
 });

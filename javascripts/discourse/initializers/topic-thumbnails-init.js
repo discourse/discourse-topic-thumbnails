@@ -35,14 +35,18 @@ export default {
         "isThumbnailGrid:topic-thumbnails-grid",
         "isThumbnailList:topic-thumbnails-list",
         "isMasonryList:topic-thumbnails-masonry",
+        "isBlogStyleGrid:topic-thumbnails-blog-style-grid",
       ],
       isMinimalGrid: readOnly("topicThumbnailsService.displayMinimalGrid"),
       isThumbnailGrid: readOnly("topicThumbnailsService.displayGrid"),
       isThumbnailList: readOnly("topicThumbnailsService.displayList"),
       isMasonryList: readOnly("topicThumbnailsService.displayMasonry"),
+      isBlogStyleGrid: readOnly("topicThumbnailsService.displayBlogStyle"),
     });
 
-    if (settings.docs_thumbnail_mode !== "none") {
+    const siteSettings = api.container.lookup("site-settings:main");
+    
+    if (settings.docs_thumbnail_mode !== "none" && siteSettings.docs_enabled) {
       api.modifyClass("component:docs-topic-list", {
         pluginId: "topic-thumbnails",
         topicThumbnailsService: service("topic-thumbnails"),
@@ -51,11 +55,13 @@ export default {
           "isThumbnailGrid:topic-thumbnails-grid",
           "isThumbnailList:topic-thumbnails-list",
           "isMasonryList:topic-thumbnails-masonry",
+          "isBlogStyleGrid:topic-thumbnails-blog-style-grid",
         ],
         isMinimalGrid: readOnly("topicThumbnailsService.displayMinimalGrid"),
         isThumbnailGrid: readOnly("topicThumbnailsService.displayGrid"),
         isThumbnailList: readOnly("topicThumbnailsService.displayList"),
-        isMasonryList: readOnly("topicThumbnailsService.displayMasonry")
+        isMasonryList: readOnly("topicThumbnailsService.displayMasonry"),
+        isBlogStyleGrid: readOnly("topicThumbnailsService.displayBlogStyle"),
       });
     }
 
@@ -72,7 +78,8 @@ export default {
           wasMobileView &&
           (this.topicThumbnailsService.displayGrid ||
             this.topicThumbnailsService.displayMasonry ||
-            this.topicThumbnailsService.displayMinimalGrid)
+            this.topicThumbnailsService.displayMinimalGrid ||
+            this.topicThumbnailsService.displayBlogStyle)
         ) {
           setResolverOption("mobileView", false);
         }
