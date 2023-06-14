@@ -163,7 +163,7 @@ export default Service.extend({
   },
 
   @discourseComputed("displayMinimalGrid", "displayBlogStyle")
-  showLikes(isMinimalGrid, isBlogStyle) {
-    return isMinimalGrid || isBlogStyle;
+  showLikes(isMinimalGrid) {
+    return isMinimalGrid;
   }
 });

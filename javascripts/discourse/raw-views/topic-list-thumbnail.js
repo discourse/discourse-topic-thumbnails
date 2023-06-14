@@ -43,7 +43,10 @@ export default EmberObject.extend({
     ) {
       return true;
     }
-    if (displayList && location === "before-link") {
+    if (
+      (displayList)
+       && location === "before-link"
+      ) {
       return true;
     }
     return false;

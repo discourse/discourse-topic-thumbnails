@@ -3,6 +3,8 @@ en:
     description: Theme component which adds thumbnails to topic lists. You can enable it globally, or per-category
     settings:
       default_thumbnail_mode: Which thumbnail display mode should be used by default?
+      docs_thumbnail_mode: If the docs plugin is enabled, which thumbnail display mode should be used for docs topics?
+      blog_style_categories: The blog-style view will be used in these categories. This style makes use of topic-excerpts if enabled via theme or theme component.
       minimal_grid_categories: The minimal grid view will be used in these categories
       grid_categories: The grid view will be used in these categories
       masonry_categories: The masonry view will be used in these categories
