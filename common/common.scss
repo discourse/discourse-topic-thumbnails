@@ -199,7 +199,7 @@
 }
 
 .topic-thumbnails-minimal,
-.topic-thumbnails-blog-style-grid  {
+.topic-thumbnails-blog-style-grid {
   margin-top: 5px;
 
   .topic-list-header,
@@ -325,7 +325,7 @@
   }
 }
 
-.topic-thumbnails-blog-style-grid { 
+.topic-thumbnails-blog-style-grid {
   .topic-list-body {
     display: grid;
     grid-template-columns: 48% 48%;
@@ -337,10 +337,11 @@
   .topic-list-item {
     height: auto;
     grid-template-rows: 200px auto min-content min-content;
-    grid-template-areas: "image image image"
-    "content content content"
-    "data data data"
-    "activity activity activity";
+    grid-template-areas:
+      "image image image"
+      "content content content"
+      "data data data"
+      "activity activity activity";
   }
 
   .main-link {

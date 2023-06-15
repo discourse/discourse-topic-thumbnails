@@ -111,7 +111,7 @@ export default Service.extend({
       return "grid";
     } else if (listTags.includes(viewingTagId)) {
       return "list";
-    }  else if (isTopicRoute && settings.suggested_topics_mode) {
+    } else if (isTopicRoute && settings.suggested_topics_mode) {
       return settings.suggested_topics_mode;
     } else if (isTopicListRoute || settings.enable_outside_topic_lists) {
       return settings.default_thumbnail_mode;
@@ -165,5 +165,5 @@ export default Service.extend({
   @discourseComputed("displayMinimalGrid", "displayBlogStyle")
   showLikes(isMinimalGrid) {
     return isMinimalGrid;
-  }
+  },
 });

@@ -38,15 +38,15 @@ export default EmberObject.extend({
     displayBlogStyle
   ) {
     if (
-      (displayGrid || displayMasonry || displayMinimalGrid || displayBlogStyle) &&
+      (displayGrid ||
+        displayMasonry ||
+        displayMinimalGrid ||
+        displayBlogStyle) &&
       location === "before-columns"
     ) {
       return true;
     }
-    if (
-      (displayList)
-       && location === "before-link"
-      ) {
+    if (displayList && location === "before-link") {
       return true;
     }
     return false;
@@ -115,5 +115,5 @@ export default EmberObject.extend({
     return topic.linked_post_number
       ? topic.urlForPostNumber(topic.linked_post_number)
       : topic.get("lastUnreadUrl");
-  }
+  },
 });

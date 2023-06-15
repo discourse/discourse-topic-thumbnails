@@ -45,7 +45,7 @@ export default {
     });
 
     const siteSettings = api.container.lookup("site-settings:main");
-    
+
     if (settings.docs_thumbnail_mode !== "none" && siteSettings.docs_enabled) {
       api.modifyClass("component:docs-topic-list", {
         pluginId: "topic-thumbnails",
