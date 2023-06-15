@@ -345,6 +345,12 @@
 
   .main-link {
     grid-area: content;
+    .docs-topic-link {
+      display: unset;
+    }
+    .link-top-line {
+      color: var(--tertiary);
+    }
   }
   .link-bottom-line {
     display: block;
