@@ -6,11 +6,25 @@
 .topic-thumbnails-list {
   .topic-list-body .topic-list-item {
     .right {
-      grid-template-columns: 15% 65% 20%;
-      grid-template-rows: 15% 40% 45%;
+      display: grid;
+      grid-template-columns: 15% auto 15%;
       grid-template-areas: "thumbnail title replies" "thumbnail data data";
+      gap: 0 0.5em;
+      .num {
+        text-align: right;
+      }
       .topic-list-thumbnail {
         grid-area: thumbnail;
+      }
+      .main-link {
+        grid-area: title;
+        width: unset;
+      }
+      .topic-item-stats {
+        grid-area: data;
+      }
+      .pull-right {
+        grid-area: replies;
       }
     }
   }
