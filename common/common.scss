@@ -5,7 +5,8 @@
 .topic-thumbnails-list,
 .topic-thumbnails-grid,
 .topic-thumbnails-masonry,
-.topic-thumbnails-minimal {
+.topic-thumbnails-minimal,
+.topic-thumbnails-blog-style-grid {
   .topic-list-thumbnail {
     background: var(--primary-low);
     position: relative;
@@ -197,7 +198,8 @@
   }
 }
 
-.topic-thumbnails-minimal {
+.topic-thumbnails-minimal,
+.topic-thumbnails-blog-style-grid {
   margin-top: 5px;
 
   .topic-list-header,
@@ -309,7 +311,6 @@
     justify-content: center;
     font-weight: 600;
     width: 100%;
-    overflow: hidden;
     .link-top-line {
       white-space: nowrap;
       overflow: hidden;
@@ -319,6 +320,91 @@
         color: var(--primary);
         padding: 0 !important;
       }
+    }
+  }
+}
+
+.topic-thumbnails-blog-style-grid {
+  .num.posts-map {
+    display: none;
+  }
+
+  .topic-list-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
+    grid-column-gap: 1.5em;
+    grid-row-gap: 1.5em;
+    border: 0;
+  }
+
+  .topic-list-item {
+    height: auto;
+    grid-template-rows: 200px auto min-content min-content;
+    grid-template-areas:
+      "image image image"
+      "content content content"
+      "data data data"
+      "activity activity activity";
+  }
+
+  .main-link {
+    grid-area: content;
+    .docs-topic-link {
+      display: unset;
+    }
+    .link-top-line {
+      color: var(--tertiary);
+    }
+  }
+  .link-bottom-line {
+    display: block;
+    .badge-wrapper {
+      display: none;
+    }
+  }
+
+  .topic-excerpt {
+    display: block;
+    font-weight: normal;
+  }
+
+  .topic-thumbnail-blog-data {
+    grid-area: data;
+    display: flex;
+    align-items: flex-start;
+    gap: 1em;
+  }
+
+  .topic-thumbnail-blog-data-activity {
+    display: block;
+  }
+
+  .topic-list-data:last-of-type {
+    display: none;
+  }
+
+  .topic-thumbnail-blog-data-likes,
+  .topic-thumbnail-blog-data-comments,
+  .topic-thumbnail-blog-data-views,
+  .topic-thumbnail-blog-data-activity {
+    grid-area: likes;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: var(--primary-low-mid);
+    width: auto;
+    .number {
+      font-size: var(--font-down-1);
+      font-weight: bold;
+    }
+    .d-icon {
+      font-size: var(--font-down-1);
+      margin-right: 0.5em;
+    }
+    a {
+      color: var(--primary-low-mid);
+      font-size: var(--font-down-1);
+      font-weight: bold;
     }
   }
 }

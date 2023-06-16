@@ -18,10 +18,15 @@ const masonryCategories = settings.masonry_categories
   .split("|")
   .map((id) => parseInt(id, 10));
 
+const blogStyleCategories = settings.blog_style_categories
+  .split("|")
+  .map((id) => parseInt(id, 10));
+
 const minimalGridTags = settings.minimal_grid_tags.split("|");
 const listTags = settings.list_tags.split("|");
 const gridTags = settings.grid_tags.split("|");
 const masonryTags = settings.masonry_tags.split("|");
+const blogStyleTags = settings.blog_style_tags.split("|");
 
 export default Service.extend({
   router: service("router"),
@@ -37,6 +42,11 @@ export default Service.extend({
   @discourseComputed("router.currentRouteName")
   isTopicRoute(currentRouteName) {
     return currentRouteName.match(/^topic\./);
+  },
+
+  @discourseComputed("router.currentRouteName")
+  isDocsRoute(currentRouteName) {
+    return currentRouteName.match(/^docs\./);
   },
 
   @discourseComputed(
@@ -67,20 +77,24 @@ export default Service.extend({
     "viewingTagId",
     "router.currentRoute.metadata.customThumbnailMode",
     "isTopicListRoute",
-    "isTopicRoute"
+    "isTopicRoute",
+    "isDocsRoute"
   )
   displayMode(
     viewingCategoryId,
     viewingTagId,
     customThumbnailMode,
     isTopicListRoute,
-    isTopicRoute
+    isTopicRoute,
+    isDocsRoute
   ) {
     if (customThumbnailMode) {
       return customThumbnailMode;
     }
     if (minimalGridCategories.includes(viewingCategoryId)) {
       return "minimal-grid";
+    } else if (blogStyleCategories.includes(viewingCategoryId)) {
+      return "blog-style";
     } else if (masonryCategories.includes(viewingCategoryId)) {
       return "masonry";
     } else if (gridCategories.includes(viewingCategoryId)) {
@@ -91,6 +105,8 @@ export default Service.extend({
       return "masonry";
     } else if (minimalGridTags.includes(viewingTagId)) {
       return "minimal-grid";
+    } else if (blogStyleTags.includes(viewingTagId)) {
+      return "blog-style";
     } else if (gridTags.includes(viewingTagId)) {
       return "grid";
     } else if (listTags.includes(viewingTagId)) {
@@ -99,6 +115,8 @@ export default Service.extend({
       return settings.suggested_topics_mode;
     } else if (isTopicListRoute || settings.enable_outside_topic_lists) {
       return settings.default_thumbnail_mode;
+    } else if (isDocsRoute) {
+      return settings.docs_thumbnail_mode;
     } else {
       return "none";
     }
@@ -137,5 +155,15 @@ export default Service.extend({
   @discourseComputed("shouldDisplay", "displayMode")
   displayMasonry(shouldDisplay, displayMode) {
     return shouldDisplay && displayMode === "masonry";
+  },
+
+  @discourseComputed("shouldDisplay", "displayMode")
+  displayBlogStyle(shouldDisplay, displayMode) {
+    return shouldDisplay && displayMode === "blog-style";
+  },
+
+  @discourseComputed("displayMinimalGrid", "displayBlogStyle")
+  showLikes(isMinimalGrid) {
+    return isMinimalGrid;
   },
 });

@@ -25,7 +25,8 @@ export default EmberObject.extend({
     "topicThumbnailsService.displayMinimalGrid",
     "topicThumbnailsService.displayGrid",
     "topicThumbnailsService.displayList",
-    "topicThumbnailsService.displayMasonry"
+    "topicThumbnailsService.displayMasonry",
+    "topicThumbnailsService.displayBlogStyle"
   )
   enabledForOutlet(
     location,
@@ -33,10 +34,14 @@ export default EmberObject.extend({
     displayMinimalGrid,
     displayGrid,
     displayList,
-    displayMasonry
+    displayMasonry,
+    displayBlogStyle
   ) {
     if (
-      (displayGrid || displayMasonry || displayMinimalGrid) &&
+      (displayGrid ||
+        displayMasonry ||
+        displayMinimalGrid ||
+        displayBlogStyle) &&
       location === "before-columns"
     ) {
       return true;
