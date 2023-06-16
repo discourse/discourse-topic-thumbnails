@@ -331,7 +331,7 @@
 
   .topic-list-body {
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(48%, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
     grid-column-gap: 1.5em;
     grid-row-gap: 1.5em;
     border: 0;
@@ -382,7 +382,7 @@
   .topic-list-data:last-of-type {
     display: none;
   }
-  
+
   .topic-thumbnail-blog-data-likes,
   .topic-thumbnail-blog-data-comments,
   .topic-thumbnail-blog-data-views,
