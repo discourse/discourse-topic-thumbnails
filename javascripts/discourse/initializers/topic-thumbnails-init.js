@@ -121,9 +121,6 @@ export default {
 
       didInsertElement() {
         this._super();
-        if (!this.topicThumbnailsService.displayMasonry) {
-          return;
-        }
         this.updateElementHeight();
 
         if (window.ResizeObserver) {
