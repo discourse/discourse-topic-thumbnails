@@ -176,8 +176,12 @@ export default {
             aspect = topic.thumbnails[0].width / topic.thumbnails[0].height;
           }
           aspect = Math.max(aspect, this.masonryMinAspect);
+
+          // Add more height when there is more text
+          let extraHeight = topic.title.length * 3
+          
           const thisHeight =
-            this.masonryColumnWidth / aspect + this.masonryTitleSpacePixels;
+            this.masonryColumnWidth / aspect + extraHeight;
 
           topic.set("masonryData", {
             columnIndex: smallestColumn,
