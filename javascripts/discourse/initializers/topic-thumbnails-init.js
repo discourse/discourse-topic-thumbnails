@@ -165,6 +165,9 @@ export default {
         }
 
         this.filteredTopics.forEach((topic) => {
+
+          console.log(topic);
+
           // Pick the column with the lowest height
           const smallestColumn = columnHeights.indexOf(
             Math.min(...columnHeights)
@@ -179,7 +182,7 @@ export default {
 
           // Add more height when there is more text
           let extraHeight = topic.title.length * 3
-          
+
           const thisHeight =
             this.masonryColumnWidth / aspect + extraHeight;
 
