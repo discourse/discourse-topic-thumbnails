@@ -196,13 +196,13 @@ export default {
 
     let tagCharacters = topic.tags.join();
 
-    if (tagCharacters <= 45) {
+    if (tagCharacters <= 30) {
       tagHeight = 20;
     }
-    else if (tagCharacters > 90) {
+    else if (tagCharacters > 60) {
       tagHeight = 40;
     }
-    else if (tagCharacters > 135) {
+    else if (tagCharacters > 90) {
       tagHeight = 60;
     }
 
