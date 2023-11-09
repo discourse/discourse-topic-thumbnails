@@ -180,11 +180,38 @@ export default {
           }
           aspect = Math.max(aspect, this.masonryMinAspect);
 
-          // Add more height when there is more text
-          let extraHeight = topic.title.length * 3
+    // Change height with title variation
+    let titleHeight = 50;
 
-          const thisHeight =
-            this.masonryColumnWidth / aspect + extraHeight;
+    if (topic.title.length > 90) {
+      titleHeight = 125;
+    } else if (topic.title.length > 60) {
+      titleHeight = 100;
+    } else if (topic.title.length > 30) {
+      titleHeight = 75;
+    }
+
+    // Change height with tag variation
+    let tagHeight = 0;
+
+    let tagCharacters = topic.tags.join();
+
+    if (tagCharacters <= 45) {
+      tagHeight = 20;
+    }
+    else if (tagCharacters > 90) {
+      tagHeight = 40;
+    }
+    else if (tagCharacters > 135) {
+      tagHeight = 60;
+    }
+
+    let bottomHeight = 45;
+
+    let extraHeight = titleHeight + tagHeight + bottomHeight;
+
+    const thisHeight =
+      this.masonryColumnWidth / aspect + extraHeight;
 
           topic.set("masonryData", {
             columnIndex: smallestColumn,
