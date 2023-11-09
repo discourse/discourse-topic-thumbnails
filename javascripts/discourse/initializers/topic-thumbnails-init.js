@@ -166,8 +166,6 @@ export default {
 
         this.filteredTopics.forEach((topic) => {
 
-          console.log(topic);
-
           // Pick the column with the lowest height
           const smallestColumn = columnHeights.indexOf(
             Math.min(...columnHeights)
