@@ -206,7 +206,7 @@ export default {
       tagHeight = 66;
     }
 
-    let bottomHeight = 45;
+    let bottomHeight = 65;
 
     let extraHeight = titleHeight + tagHeight + bottomHeight;
 
