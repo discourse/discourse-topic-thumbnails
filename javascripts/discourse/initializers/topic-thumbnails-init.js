@@ -12,18 +12,7 @@ import { htmlSafe } from "@ember/template";
 export default {
   name: "topic-thumbnails-init",
   initialize() {
-    this.applyViewClassWorkaround();
     withPluginApi("0.8.7", (api) => this.initWithApi(api));
-  },
-
-  applyViewClassWorkaround() {
-    // Workaround for https://github.com/discourse/discourse/pull/12685
-    // Can be removed once that has been merged, and sites have had time to update
-    const viewClassKey = Object.keys(requirejs.entries).find((k) =>
-      k.endsWith("raw-views/topic-list-thumbnail")
-    );
-    requirejs.entries["discourse/raw-views/topic-list-thumbnail"] =
-      requirejs.entries[viewClassKey];
   },
 
   initWithApi(api) {
@@ -44,7 +33,7 @@ export default {
       isBlogStyleGrid: readOnly("topicThumbnailsService.displayBlogStyle"),
     });
 
-    const siteSettings = api.container.lookup("site-settings:main");
+    const siteSettings = api.container.lookup("service:site-settings");
 
     if (settings.docs_thumbnail_mode !== "none" && siteSettings.docs_enabled) {
       api.modifyClass("component:docs-topic-list", {

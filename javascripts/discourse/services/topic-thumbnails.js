@@ -1,6 +1,7 @@
 import Service, { inject as service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
 import Site from "discourse/models/site";
+import { dependentKeyCompat } from "@ember/object/compat";
 
 const minimalGridCategories = settings.minimal_grid_categories
   .split("|")
@@ -28,49 +29,34 @@ const gridTags = settings.grid_tags.split("|");
 const masonryTags = settings.masonry_tags.split("|");
 const blogStyleTags = settings.blog_style_tags.split("|");
 
-export default Service.extend({
-  router: service("router"),
+export default class TopicThumbnailService extends Service {
+  @service router;
+  @service discovery;
 
-  @discourseComputed("router.currentRouteName")
-  isTopicListRoute(currentRouteName) {
-    return (
-      currentRouteName.match(/^discovery\./) ||
-      currentRouteName.match(/^tags?\.show/)
-    );
-  },
+  @dependentKeyCompat
+  get isTopicListRoute() {
+    return this.discovery.onDiscoveryRoute;
+  }
 
   @discourseComputed("router.currentRouteName")
   isTopicRoute(currentRouteName) {
     return currentRouteName.match(/^topic\./);
-  },
+  }
 
   @discourseComputed("router.currentRouteName")
   isDocsRoute(currentRouteName) {
     return currentRouteName.match(/^docs\./);
-  },
+  }
 
-  @discourseComputed(
-    "router.currentRouteName",
-    "router.currentRoute.attributes.category.id"
-  )
-  viewingCategoryId(currentRouteName, categoryId) {
-    if (!currentRouteName.match(/^discovery\./)) {
-      return;
-    }
-    return categoryId;
-  },
+  @dependentKeyCompat
+  get viewingCategoryId() {
+    return this.discovery.category?.id;
+  }
 
-  @discourseComputed(
-    "router.currentRouteName",
-    "router.currentRoute.attributes.id", // For discourse instances earlier than https://github.com/discourse/discourse/commit/f7b5ff39cf
-    "router.currentRoute.attributes.tag.id"
-  )
-  viewingTagId(currentRouteName, legacyTagId, tagId) {
-    if (!currentRouteName.match(/^tags?\.show/)) {
-      return;
-    }
-    return tagId || legacyTagId;
-  },
+  @dependentKeyCompat
+  get viewingTagId() {
+    return this.discovery.tag?.id;
+  }
 
   @discourseComputed(
     "viewingCategoryId",
@@ -120,50 +106,50 @@ export default Service.extend({
     } else {
       return "none";
     }
-  },
+  }
 
   @discourseComputed("displayMode")
   enabledForRoute(displayMode) {
     return displayMode !== "none";
-  },
+  }
 
   @discourseComputed()
   enabledForDevice() {
     return Site.current().mobileView ? settings.mobile_thumbnails : true;
-  },
+  }
 
   @discourseComputed("enabledForRoute", "enabledForDevice")
   shouldDisplay(enabledForRoute, enabledForDevice) {
     return enabledForRoute && enabledForDevice;
-  },
+  }
 
   @discourseComputed("shouldDisplay", "displayMode")
   displayMinimalGrid(shouldDisplay, displayMode) {
     return shouldDisplay && displayMode === "minimal-grid";
-  },
+  }
 
   @discourseComputed("shouldDisplay", "displayMode")
   displayList(shouldDisplay, displayMode) {
     return shouldDisplay && displayMode === "list";
-  },
+  }
 
   @discourseComputed("shouldDisplay", "displayMode")
   displayGrid(shouldDisplay, displayMode) {
     return shouldDisplay && displayMode === "grid";
-  },
+  }
 
   @discourseComputed("shouldDisplay", "displayMode")
   displayMasonry(shouldDisplay, displayMode) {
     return shouldDisplay && displayMode === "masonry";
-  },
+  }
 
   @discourseComputed("shouldDisplay", "displayMode")
   displayBlogStyle(shouldDisplay, displayMode) {
     return shouldDisplay && displayMode === "blog-style";
-  },
+  }
 
   @discourseComputed("displayMinimalGrid", "displayBlogStyle")
   showLikes(isMinimalGrid) {
     return isMinimalGrid;
-  },
-});
+  }
+}
