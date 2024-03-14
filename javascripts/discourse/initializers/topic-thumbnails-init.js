@@ -154,6 +154,7 @@ export default {
         }
 
         this.filteredTopics.forEach((topic) => {
+
           // Pick the column with the lowest height
           const smallestColumn = columnHeights.indexOf(
             Math.min(...columnHeights)
@@ -165,8 +166,39 @@ export default {
             aspect = topic.thumbnails[0].width / topic.thumbnails[0].height;
           }
           aspect = Math.max(aspect, this.masonryMinAspect);
-          const thisHeight =
-            this.masonryColumnWidth / aspect + this.masonryTitleSpacePixels;
+
+    // Change height with title variation
+    let titleHeight = 50;
+
+    if (topic.title.length > 90) {
+      titleHeight = 125;
+    } else if (topic.title.length > 60) {
+      titleHeight = 100;
+    } else if (topic.title.length > 30) {
+      titleHeight = 75;
+    }
+
+    // Change height with tag variation
+    let tagHeight = 0;
+
+    let tagCharacters = topic.tags.join();
+
+    if (tagCharacters <= 30) {
+      tagHeight = 22;
+    }
+    else if (tagCharacters > 60) {
+      tagHeight = 44;
+    }
+    else if (tagCharacters > 90) {
+      tagHeight = 66;
+    }
+
+    let bottomHeight = 65;
+
+    let extraHeight = titleHeight + tagHeight + bottomHeight;
+
+    const thisHeight =
+      this.masonryColumnWidth / aspect + extraHeight;
 
           topic.set("masonryData", {
             columnIndex: smallestColumn,
