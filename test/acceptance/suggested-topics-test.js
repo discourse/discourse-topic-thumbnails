@@ -1,10 +1,10 @@
+import { visit } from "@ember/test-helpers";
+import { test } from "qunit";
 import {
   acceptance,
   exists,
   query,
 } from "discourse/tests/helpers/qunit-helpers";
-import { visit } from "@ember/test-helpers";
-import { test } from "qunit";
 
 acceptance("topic list thumbnails | suggested topics", function () {
   test("list the tags", async function (assert) {

@@ -1,13 +1,13 @@
-import { withPluginApi } from "discourse/lib/plugin-api";
-import { inject as service } from "@ember/service";
 import { readOnly } from "@ember/object/computed";
-import discourseComputed, { observes } from "discourse-common/utils/decorators";
 import { once } from "@ember/runloop";
+import { service } from "@ember/service";
+import { htmlSafe } from "@ember/template";
+import { withPluginApi } from "discourse/lib/plugin-api";
 import {
   getResolverOption,
   setResolverOption,
 } from "discourse-common/resolver";
-import { htmlSafe } from "@ember/template";
+import discourseComputed, { observes } from "discourse-common/utils/decorators";
 
 export default {
   name: "topic-thumbnails-init",

@@ -1,7 +1,7 @@
-import discourseComputed from "discourse-common/utils/decorators";
 import EmberObject from "@ember/object";
-import { inject as service } from "@ember/service";
 import { and } from "@ember/object/computed";
+import { service } from "@ember/service";
+import discourseComputed from "discourse-common/utils/decorators";
 
 export default EmberObject.extend({
   topicThumbnailsService: service("topic-thumbnails"),
