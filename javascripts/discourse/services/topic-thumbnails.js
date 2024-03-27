@@ -1,7 +1,7 @@
-import Service, { inject as service } from "@ember/service";
-import discourseComputed from "discourse-common/utils/decorators";
-import Site from "discourse/models/site";
 import { dependentKeyCompat } from "@ember/object/compat";
+import Service, { service } from "@ember/service";
+import Site from "discourse/models/site";
+import discourseComputed from "discourse-common/utils/decorators";
 
 const minimalGridCategories = settings.minimal_grid_categories
   .split("|")
