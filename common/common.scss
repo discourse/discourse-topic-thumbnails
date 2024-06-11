@@ -100,7 +100,7 @@
   .topic-list-item {
     display: grid;
     position: relative;
-    overflow: hidden;
+    min-width: 0;
     height: 250px;
 
     grid-template-areas:
@@ -218,13 +218,13 @@
   .topic-list-item {
     display: grid;
     position: relative;
-    overflow: hidden;
+    min-width: 0;
     height: 250px;
     grid-template-areas:
       " image image image"
       " title likes posts";
     grid-template-rows: 1fr 45px;
-    grid-template-columns: 70% 15% 15%;
+    grid-template-columns: 70% minmax(0, 15%) minmax(0, 15%);
     border-bottom: none;
     &.visited {
       background-color: transparent !important;
@@ -263,6 +263,7 @@
     justify-content: flex-end;
     align-items: center;
     color: var(--primary-low-mid);
+    overflow: hidden;
     .number {
       font-size: 13px;
       font-weight: bold;
@@ -276,7 +277,8 @@
   .posts-map {
     padding: 0;
     grid-area: posts;
-    width: auto;
+    overflow: hidden;
+    width: auto !important; // overrides very specific core style
     .badge-posts {
       padding: 0;
       height: 100%;
@@ -321,6 +323,10 @@
         padding: 0 !important;
       }
     }
+  }
+
+  .d-tooltip-content {
+    white-space: normal;
   }
 }
 
