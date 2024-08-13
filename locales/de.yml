@@ -9,7 +9,7 @@ de:
     description: Themenkomponente, die Vorschaubilder zu den Themenlisten hinzufügt. Du kannst sie global oder pro Kategorie aktivieren
     settings:
       default_thumbnail_mode: Welcher Modus für die Anzeige von Vorschaubildern sollte standardmäßig verwendet werden?
-      docs_thumbnail_mode: Wenn das Docs-Plugin aktiviert ist, welcher Modus soll für die Vorschaubilder der Docs-Themen verwendet werden?
+      docs_thumbnail_mode: Welcher Modus soll für die Anzeige von Vorschaubildern der Docs-Themen verwendet werden, wenn das Docs-Plug-in aktiviert ist?
       blog_style_categories: In diesen Kategorien wird die Blog-Ansicht verwendet. Dieser Stil verwendet Themenauszüge, wenn sie über das Theme oder die Theme-Komponente aktiviert sind.
       minimal_grid_categories: Die minimale Rasteransicht wird in diesen Kategorien verwendet
       grid_categories: Die Rasteransicht wird in diesen Kategorien verwendet
@@ -19,8 +19,8 @@ de:
       grid_tags: Die Rasteransicht wird für diese Schlagwörter verwendet
       masonry_tags: Die Mauerwerksansicht wird für diese Schlagwörter verwendet
       list_tags: Die Listenansicht wird für diese Schlagwörter verwendet
-      suggested_topics_mode: Welcher Modus für die Anzeige von Vorschaubildern soll für vorgeschlagene Themen verwendet werden? Wenn diese Option leer ist, wird die Einstellung von "enable outside topic lists" übernommen.
-      enable_outside_topic_lists: Aktiviere Vorschaubilder auf Seiten ohne Themenliste (z.B. Benutzeraktivitäten, persönliche Nachrichten, vorgeschlagene Themen)
+      suggested_topics_mode: Welcher Modus für die Anzeige von Vorschaubildern soll für vorgeschlagene Themen verwendet werden? Wenn diese Option leer ist, wird die Einstellung von „enable outside topic lists“ übernommen.
+      enable_outside_topic_lists: Aktiviere Vorschaubilder auf Seiten ohne Themenliste (z. B. Benutzeraktivitäten, persönliche Nachrichten, vorgeschlagene Themen)
       placeholder_icon: Symbol, das bei Themen ohne Vorschaubilder angezeigt wird
       mobile_thumbnails: Vorschaubilder auf Mobilgeräten aktivieren
       list_thumbnail_size: Basisgröße für Vorschaubilder in der Listenansicht

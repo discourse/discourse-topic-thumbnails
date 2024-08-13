@@ -5,3 +5,22 @@
 # https://translate.discourse.org/
 
 zh_CN:
+  theme_metadata:
+    description: 用于将缩略图添加到话题列表的主题组件。您可以全局或按类别启用该组件
+    settings:
+      default_thumbnail_mode: 默认应使用哪种缩略图显示模式？
+      docs_thumbnail_mode: 如果启用了文档插件，文档话题应使用哪种缩略图显示模式？
+      blog_style_categories: 这些类别中将使用博客样式视图。如果通过主题或主题组件启用，则此样式会使用话题摘录。
+      minimal_grid_categories: 这些类别中将使用精简网格视图
+      grid_categories: 这些类别中将使用网格视图
+      masonry_categories: 这些类别中将使用砌体视图
+      list_categories: 这些类别中将使用列表视图
+      minimal_grid_tags: 这些标签将使用精简网格视图
+      grid_tags: 这些标签将使用网格视图
+      masonry_tags: 这些标签将使用砌体视图
+      list_tags: 这些标签将使用列表视图
+      suggested_topics_mode: 建议的话题应使用哪种缩略图显示模式？如果为空，将遵循 'enable outside topic lists' 设置。
+      enable_outside_topic_lists: 在非话题列表页面（例如用户活动、个人消息、建议的话题）上启用缩略图
+      placeholder_icon: 在没有缩略图图片的话题上显示的图标
+      mobile_thumbnails: 在移动设备上启用缩略图
+      list_thumbnail_size: '''list'' 视图中缩略图的基本大小'
