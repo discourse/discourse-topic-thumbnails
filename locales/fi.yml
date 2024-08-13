@@ -5,3 +5,22 @@
 # https://translate.discourse.org/
 
 fi:
+  theme_metadata:
+    description: Teemakomponentti, joka lisää esikatselukuvia ketjuluetteloihin. Voit ottaa sen käyttöön yleisesti tai aluekohtaisesti.
+    settings:
+      default_thumbnail_mode: Mitä esikatselukuvien näyttötilaa tulisi käyttää oletuksena?
+      docs_thumbnail_mode: Jos ohjelisäosa on käytössä, mitä esikatselukuvien näyttötilaa tulisi käyttää ohjeketjuissa?
+      blog_style_categories: Näillä alueilla käytetään blogityylistä näkymää. Tämä tyyli käyttää ketjujen lyhennelmiä, jos se on otettu käyttöön teeman tai teemakomponentin kautta.
+      minimal_grid_categories: Näillä alueilla käytetään minimaalista ruudukkonäkymää
+      grid_categories: Näillä alueilla käytetään ruudukkonäkymää
+      masonry_categories: Näillä alueilla käytetään masonry-näkymää
+      list_categories: Näillä alueilla käytetään luettelonäkymää
+      minimal_grid_tags: Näille tunnisteille käytetään minimaalista ruudukkonäkymää
+      grid_tags: Näille tunnisteille käytetään ruudukkonäkymää
+      masonry_tags: Näille tunnisteille käytetään masonry-näkymää
+      list_tags: Näille tunnisteille käytetään luettelonäkymää
+      suggested_topics_mode: Mitä esikatselukuvien näyttötilaa tulisi käyttää ehdotetuissa ketjuissa? Jos tämä tyhjä, "enable outside topic lists" -asetusta noudatetaan.
+      enable_outside_topic_lists: Ota käyttöön esikatselukuvat muilla kuin ketjuluettelosivuilla (esim. käyttäjien toiminta, yksityisviestit, ehdotetut ketjut)
+      placeholder_icon: Kuvake, joka näytetään ketjuissa, joilla ei ole esikatselukuvaa
+      mobile_thumbnails: Ota esikatselukuvat käyttöön mobiililaitteissa
+      list_thumbnail_size: Esikatselukuvien peruskoko luettelonäkymässä

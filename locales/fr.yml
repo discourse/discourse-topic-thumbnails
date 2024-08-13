@@ -5,3 +5,22 @@
 # https://translate.discourse.org/
 
 fr:
+  theme_metadata:
+    description: Composant de thème qui ajoute des vignettes aux listes de sujets. Vous pouvez l'activer globalement ou par catégorie
+    settings:
+      default_thumbnail_mode: Quel mode d'affichage des vignettes doit être utilisé par défaut ?
+      docs_thumbnail_mode: Si l'extension Docs est activée, quel mode d'affichage des vignettes doit être utilisé pour les sujets Docs ?
+      blog_style_categories: L'affichage de style blog sera utilisé dans ces catégories. Ce style utilise des extraits de sujets s'il est activé via un thème ou un composant de thème.
+      minimal_grid_categories: La vue en grille minimale sera utilisée dans ces catégories
+      grid_categories: La vue en grille sera utilisée dans ces catégories
+      masonry_categories: La vue en maçonnerie sera utilisée dans ces catégories
+      list_categories: La vue en liste sera utilisée dans ces catégories
+      minimal_grid_tags: La vue en grille minimale sera utilisée pour ces étiquettes
+      grid_tags: La vue en grille sera utilisée pour ces étiquettes
+      masonry_tags: La vue de maçonnerie sera utilisée pour ces étiquettes
+      list_tags: La vue en liste sera utilisée pour ces étiquettes
+      suggested_topics_mode: Quel mode d'affichage des vignettes doit être utilisé pour les sujets suggérés ? Si ce champ est vide, le paramètre « Activer les listes de sujets externes » suivra.
+      enable_outside_topic_lists: Activez les vignettes sur les pages ne contenant pas de liste de sujets (p. ex., activité des utilisateurs, messages personnels, sujets suggérés)
+      placeholder_icon: Icône à afficher sur les sujets sans images miniatures
+      mobile_thumbnails: Activer les miniatures sur les appareils mobiles
+      list_thumbnail_size: Taille de base pour les vignettes dans la vue « liste »

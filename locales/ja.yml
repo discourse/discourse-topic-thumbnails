@@ -5,3 +5,22 @@
 # https://translate.discourse.org/
 
 ja:
+  theme_metadata:
+    description: トピックリストにサムネイルを追加するテーマコンポーネントです。グローバルまたはカテゴリごとに有効にできます
+    settings:
+      default_thumbnail_mode: デフォルトでどのサムネイル表示モードを使用しますか？
+      docs_thumbnail_mode: docs プラグインが有効な場合、docs トピックにどのサムネイル表示モードを使用しますか？
+      blog_style_categories: これらのカテゴリにはブログスタイルビューが使用されます。このスタイルでは、テーマまたはテーマコンポーネントで有効な場合にトピックの抜粋が使用されます。
+      minimal_grid_categories: これらのカテゴリには最小グリッドビューが使用されます
+      grid_categories: これらのカテゴリにはグリッドビューが使用されます
+      masonry_categories: これらのカテゴリにはメイソンリービューが使用されます
+      list_categories: これらのカテゴリにはリストビューが使用されます
+      minimal_grid_tags: これらのタグには最小グリッドビューが使用されます
+      grid_tags: これらのタグにはグリッドビューが使用されます
+      masonry_tags: これらのタグにはメイソンリービューが使用されます
+      list_tags: これらのタグにはリストビューが使用されます
+      suggested_topics_mode: 推奨トピックにはどのサムネイル表示モードを使用しますか？空白の場合、「外部トピックリストを有効にする」設定に従います。
+      enable_outside_topic_lists: トピックリスト以外のページ (ユーザーアクティビティ、個人メッセージ、推奨トピックなど) でサムネイルを有効にする
+      placeholder_icon: サムネイル画像のないトピックに表示するアイコン
+      mobile_thumbnails: モバイルデバイスでサムネイルを有効にする
+      list_thumbnail_size: '「リスト」ビューのサムネイルの基本サイズ'
