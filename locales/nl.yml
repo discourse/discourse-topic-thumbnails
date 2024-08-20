@@ -5,3 +5,22 @@
 # https://translate.discourse.org/
 
 nl:
+  theme_metadata:
+    description: Themacomponent die miniaturen toevoegt aan topiclijsten. Je kunt het globaal of per categorie inschakelen
+    settings:
+      default_thumbnail_mode: Welke miniatuurweergavemodus moet standaard worden gebruikt?
+      docs_thumbnail_mode: Als de docs-plug-in is ingeschakeld, welke miniatuurweergavemodus moet dan worden gebruikt voor docs-onderwerpen?
+      blog_style_categories: De weergave in blogstijl wordt gebruikt in deze categorieën. Deze stijl maakt gebruik van topicfragmenten als deze is ingeschakeld via een thema of themacomponent.
+      minimal_grid_categories: De minimale rasterweergave wordt gebruikt in deze categorieën
+      grid_categories: De rasterweergave wordt gebruikt in deze categorieën
+      masonry_categories: De metwerlwerkweergave wordt gebruikt in deze categorieën
+      list_categories: De lijstweergave wordt gebruikt in deze categorieën
+      minimal_grid_tags: De minimale rasterweergave wordt gebruikt voor deze tags
+      grid_tags: De rasterweergave wordt gebruikt voor deze tags
+      masonry_tags: De metselwerkweergave wordt gebruikt voor deze tags
+      list_tags: De lijstweergave wordt gebruikt voor deze tags
+      suggested_topics_mode: Welke miniatuurweergavemodus moet worden gebruikt voor voorgestelde topics? Als dit leeg wordt gelaten, wordt de instelling 'inschakelen buiten topiclijsten' gevolgd.
+      enable_outside_topic_lists: Schakel miniaturen in voor pagina's zonder topiclijsten (zoals gebruikersactiviteit, persoonlijke berichten, voorgestelde topics)
+      placeholder_icon: Pictogram om weer te geven voor topics zonder miniatuurafbeelding
+      mobile_thumbnails: Miniaturen inschakelen op mobiele apparaten
+      list_thumbnail_size: Basisgrootte voor miniaturen in de lijstweergave
