@@ -5,3 +5,7 @@
 # https://translate.discourse.org/
 
 he:
+  theme_metadata:
+    settings:
+      placeholder_icon: סמל להצגה על נושאים בלי תמונות ממוזערות
+      mobile_thumbnails: הפעלת תמונות ממוזערות להתקנים ניידים
