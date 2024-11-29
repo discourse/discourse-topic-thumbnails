@@ -3,21 +3,19 @@ import { and } from "@ember/object/computed";
 import { service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
 
-export default EmberObject.extend({
-  topicThumbnailsService: service("topic-thumbnails"),
+export default class TopicListThumbnail extends EmberObject {
+  @service("topic-thumbnails") topicThumbnailsService;
 
-  shouldDisplay: and(
-    "topicThumbnailsService.shouldDisplay",
-    "enabledForOutlet"
-  ),
+  responsiveRatios = [1, 1.5, 2];
+
+  @and("topicThumbnailsService.shouldDisplay", "enabledForOutlet")
+  shouldDisplay;
 
   // Make sure to update about.json thumbnail sizes if you change these variables
   @discourseComputed("topicThumbnailsService.displayList")
   displayWidth(displayList) {
     return displayList ? settings.list_thumbnail_size : 400;
-  },
-
-  responsiveRatios: [1, 1.5, 2],
+  }
 
   @discourseComputed(
     "location",
@@ -50,12 +48,12 @@ export default EmberObject.extend({
       return true;
     }
     return false;
-  },
+  }
 
   @discourseComputed("topic.thumbnails")
   hasThumbnail(thumbnails) {
     return !!thumbnails;
-  },
+  }
 
   @discourseComputed("topic.thumbnails", "displayWidth")
   srcSet(thumbnails, displayWidth) {
@@ -74,25 +72,27 @@ export default EmberObject.extend({
     }
 
     return srcSetArray.join(",");
-  },
+  }
 
   @discourseComputed("topic.thumbnails")
   original(thumbnails) {
     return thumbnails[0];
-  },
+  }
 
   @discourseComputed("original")
   width(original) {
     return original.width;
-  },
+  }
+
   @discourseComputed("original")
   isLandscape(original) {
     return original.width >= original.height;
-  },
+  }
+
   @discourseComputed("original")
   height(original) {
     return original.height;
-  },
+  }
 
   @discourseComputed("topic.thumbnails")
   fallbackSrc(thumbnails) {
@@ -108,12 +108,12 @@ export default EmberObject.extend({
     }
 
     return this.original.url;
-  },
+  }
 
   @discourseComputed("topic")
   url(topic) {
     return topic.linked_post_number
       ? topic.urlForPostNumber(topic.linked_post_number)
       : topic.get("lastUnreadUrl");
-  },
-});
+  }
+}
