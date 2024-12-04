@@ -1,1 +1,2 @@
+{{!-- has-modern-replacement --}}
 {{~raw "topic-list-thumbnail" topic=context.topic location="before-columns"}}

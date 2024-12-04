@@ -1,3 +1,4 @@
+{{!-- has-modern-replacement --}}
 {{! template-lint-disable deprecated-inline-view-helper }}
 {{#if view.shouldDisplay}}
   {{#if view.hasThumbnail}}

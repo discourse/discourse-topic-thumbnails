@@ -1,3 +1,4 @@
+import { tracked } from "@glimmer/tracking";
 import { dependentKeyCompat } from "@ember/object/compat";
 import Service, { service } from "@ember/service";
 import Site from "discourse/models/site";
@@ -32,6 +33,8 @@ const blogStyleTags = settings.blog_style_tags.split("|");
 export default class TopicThumbnailService extends Service {
   @service router;
   @service discovery;
+
+  @tracked masonryContainerWidth;
 
   @dependentKeyCompat
   get isTopicListRoute() {
