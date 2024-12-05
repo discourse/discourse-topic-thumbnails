@@ -1,6 +1,8 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
+import coldAgeClass from "discourse/helpers/cold-age-class";
 import concatClass from "discourse/helpers/concat-class";
+import formatDate from "discourse/helpers/format-date";
 import dIcon from "discourse-common/helpers/d-icon";
 
 export default class TopicListThumbnail extends Component {
@@ -142,13 +144,20 @@ export default class TopicListThumbnail extends Component {
             {{this.topic.reply_count}}
           </span>
         </div>
-        {{! TODO }}
-        {{!-- {{raw
-          "list/activity-column"
-          topic=this.topic
-          class="topic-thumbnail-blog-data-activity"
-          tagName="div"
-        }} --}}
+        <div
+          class={{concatClass
+            "topic-thumbnail-blog-data-activity"
+            "activity"
+            (coldAgeClass
+              this.topic.createdAt startDate=this.topic.bumpedAt class=""
+            )
+          }}
+          title={{this.topic.bumpedAtTitle}}
+        >
+          <a class="post-activity" href={{this.topic.lastPostUrl}}>
+            {{~formatDate this.topic.bumpedAt format="tiny" noTitle="true"~}}
+          </a>
+        </div>
       </div>
     {{/if}}
   </template>
