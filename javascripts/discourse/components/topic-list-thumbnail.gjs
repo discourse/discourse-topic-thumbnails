@@ -77,8 +77,8 @@ export default class TopicListThumbnail extends Component {
   }
 
   get url() {
-    return this.topic.linked_post_number
-      ? this.topic.urlForPostNumber(this.topic.linked_post_number)
+    return this.topic.get("linked_post_number")
+      ? this.topic.urlForPostNumber(this.topic.get("linked_post_number"))
       : this.topic.get("lastUnreadUrl");
   }
 
