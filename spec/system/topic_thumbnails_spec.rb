@@ -39,28 +39,22 @@ RSpec.describe "Topic Thumbnails", type: :system do
   end
 
   context "with default raw-hbs topic list" do
+    before { SiteSetting.glimmer_topic_list_mode = "disabled" }
+
     it "is using legacy topic list" do
       visit "/latest"
-      expect(page).to have_css(".topic-list")
-      enabled =
-        page.evaluate_script("Discourse.lookup('service:current-user').canUseGlimmerTopicList")
-      expect(enabled).to eq(false)
+      expect(page).to have_css(".topic-list.ember-view")
     end
 
     it_behaves_like "topic thumbnails"
   end
 
   context "with glimmer topic list" do
-    before do
-      SiteSetting.experimental_glimmer_topic_list_groups = Group::AUTO_GROUPS[:everyone].to_s
-    end
+    before { SiteSetting.glimmer_topic_list_mode = "auto" }
 
     it "is using glimmer topic list" do
       visit "/latest"
-      expect(page).to have_css(".topic-list")
-      enabled =
-        page.evaluate_script("Discourse.lookup('service:current-user').canUseGlimmerTopicList")
-      expect(enabled).to eq(true)
+      expect(page).to have_css(".topic-list:not(.ember-view)")
     end
 
     it_behaves_like "topic thumbnails"
