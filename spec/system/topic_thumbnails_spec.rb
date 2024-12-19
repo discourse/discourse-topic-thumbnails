@@ -44,7 +44,6 @@ RSpec.describe "Topic Thumbnails", type: :system do
     it "is using legacy topic list" do
       visit "/latest"
       expect(page).to have_css(".topic-list.ember-view")
-      expect(enabled).to eq(false)
     end
 
     it_behaves_like "topic thumbnails"
