@@ -39,9 +39,7 @@ RSpec.describe "Topic Thumbnails", type: :system do
   end
 
   context "with default raw-hbs topic list" do
-    before do
-      SiteSetting.glimmer_topic_list_mode = "disabled"
-    end
+    before { SiteSetting.glimmer_topic_list_mode = "disabled" }
 
     it "is using legacy topic list" do
       visit "/latest"
@@ -53,9 +51,7 @@ RSpec.describe "Topic Thumbnails", type: :system do
   end
 
   context "with glimmer topic list" do
-    before do
-      SiteSetting.glimmer_topic_list_mode = "auto"
-    end
+    before { SiteSetting.glimmer_topic_list_mode = "auto" }
 
     it "is using glimmer topic list" do
       visit "/latest"
