@@ -259,7 +259,7 @@
   .topic-thumbnail-likes {
     grid-area: likes;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     color: var(--primary-low-mid);
     overflow: hidden;
@@ -280,8 +280,6 @@
     width: auto !important; // overrides very specific core style
     .badge-posts {
       padding: 0;
-      height: 100%;
-      width: 100%;
     }
     span.number {
       color: var(--primary-low-mid);
