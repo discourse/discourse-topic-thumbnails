@@ -276,6 +276,10 @@
   .posts-map {
     padding: 0;
     grid-area: posts;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     width: auto !important; // overrides very specific core style
     .badge-posts {
