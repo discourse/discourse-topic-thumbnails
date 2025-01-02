@@ -277,6 +277,9 @@
     padding: 0;
     grid-area: posts;
     width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .badge-posts {
       padding: 0;
       height: 100%;
