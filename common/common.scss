@@ -100,7 +100,7 @@
   .topic-list-item {
     display: grid;
     position: relative;
-    overflow: hidden;
+    min-width: 0;
     height: 250px;
 
     grid-template-areas:
@@ -128,7 +128,6 @@
     top: 0;
     left: 0;
     grid-area: image;
-    overflow: visible;
     .background-thumbnail {
       height: calc(150%);
     }
@@ -218,13 +217,13 @@
   .topic-list-item {
     display: grid;
     position: relative;
-    overflow: hidden;
+    min-width: 0;
     height: 250px;
     grid-template-areas:
       " image image image"
       " title likes posts";
     grid-template-rows: 1fr 45px;
-    grid-template-columns: 70% 15% 15%;
+    grid-template-columns: 70% minmax(0, 15%) minmax(0, 15%);
     border-bottom: none;
     &.visited {
       background-color: transparent !important;
@@ -260,9 +259,10 @@
   .topic-thumbnail-likes {
     grid-area: likes;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     color: var(--primary-low-mid);
+    overflow: hidden;
     .number {
       font-size: 13px;
       font-weight: bold;
@@ -280,10 +280,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    width: auto !important; // overrides very specific core style
     .badge-posts {
       padding: 0;
-      height: 100%;
-      width: 100%;
     }
     span.number {
       color: var(--primary-low-mid);
@@ -324,6 +324,10 @@
         padding: 0 !important;
       }
     }
+  }
+
+  .d-tooltip-content {
+    white-space: normal;
   }
 }
 

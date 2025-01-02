@@ -1,0 +1,26 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+tr_TR:
+  theme_metadata:
+    description: Konu listelerine küçük resimler ekleyen tema bileşeni. Bunu global olarak veya kategori başına etkinleştirebilirsiniz
+    settings:
+      default_thumbnail_mode: Varsayılan olarak hangi küçük resim gösterme modu kullanılsın?
+      docs_thumbnail_mode: Docs eklentisi etkinleştirilirse docs konuları için hangi küçük resim gösterme modu kullanılsın?
+      blog_style_categories: Bu kategorilerde blog tarzı görünüm kullanılır. Bu tarz, tema veya tema bileşeni aracılığıyla etkinleştirilirse konu özetlerini kullanır.
+      minimal_grid_categories: Bu kategorilerde minimal ızgara görünümü kullanılır
+      grid_categories: Bu kategorilerde ızgara görünümü kullanılır
+      masonry_categories: Bu kategorilerde duvar görünümü kullanılır
+      list_categories: Bu kategorilerde liste görünümü kullanılır
+      minimal_grid_tags: Bu etiketler için minimal ızgara görünümü kullanılır
+      grid_tags: Bu etiketler için ızgara görünümü kullanılır
+      masonry_tags: Bu etiketler için duvar görünümü kullanılır
+      list_tags: Bu etiketler için liste görünümü kullanılır
+      suggested_topics_mode: Önerilen konular için hangi küçük resim görüntüleme modu kullanılsın? Boşsa "konu listelerinin dışında etkinleştir" ayarını takip eder.
+      enable_outside_topic_lists: Konu listesi olmayan sayfalarda (ör. kullanıcı aktivitesi, kişisel mesajlar, önerilen konular) küçük resimleri etkinleştir
+      placeholder_icon: Küçük resimsiz konularda gösterilecek simge
+      mobile_thumbnails: Mobil cihazlarda küçük resimleri etkinleştir
+      list_thumbnail_size: '"Liste" görünümündeki küçük resimler için temel boyut'

@@ -1,0 +1,26 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+it:
+  theme_metadata:
+    description: Componente del tema che aggiunge miniature agli elenchi di argomenti. Puoi abilitarlo globalmente o per categoria
+    settings:
+      default_thumbnail_mode: Quale modalità di visualizzazione delle miniature è da usare per impostazione predefinita?
+      docs_thumbnail_mode: Se il plugin dei documenti è abilitato, quale modalità di visualizzazione delle miniature deve essere utilizzata per gli argomenti dei documenti?
+      blog_style_categories: La visualizzazione in stile blog verrà utilizzata in queste categorie. Questo stile utilizza estratti di argomenti se abilitato tramite il tema o il componente del tema.
+      minimal_grid_categories: In queste categorie verrà utilizzata la visualizzazione griglia minimalista
+      grid_categories: In queste categorie verrà utilizzata la visualizzazione griglia
+      masonry_categories: In queste categorie verrà utilizzata la visualizzazione a mattoni
+      list_categories: In queste categorie verrà utilizzata la visualizzazione elenco
+      minimal_grid_tags: Per queste etichette verrà utilizzata la visualizzazione griglia minimalista
+      grid_tags: Per queste etichette verrà utilizzata la visualizzazione griglia
+      masonry_tags: Per queste etichette verrà utilizzata la visualizzazione a mattoni
+      list_tags: Per queste etichette verrà utilizzata la visualizzazione elenco
+      suggested_topics_mode: Quale modalità di visualizzazione delle miniature dovrebbe essere utilizzata per gli argomenti suggeriti? Se vuota, seguirà l'impostazione "abilita elenchi di argomenti esterni".
+      enable_outside_topic_lists: Abilita le miniature nelle pagine senza elenco argomenti (ad esempio attività utente, messaggi personali, argomenti suggeriti)
+      placeholder_icon: Icona da visualizzare sugli argomenti senza immagini in miniatura
+      mobile_thumbnails: Abilita le miniature sui dispositivi mobili
+      list_thumbnail_size: Dimensioni di base per le miniature nella vista "elenco"

@@ -1,0 +1,26 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+pt_BR:
+  theme_metadata:
+    description: O componente do tema responsável por adicionar miniaturas às listas de tópicos. Você pode desativar globalmente ou conforme a categoria
+    settings:
+      default_thumbnail_mode: Qual modo de exibição de miniatura deve ser usado por padrão?
+      docs_thumbnail_mode: Se o plugin de documentos estiver ativado, qual modo de exibição de miniatura deve ser usado para tópicos de documentos?
+      blog_style_categories: Será usada a visualização ao estilo de blog nestas categorias. O estilo utiliza topic-excerpts se for ativado através do tema ou componente do tema.
+      minimal_grid_categories: Será usada visualização de grade mínima nestas categorias
+      grid_categories: Será usada visualização de grade nestas categorias
+      masonry_categories: Será usada visualização de blocos nestas categorias
+      list_categories: Será usada visualização de lista nestas categorias
+      minimal_grid_tags: Será usada visualização de grade mínima para estas etiquetas
+      grid_tags: Será usada visualização de grade para estas etiquetas
+      masonry_tags: Será usada visualização de blocos para estas etiquetas
+      list_tags: Será usada visualização de lista para estas etiquetas
+      suggested_topics_mode: Qual modo de exibição de miniatura deve ser usado para os tópicos sugeridos? Se estiver vazio, será usada a configuração "enable outside topic lists".
+      enable_outside_topic_lists: Ativar miniaturas em páginas que não sejam listas de tópicos (por exemplo, tópicos sugeridos, mensagens pessoais, atividade do(a) usuário(a))
+      placeholder_icon: O ícone a ser exibido em tópicos sem imagens de miniaturas
+      mobile_thumbnails: Ativar miniaturas em dispositivos móveis
+      list_thumbnail_size: O tamanho-base para miniaturas na visualização em "lista"

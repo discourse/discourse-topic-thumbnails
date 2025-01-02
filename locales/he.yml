@@ -1,0 +1,11 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+he:
+  theme_metadata:
+    settings:
+      placeholder_icon: סמל להצגה על נושאים בלי תמונות ממוזערות
+      mobile_thumbnails: הפעלת תמונות ממוזערות להתקנים ניידים

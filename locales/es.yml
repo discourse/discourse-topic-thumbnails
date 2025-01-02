@@ -1,0 +1,26 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+es:
+  theme_metadata:
+    description: Componente temático que añade miniaturas a las listas de temas. Puedes activarlo globalmente o por categoría
+    settings:
+      default_thumbnail_mode: '¿Qué modo de visualización de miniaturas debe utilizarse por defecto?'
+      docs_thumbnail_mode: Si el plugin docs está activado, ¿qué modo de visualización de miniaturas debe utilizarse para los temas de docs?
+      blog_style_categories: En estas categorías se utilizará la vista de estilo blog. Este estilo hace uso de los extractos de temas si están activados a través del tema o del componente del tema.
+      minimal_grid_categories: La vista de cuadrícula mínima se utilizará en estas categorías
+      grid_categories: La vista de cuadrícula se utilizará en estas categorías
+      masonry_categories: La vista de mampostería se utilizará en estas categorías
+      list_categories: La vista de lista se utilizará en estas categorías
+      minimal_grid_tags: La vista de cuadrícula mínima se utilizará para estas etiquetas
+      grid_tags: La vista de cuadrícula se utilizará para estas etiquetas
+      masonry_tags: La vista de mampostería se utilizará para estas etiquetas
+      list_tags: La vista de lista se utilizará para estas etiquetas
+      suggested_topics_mode: '¿Qué modo de visualización de miniaturas debe utilizarse para los temas sugeridos? Si está en blanco, seguirá el ajuste «activar listas de temas externos».'
+      enable_outside_topic_lists: Habilitar miniaturas en páginas que no sean de listas de temas (por ejemplo, actividad del usuario, mensajes personales, temas sugeridos).
+      placeholder_icon: Icono para mostrar en temas sin imágenes en miniatura
+      mobile_thumbnails: Activar miniaturas en dispositivos móviles
+      list_thumbnail_size: Tamaño base de las miniaturas en la vista «lista»
