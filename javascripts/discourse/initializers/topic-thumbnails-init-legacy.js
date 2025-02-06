@@ -1,12 +1,9 @@
 import { readOnly } from "@ember/object/computed";
 import { service } from "@ember/service";
+import { observes } from "discourse/lib/decorators";
+import { withSilencedDeprecations } from "discourse/lib/deprecated";
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { withSilencedDeprecations } from "discourse-common/lib/deprecated";
-import {
-  getResolverOption,
-  setResolverOption,
-} from "discourse-common/resolver";
-import { observes } from "discourse-common/utils/decorators";
+import { getResolverOption, setResolverOption } from "discourse/resolver";
 export default {
   name: "topic-thumbnails-init",
   initialize() {
