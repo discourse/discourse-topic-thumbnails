@@ -1,6 +1,6 @@
+import { observer } from "@ember/object";
 import { readOnly } from "@ember/object/computed";
 import { service } from "@ember/service";
-import { observes } from "discourse/lib/decorators";
 import { withSilencedDeprecations } from "discourse/lib/deprecated";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { getResolverOption, setResolverOption } from "discourse/resolver";
@@ -36,8 +36,7 @@ export default {
 
       // Hack to disable the mobile topic-list-item template
       // Our grid styling is responsive, and uses the desktop HTML structure
-      @observes("topic.pinned")
-      renderTopicListItem() {
+      renderTopicListItem: observer("topic.pinned", function () {
         const wasMobileView = getResolverOption("mobileView");
         if (
           wasMobileView &&
@@ -54,7 +53,7 @@ export default {
         if (wasMobileView) {
           setResolverOption("mobileView", true);
         }
-      },
+      }),
     });
 
     api.modifyClass(
