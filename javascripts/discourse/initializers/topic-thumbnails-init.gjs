@@ -32,11 +32,14 @@ export default apiInitializer("0.8", (api) => {
     return columns;
   });
 
-  api.renderInOutlet("topic-list-before-link", <template>
-    {{#if ttService.displayList}}
-      <TopicListThumbnail @topic={{@outletArgs.topic}} />
-    {{/if}}
-  </template>);
+  api.renderInOutlet(
+    "topic-list-before-link",
+    <template>
+      {{#if ttService.displayList}}
+        <TopicListThumbnail @topic={{@outletArgs.topic}} />
+      {{/if}}
+    </template>
+  );
 
   api.registerValueTransformer("topic-list-item-mobile-layout", ({ value }) => {
     if (ttService.enabledForRoute && !ttService.displayList) {

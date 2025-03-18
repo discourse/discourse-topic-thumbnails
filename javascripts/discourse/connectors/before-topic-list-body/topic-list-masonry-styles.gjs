@@ -53,7 +53,9 @@ export default class TopicListMasonryStyles extends Component {
   <template>
     {{#if this.topicThumbnails.displayMasonry}}
       {{! template-lint-disable no-forbidden-elements }}
-      <style {{this.attachResizeObserver}}>
+      <style
+        {{this.attachResizeObserver}}
+      >
         {{this.masonryStyle}}
       </style>
     {{/if}}

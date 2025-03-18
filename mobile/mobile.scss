@@ -10,19 +10,24 @@
       grid-template-columns: 15% auto 15%;
       grid-template-areas: "thumbnail title replies" "thumbnail data data";
       gap: 0 0.5em;
+
       .num {
         text-align: right;
       }
+
       .topic-list-thumbnail {
         grid-area: thumbnail;
       }
+
       .main-link {
         grid-area: title;
         width: unset;
       }
+
       .topic-item-stats {
         grid-area: data;
       }
+
       .pull-right {
         grid-area: replies;
       }
@@ -34,21 +39,27 @@
   .topic-list-body {
     grid-column-gap: 10px;
     grid-row-gap: 5px;
+
     .topic-list-item {
       height: 150px;
       grid-template-areas: "image image image" "title title title";
+
       .topic-thumbnail-likes {
         display: none;
       }
+
       .main-link {
         padding: 0 !important;
+
         .link-top-line {
           color: var(--primary);
         }
+
         .title {
           font-size: $font-down-3;
         }
       }
+
       .posts-map {
         display: none;
       }
