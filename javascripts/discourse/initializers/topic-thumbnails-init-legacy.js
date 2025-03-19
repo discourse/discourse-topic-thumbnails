@@ -4,6 +4,7 @@ import { service } from "@ember/service";
 import { withSilencedDeprecations } from "discourse/lib/deprecated";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { getResolverOption, setResolverOption } from "discourse/resolver";
+
 export default {
   name: "topic-thumbnails-init",
   initialize() {
