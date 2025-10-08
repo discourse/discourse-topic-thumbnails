@@ -3,7 +3,7 @@ import { service } from "@ember/service";
 import { apiInitializer } from "discourse/lib/api";
 import TopicListThumbnail from "../components/topic-list-thumbnail";
 
-export default apiInitializer("0.8", (api) => {
+export default apiInitializer((api) => {
   const ttService = api.container.lookup("service:topic-thumbnails");
 
   api.registerValueTransformer("topic-list-class", ({ value }) => {
