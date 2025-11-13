@@ -89,7 +89,7 @@ export default class TopicListThumbnail extends Component {
         (if this.hasThumbnail "has-thumbnail" "no-thumbnail")
       }}
     >
-      <a href={{this.url}} aria-label={{this.topic.title}}>
+      <a href={{this.url}} role="img" aria-label={{this.topic.title}}>
         {{#if this.hasThumbnail}}
           <img
             class="background-thumbnail"
@@ -98,6 +98,7 @@ export default class TopicListThumbnail extends Component {
             width={{this.width}}
             height={{this.height}}
             loading="lazy"
+            alt=""
           />
           <img
             class="main-thumbnail"
@@ -106,6 +107,7 @@ export default class TopicListThumbnail extends Component {
             width={{this.width}}
             height={{this.height}}
             loading="lazy"
+            alt=""
           />
         {{else}}
           <div class="thumbnail-placeholder">
