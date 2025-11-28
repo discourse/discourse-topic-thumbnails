@@ -31,6 +31,7 @@ en:
       list: "List"
       blog-style: "Blog style"
       compact-style: "Compact"
-    compact_votes:
-      upvote: "Upvote topic"
-      downvote: "Downvote topic"
+    actions:
+      save: "Save"
+      remove_saved: "Remove from saved"
+      report: "Report"
