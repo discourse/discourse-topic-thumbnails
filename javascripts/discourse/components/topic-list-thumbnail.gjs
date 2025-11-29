@@ -19,7 +19,6 @@ import { BookmarkFormData } from "discourse/lib/bookmark-form-data";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import Bookmark from "discourse/models/bookmark";
-import TopicVoteControls from "./topic-vote-controls";
 
 export default class TopicListThumbnail extends Component {
   @service topicThumbnails;
@@ -333,8 +332,11 @@ export default class TopicListThumbnail extends Component {
           </a>
         {{/if}}
 
+<<<<<<< HEAD
         <div class="topic-card__meta topic-meta">
-          <TopicVoteControls @topic={{this.topic}} />
+=======
+        <div class="topic-card__meta">
+>>>>>>> parent of 11258b1 (Feat: Add topic voting controls to topic list thumbnails)
           <a
             href={{this.url}}
             class="topic-card__meta-comments topic-meta__comments"
@@ -431,9 +433,13 @@ export default class TopicListThumbnail extends Component {
           </div>
         {{/if}}
 
+<<<<<<< HEAD
         <div class="topic-compact-meta topic-meta">
-          <TopicVoteControls @topic={{this.topic}} />
           <span class="topic-compact-meta__comments topic-meta__comments">
+=======
+        <div class="topic-compact-meta">
+          <span class="topic-compact-meta__comments">
+>>>>>>> parent of 11258b1 (Feat: Add topic voting controls to topic list thumbnails)
             {{this.commentsCount}}
             {{this.commentsLabel}}
           </span>
