@@ -491,6 +491,15 @@
       .pull-left {
         display: block !important;
       }
+
+      .link-top-line,
+      .link-bottom-line,
+      .topic-item-stats,
+      .discourse-tags,
+      .topic-statuses,
+      .topic-post-badges {
+        display: none !important;
+      }
     }
   }
 
