@@ -22,7 +22,10 @@ en:
       placeholder_icon: Icon to display on topics without thumbnail images
       mobile_thumbnails: Enable thumbnails on mobile devices
       list_thumbnail_size: Base size for thumbnails in the 'list' view
+      view_selector_modes: Which thumbnail modes should appear in the view selector dropdown?
   topic_thumbnails:
+    view_selector:
+      label: "Change topic view"
     view_modes:
       minimal-grid: "Minimal grid"
       grid: "Grid"

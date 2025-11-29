@@ -718,6 +718,60 @@
   text-decoration: none;
 }
 
+.navigation-controls .topic-view-mode-selector__trigger {
+  order: 999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75em;
+}
+
+.topic-view-mode-selector__trigger .d-icon {
+  margin: 0;
+}
+
+.topic-view-mode-selector__content {
+  min-width: 14rem;
+}
+
+.topic-view-mode-selector__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topic-view-mode-selector__option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  padding: 0.75em 1em;
+  cursor: pointer;
+  color: var(--primary);
+
+  .d-icon {
+    color: var(--tertiary);
+  }
+
+  &:hover,
+  &:focus {
+    background: var(--d-hover);
+    outline: none;
+  }
+
+  &.-active {
+    font-weight: 600;
+
+    .d-icon {
+      color: var(--success);
+    }
+  }
+}
+
 .topic-thumbnails-card-style {
   .topic-list {
     display: block;

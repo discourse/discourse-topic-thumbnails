@@ -59,4 +59,16 @@ RSpec.describe "Topic Thumbnails", type: :system do
     expect(page).to have_css(".topic-card__meta-action", text: "Share")
     expect(page).to have_css(".topic-card__meta-action .d-icon-flag")
   end
+
+  it "allows selecting a manual view from the navigation dropdown" do
+    visit "/latest"
+
+    expect(page).to have_css(".topic-view-mode-selector__trigger")
+    expect(page).to have_css(".topic-list.topic-thumbnails-grid")
+
+    find(".topic-view-mode-selector__trigger").click
+    find(".topic-view-mode-selector__option", text: "List").click
+
+    expect(page).to have_css(".topic-list.topic-thumbnails-list")
+  end
 end
