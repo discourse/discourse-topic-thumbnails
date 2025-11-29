@@ -12,7 +12,9 @@
       [400, 400],
       [600, 600],
       [800, 800]
-    ]
+    ],
+    "serialize_topic_op_likes_data": true,
+    "serialize_topic_excerpts": true
   },
   "svg_icons": ["circle-up", "circle-down"]
 }
