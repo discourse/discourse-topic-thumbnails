@@ -324,8 +324,8 @@ export default class TopicListThumbnail extends Component {
         <div class="topic-card__meta">
           <TopicCompactVoteControls @topic={{this.topic}} />
           <span class="topic-card__meta-comments">
+            {{dIcon "far-comment"}}
             {{this.commentsCount}}
-            {{this.commentsLabel}}
           </span>
           <span
             role="button"
