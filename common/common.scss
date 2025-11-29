@@ -520,7 +520,7 @@
 
   .topic-card__header {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.4em;
     font-size: var(--font-down-1-rem);
     color: var(--primary-medium);
@@ -578,7 +578,6 @@
     font-size: var(--font-down-2-rem);
     color: var(--primary-medium);
     position: relative;
-    top: -0.1em;
 
     &::before {
       content: "•";
