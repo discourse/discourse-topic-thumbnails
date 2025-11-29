@@ -410,11 +410,12 @@
 
   .link-top-line {
     grid-area: title;
-    color: var(--primary-high);
+    color: var(--primary);
     font-weight: 600;
     font-size: var(--font-up-1);
 
     a.title {
+      color: inherit;
       padding: 0 !important;
     }
 
@@ -748,8 +749,7 @@
       .topic-item-stats,
       .discourse-tags,
       .topic-statuses,
-      .topic-post-badges,
-      .topic-excerpt {
+      .topic-post-badges {
         display: none !important;
       }
     }
@@ -847,7 +847,7 @@
     font-size: var(--font-0);
 
     a {
-      color: var(--primary-high);
+      color: var(--primary);
       text-decoration: none;
 
       &:hover,
