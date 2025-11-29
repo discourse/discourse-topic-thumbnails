@@ -475,7 +475,6 @@
 
   .topic-list-item {
     display: block;
-    padding: 0;
     border: none;
 
     > * {
@@ -605,7 +604,6 @@
 
     img {
       width: 100%;
-      max-width: 540px;
       height: auto;
       display: block;
       object-fit: cover;
