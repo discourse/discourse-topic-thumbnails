@@ -84,8 +84,9 @@
   }
 
   .topic-card__meta {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   .topic-card__thumbnail img {
