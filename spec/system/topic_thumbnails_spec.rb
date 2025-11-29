@@ -37,6 +37,29 @@ RSpec.describe "Topic Thumbnails", type: :system do
     expect(page).to have_css(".topic-list-item.masonry-0")
   end
 
+  it "shows metadata actions in compact style" do
+    theme.update_setting(:default_thumbnail_mode, "compact-style")
+    theme.save!
+
+    visit "/latest"
+
+    expect(page).to have_css(".topic-compact-meta__share", text: "Share")
+    expect(page).to have_css(".topic-compact-meta__action--save", text: "Save")
+    expect(page).to have_css(".topic-compact-meta__action--report", text: "Report")
+  end
+
+  it "renders card style topics with inline controls" do
+    theme.update_setting(:default_thumbnail_mode, "card-style")
+    theme.save!
+
+    visit "/latest"
+
+    expect(page).to have_css(".topic-thumbnails-card-style .topic-card", count: 5)
+    expect(page).to have_css(".topic-card__meta-comments .d-icon-far-comment")
+    expect(page).to have_css(".topic-card__meta-action", text: "Share")
+    expect(page).to have_css(".topic-card__meta-action .d-icon-flag")
+  end
+
   it "allows selecting a manual view from the navigation dropdown" do
     visit "/latest"
 

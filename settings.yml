@@ -7,6 +7,8 @@ default_thumbnail_mode:
     - masonry
     - list
     - blog-style
+    - compact-style
+    - card-style
     - none
 
 docs_thumbnail_mode:
@@ -17,6 +19,8 @@ docs_thumbnail_mode:
     - grid
     - list
     - blog-style
+    - compact-style
+    - card-style
     - none
 
 blog_style_categories:
@@ -40,6 +44,16 @@ masonry_categories:
   default: ""
 
 list_categories:
+  type: list
+  list_type: category
+  default: ""
+
+compact_categories:
+  type: list
+  list_type: category
+  default: ""
+
+card_categories:
   type: list
   list_type: category
   default: ""
@@ -69,6 +83,16 @@ list_tags:
   list_type: tag
   default: ""
 
+compact_tags:
+  type: list
+  list_type: tag
+  default: ""
+
+card_tags:
+  type: list
+  list_type: tag
+  default: ""
+
 suggested_topics_mode:
   default: ""
   type: enum
@@ -79,6 +103,8 @@ suggested_topics_mode:
     - masonry
     - list
     - blog-style
+    - compact-style
+    - card-style
     - none
 
 enable_outside_topic_lists: false
@@ -96,6 +122,8 @@ list_thumbnail_size:
   choices:
     - 200
     - 400
+    - 540
+    - 800
 
 view_selector_modes:
   default: ""
@@ -107,3 +135,4 @@ view_selector_modes:
     - list
     - blog-style
     - compact-style
+    - card-style
