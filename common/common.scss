@@ -410,11 +410,11 @@
 
   .link-top-line {
     grid-area: title;
+    color: var(--primary-high);
     font-weight: 600;
     font-size: var(--font-up-1);
 
     a.title {
-      color: var(--primary-high);
       padding: 0 !important;
     }
 
