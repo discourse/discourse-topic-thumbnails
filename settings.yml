@@ -109,3 +109,5 @@ list_thumbnail_size:
   choices:
     - 200
     - 400
+    - 540
+    - 800
