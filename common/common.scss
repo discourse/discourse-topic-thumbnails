@@ -569,10 +569,12 @@
 
   .topic-card__activity {
     display: inline-flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.25em;
     font-size: var(--font-down-2-rem);
     color: var(--primary-medium);
+    position: relative;
+    top: -0.1em;
 
     &::before {
       content: "•";
