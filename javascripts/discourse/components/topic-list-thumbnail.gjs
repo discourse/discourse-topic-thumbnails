@@ -280,20 +280,20 @@ export default class TopicListThumbnail extends Component {
       <article class="topic-card">
         {{#if this.showCardAuthor}}
           <div class="topic-card__header">
-            <div class="topic-card__author">
+            <div class="topic-card__author topic-author">
               <UserInfo
                 @user={{this.topic.creator}}
                 @includeLink={{true}}
                 @includeAvatar={{true}}
                 @size="small"
-                class="topic-card__author-user"
+                class="topic-card__author-user topic-author__user"
               />
-      <span class="topic-card__activity">
-        {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
-        ago
-      </span>
-    </div>
-  </div>
+              <span class="topic-card__activity topic-author__activity">
+                {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
+                ago
+              </span>
+            </div>
+          </div>
         {{/if}}
 
         <h3 class="topic-card__title">
@@ -333,11 +333,11 @@ export default class TopicListThumbnail extends Component {
           </a>
         {{/if}}
 
-        <div class="topic-card__meta">
+        <div class="topic-card__meta topic-meta">
           <TopicVoteControls @topic={{this.topic}} />
           <a
             href={{this.url}}
-            class="topic-card__meta-comments"
+            class="topic-card__meta-comments topic-meta__comments"
             aria-label={{i18n "post.controls.view_topic"}}
           >
             {{dIcon "far-comment"}}
@@ -346,7 +346,7 @@ export default class TopicListThumbnail extends Component {
           <span
             role="button"
             tabindex="0"
-            class="topic-card__meta-action"
+            class="topic-card__meta-action topic-meta__action"
             {{on "click" this.copyTopicLink}}
             {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
           >
@@ -356,7 +356,7 @@ export default class TopicListThumbnail extends Component {
           <span
             role="button"
             tabindex="0"
-            class="topic-card__meta-action"
+            class="topic-card__meta-action topic-meta__action"
             {{on "click" this.toggleSave}}
             {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
           >
@@ -369,7 +369,7 @@ export default class TopicListThumbnail extends Component {
           <span
             role="button"
             tabindex="0"
-            class="topic-card__meta-action"
+            class="topic-card__meta-action topic-meta__action"
             {{on "click" this.reportTopic}}
             {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
           >
@@ -416,31 +416,31 @@ export default class TopicListThumbnail extends Component {
         </div>
 
         {{#if this.showCompactAuthor}}
-          <div class="topic-compact-author">
+          <div class="topic-compact-author topic-author">
             <UserInfo
               @user={{this.topic.creator}}
               @includeLink={{true}}
               @includeAvatar={{true}}
               @size="small"
-              class="topic-compact-author__user"
+              class="topic-compact-author__user topic-author__user"
             />
-            <span class="topic-compact-author__activity">
+            <span class="topic-compact-author__activity topic-author__activity">
               {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
               ago
             </span>
           </div>
         {{/if}}
 
-        <div class="topic-compact-meta">
+        <div class="topic-compact-meta topic-meta">
           <TopicVoteControls @topic={{this.topic}} />
-          <span class="topic-compact-meta__comments">
+          <span class="topic-compact-meta__comments topic-meta__comments">
             {{this.commentsCount}}
             {{this.commentsLabel}}
           </span>
           <span
             role="button"
             tabindex="0"
-            class="topic-compact-meta__share"
+            class="topic-compact-meta__share topic-meta__action"
             {{on "click" this.copyTopicLink}}
             {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
           >
@@ -449,7 +449,7 @@ export default class TopicListThumbnail extends Component {
           <span
             role="button"
             tabindex="0"
-            class="topic-compact-meta__action topic-compact-meta__action--save"
+            class="topic-compact-meta__action topic-compact-meta__action--save topic-meta__action"
             {{on "click" this.toggleSave}}
             {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
           >
@@ -458,7 +458,7 @@ export default class TopicListThumbnail extends Component {
           <span
             role="button"
             tabindex="0"
-            class="topic-compact-meta__action topic-compact-meta__action--report"
+            class="topic-compact-meta__action topic-compact-meta__action--report topic-meta__action"
             {{on "click" this.reportTopic}}
             {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
           >
