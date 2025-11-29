@@ -483,9 +483,13 @@
     }
 
     > .topic-list-data {
-      display: block;
+      display: block !important;
       padding: 0;
       border: none;
+    }
+
+    > .topic-list-data .pull-left {
+      display: block !important;
     }
   }
 
