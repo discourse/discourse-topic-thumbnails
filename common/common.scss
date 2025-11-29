@@ -499,12 +499,6 @@
       .topic-post-badges {
         display: none !important;
       }
-
-      .link-top-line {
-        a.title {
-          color: var(--primary-high);
-        }
-      }
     }
   }
 
@@ -600,7 +594,7 @@
     font-size: var(--font-0);
 
     a {
-      color: inherit;
+      color: var(--primary-high);
       text-decoration: none;
 
       &:hover,
