@@ -478,6 +478,15 @@
     border: none;
   }
 
+  .topic-list .main-link,
+  .topic-list .topic-item-stats,
+  .topic-list .pull-right,
+  .topic-list .discourse-tags,
+  .topic-list .topic-statuses,
+  .topic-list .topic-excerpt {
+    display: none !important;
+  }
+
   .topic-card {
     display: flex;
     flex-direction: column;
