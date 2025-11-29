@@ -616,18 +616,16 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 2em;
-    font-size: var(--font-down-2-rem);
+    font-size: var(--font-down-1-rem);
     color: var(--primary-medium);
   }
 
   .topic-card__meta-comments {
-    text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   .topic-card__meta-action {
     cursor: pointer;
-    text-transform: uppercase;
     letter-spacing: 0.05em;
 
     &:hover,
