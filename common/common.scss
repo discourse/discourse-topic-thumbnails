@@ -559,6 +559,10 @@
     color: var(--primary);
     text-decoration: none;
   }
+
+  &:visited {
+    color: inherit;
+  }
 }
 
 .topic-meta__action {
