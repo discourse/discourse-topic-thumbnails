@@ -343,7 +343,11 @@ export default class TopicListThumbnail extends Component {
             {{on "click" this.toggleSave}}
             {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
           >
-            {{if this.isBookmarked this.removeSaveLabel this.saveLabel}}
+            {{#if this.isBookmarked}}
+              {{dIcon "bookmark"}}
+            {{else}}
+              {{dIcon "far-bookmark"}}
+            {{/if}}
           </span>
           <span
             role="button"
