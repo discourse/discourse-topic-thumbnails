@@ -11,13 +11,6 @@ import TopicPostVotes, {
 export default class TopicVoteControls extends Component {
   @service siteSettings;
 
-  get postVoteFeatureEnabled() {
-    if (typeof settings.topic_vote_controls_enabled === "boolean") {
-      return settings.topic_vote_controls_enabled;
-    }
-    return false;
-  }
-
   get topic() {
     return this.args.topic;
   }
@@ -88,7 +81,6 @@ export default class TopicVoteControls extends Component {
   get shouldRender() {
     return (
       hasPostVoteControls &&
-      this.postVoteFeatureEnabled &&
       this.votingEnabledForTopic &&
       Boolean(this.post)
     );
