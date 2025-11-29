@@ -499,6 +499,12 @@
       .topic-post-badges {
         display: none !important;
       }
+
+      .link-top-line {
+        a.title {
+          color: var(--primary-high);
+        }
+      }
     }
   }
 
