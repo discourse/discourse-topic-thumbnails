@@ -524,6 +524,10 @@
     gap: 0.4em;
     font-size: var(--font-down-1-rem);
     color: var(--primary-medium);
+
+    .user-info {
+      margin-bottom: 0px;
+    }
   }
 
   .topic-card__author {
