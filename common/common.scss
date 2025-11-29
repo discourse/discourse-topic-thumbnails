@@ -475,11 +475,11 @@
 
   .topic-list-item {
     display: block;
+    padding: 0;
     border: none;
 
     > * {
       display: none !important;
-      padding: 0;
       border: 0;
     }
 
