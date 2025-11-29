@@ -12,6 +12,7 @@ RSpec.describe "Topic Thumbnails", type: :system do
     "minimal-grid" => "minimal",
     "list" => "list",
     "blog-style" => "blog-style-grid",
+    "compact-style" => "compact",
   }.each do |style, class_name|
     it "renders topic thumbnails in #{style} style" do
       theme.update_setting(:default_thumbnail_mode, style)
@@ -34,5 +35,17 @@ RSpec.describe "Topic Thumbnails", type: :system do
     expect(page).to have_css(".topic-list-thumbnail", count: 5)
 
     expect(page).to have_css(".topic-list-item.masonry-0")
+  end
+
+  it "allows selecting a manual view from the navigation dropdown" do
+    visit "/latest"
+
+    expect(page).to have_css(".topic-view-mode-selector__trigger")
+    expect(page).to have_css(".topic-list.topic-thumbnails-grid")
+
+    find(".topic-view-mode-selector__trigger").click
+    find(".topic-view-mode-selector__option", text: "List").click
+
+    expect(page).to have_css(".topic-list.topic-thumbnails-list")
   end
 end
