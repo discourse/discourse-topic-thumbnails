@@ -488,8 +488,14 @@
     .topic-compact-author__user .name-line {
       display: inline-flex;
       gap: 0.25em;
-      font-weight: 600;
-      font-size: var(--font-1-rem);
+      font-weight: 500;
+      font-size: var(--font-down-1-rem);
+
+      span {
+        &:first-of-type {
+          font-weight: 500;
+        }
+      }
     }
 
     .topic-compact-author__user .title,
@@ -517,6 +523,7 @@
       display: inline-flex;
       align-items: baseline;
       gap: 0;
+      color: var(--d-link-color);
     }
   }
 
@@ -658,80 +665,36 @@
     font-weight: bold;
     display: inline-flex;
     align-items: center;
-    gap: 1.2em;
-  }
+    gap: 3em;
 
-  .topic-compact-meta__comments {
-    text-decoration: none;
-    word-spacing: .2em;
-  }
+    .topic-compact-meta__comments {
+      text-decoration: none;
+      word-spacing: 0.15em;
+      margin-left: -1.5em;
 
-  .topic-thumbnail-compact-link:hover .topic-compact-meta__comments,
-  .topic-thumbnail-compact-link:focus .topic-compact-meta__comments {
-    text-decoration: underline;
-  }
-
-  .topic-compact-votes {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.2em;
-
-    &.is-loading {
-      display: none;
+      &:hover,
+      &:focus {
+        color: var(--primary);
+        text-decoration: none;
+      }
     }
 
-    &__stack {
+    .topic-compact-meta__action,
+    .topic-compact-meta__share {
       display: inline-flex;
       align-items: center;
       gap: 0.25em;
-    }
-
-    .topic-compact-vote-button {
-      appearance: none;
-      border: 0;
-      background: transparent;
-      padding: 0;
-      margin: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       cursor: pointer;
-      color: var(--primary-medium);
-      transition: color 0.15s ease;
+      text-transform: none;
 
-      &:disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
+      &:hover {
+        color: var(--primary);
+        text-decoration: none;
+        outline: none;
       }
-
-      .d-icon,
-      .topic-compact-vote-icon {
-        width: 1.15em;
-        height: 1.15em;
-      }
-
-      &:hover,
-      &:focus-visible {
-        color: var(--primary-high);
-      }
-
-      &.topic-compact-vote-button--up.is-active {
-        color: #ff4500;
-      }
-
-      &.topic-compact-vote-button--down.is-active {
-        color: #b19cd9;
-      }
-    }
-
-    .topic-compact-vote-count {
-      min-width: 1.5em;
-      text-align: center;
-      font-size: var(--font-down-2-rem);
-      font-weight: bold;
-      color: var(--primary-medium);
     }
   }
+
 .topic-thumbnail-compact-link {
   display: contents;
   color: inherit;
@@ -743,7 +706,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25em;
   padding: 0 0.75em;
 }
 

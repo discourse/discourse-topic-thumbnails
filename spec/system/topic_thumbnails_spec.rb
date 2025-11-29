@@ -37,6 +37,17 @@ RSpec.describe "Topic Thumbnails", type: :system do
     expect(page).to have_css(".topic-list-item.masonry-0")
   end
 
+  it "shows metadata actions in compact style" do
+    theme.update_setting(:default_thumbnail_mode, "compact-style")
+    theme.save!
+
+    visit "/latest"
+
+    expect(page).to have_css(".topic-compact-meta__share", text: "Share")
+    expect(page).to have_css(".topic-compact-meta__action--save", text: "Save")
+    expect(page).to have_css(".topic-compact-meta__action--report", text: "Report")
+  end
+
   it "allows selecting a manual view from the navigation dropdown" do
     visit "/latest"
 
