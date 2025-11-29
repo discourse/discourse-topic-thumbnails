@@ -459,18 +459,23 @@
     display: block;
   }
 
-  .topic-list-item {
-    display: block;
-    padding: 0;
-    border: none;
-  }
-
   .topic-list-header,
   .topic-list .bulk-select,
   .topic-list .posters,
   .topic-list .num,
+  .topic-list .likes,
+  .topic-list .views,
   .topic-list .activity {
     display: none !important;
+  }
+
+  .topic-list-body,
+  .topic-list-item,
+  .topic-list-data,
+  .topic-list .right {
+    display: block;
+    padding: 0;
+    border: none;
   }
 
   .topic-card {
