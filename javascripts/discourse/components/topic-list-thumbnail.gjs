@@ -334,6 +334,7 @@ export default class TopicListThumbnail extends Component {
             {{on "click" this.copyTopicLink}}
             {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
           >
+            {{dIcon "share"}}
             {{i18n "post.controls.share_action"}}
           </span>
           <span
