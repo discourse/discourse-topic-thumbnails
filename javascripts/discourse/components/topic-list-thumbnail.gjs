@@ -335,7 +335,7 @@ export default class TopicListThumbnail extends Component {
             {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
           >
             {{dIcon "share"}}
-            {{i18n "post.controls.share_action"}}
+            {{i18n "post.controls.share_action" title_case=true}}
           </span>
           <span
             role="button"
@@ -357,7 +357,7 @@ export default class TopicListThumbnail extends Component {
             {{on "click" this.reportTopic}}
             {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
           >
-            {{this.reportLabel}}
+            {{dIcon "flag"}}
           </span>
         </div>
       </article>
