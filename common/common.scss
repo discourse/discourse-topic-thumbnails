@@ -519,11 +519,52 @@
   }
 
   .topic-card__header {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5em;
     font-size: var(--font-down-1-rem);
     color: var(--primary-medium);
+  }
+
+  .topic-card__author {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+
+    .user-image {
+      margin: 0;
+      width: 20px;
+      height: 20px;
+      line-height: var(--line-height-small);
+    }
+
+    .user-image-inner,
+    .user-image-inner img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .user-detail {
+      display: inline-flex;
+      gap: 0.25em;
+      padding: 0;
+      color: inherit;
+    }
+
+    .name-line {
+      display: inline-flex;
+      gap: 0.25em;
+      font-weight: 600;
+      font-size: var(--font-down-1-rem);
+    }
+
+    .title,
+    .details,
+    .user-status-message {
+      display: none;
+    }
   }
 
   .topic-card__activity {
