@@ -520,8 +520,8 @@
 
   .topic-card__header {
     display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
+    align-items: baseline;
+    gap: 0.4em;
     font-size: var(--font-down-1-rem);
     color: var(--primary-medium);
   }
