@@ -2,8 +2,8 @@ import Component from "@glimmer/component";
 import EmberObject, { action } from "@ember/object";
 import { tracked } from "@glimmer/tracking";
 import { service } from "@ember/service";
-import { on } from "@ember/modifier";
 import { fn } from "@ember/helper";
+import { on } from "@ember/modifier";
 import UserInfo from "discourse/components/user-info";
 import coldAgeClass from "discourse/helpers/cold-age-class";
 import concatClass from "discourse/helpers/concat-class";
@@ -19,6 +19,7 @@ import { BookmarkFormData } from "discourse/lib/bookmark-form-data";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import Bookmark from "discourse/models/bookmark";
+import TopicCompactVoteControls from "./topic-compact-vote-controls";
 
 export default class TopicListThumbnail extends Component {
   @service topicThumbnails;
@@ -30,6 +31,7 @@ export default class TopicListThumbnail extends Component {
   @tracked bookmarkId;
   @tracked isBookmarkedState = false;
   @tracked isBookmarking = false;
+
   responsiveRatios = [1, 1.5, 2];
 
   constructor() {
@@ -42,25 +44,21 @@ export default class TopicListThumbnail extends Component {
     return "comments";
   }
 
-  // Make sure to update about.json thumbnail sizes if you change these variables
-  get displayWidth() {
-    return this.topicThumbnails.displayList ||
-      this.topicThumbnails.displayCompactStyle
-      ? settings.list_thumbnail_size
-      : 400;
-  }
-
   get topic() {
     return this.args.topic;
   }
 
-  get shareUrl() {
-    const sharePath = this.topic?.shareUrl || this.topic?.url;
-    return sharePath ? getAbsoluteURL(sharePath) : null;
-  }
-
   get hasThumbnail() {
     return !!this.topic.thumbnails;
+  }
+
+  // Make sure to update about.json thumbnail sizes if you change these variables
+  get displayWidth() {
+    return this.topicThumbnails.displayList ||
+      this.topicThumbnails.displayCompactStyle ||
+      this.topicThumbnails.displayCardStyle
+      ? settings.list_thumbnail_size
+      : 400;
   }
 
   get srcSet() {
@@ -91,10 +89,6 @@ export default class TopicListThumbnail extends Component {
     return this.original.width;
   }
 
-  get isLandscape() {
-    return this.original.width >= this.original.height;
-  }
-
   get height() {
     return this.original.height;
   }
@@ -118,6 +112,15 @@ export default class TopicListThumbnail extends Component {
     return this.topic.get("linked_post_number")
       ? this.topic.urlForPostNumber(this.topic.get("linked_post_number"))
       : this.topic.get("lastUnreadUrl");
+  }
+
+  get shareUrl() {
+    const sharePath = this.topic?.shareUrl || this.topic?.url;
+    return sharePath ? getAbsoluteURL(sharePath) : null;
+  }
+
+  get showCardAuthor() {
+    return this.topicThumbnails.displayCardStyle && this.topic?.creator;
   }
 
   get showCompactAuthor() {
@@ -273,7 +276,108 @@ export default class TopicListThumbnail extends Component {
   }
 
   <template>
-    {{#if this.topicThumbnails.displayCompactStyle}}
+    {{#if this.topicThumbnails.displayCardStyle}}
+      <article class="topic-card">
+        {{#if this.showCardAuthor}}
+          <div class="topic-card__header">
+            <div class="topic-card__author">
+              <UserInfo
+                @user={{this.topic.creator}}
+                @includeLink={{true}}
+                @includeAvatar={{true}}
+                @size="small"
+                class="topic-card__author-user"
+              />
+              <span class="topic-card__activity">
+                {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
+                ago
+              </span>
+            </div>
+          </div>
+        {{/if}}
+
+        <h3 class="topic-card__title">
+          <a href={{this.url}}>
+            {{this.topic.title}}
+          </a>
+        </h3>
+
+        {{#if this.hasThumbnail}}
+          <a
+            href={{this.url}}
+            class="topic-card__thumbnail"
+            aria-label={{this.topic.title}}
+          >
+            <img
+              src={{this.fallbackSrc}}
+              srcset={{this.srcSet}}
+              width={{this.displayWidth}}
+              height={{this.height}}
+              loading="lazy"
+              alt=""
+            />
+          </a>
+        {{else if this.topic.excerpt}}
+          <div class="topic-card__excerpt">
+            {{{this.topic.excerpt}}}
+          </div>
+        {{else}}
+          <a
+            href={{this.url}}
+            class="topic-card__thumbnail"
+            aria-label={{this.topic.title}}
+          >
+            <div class="thumbnail-placeholder">
+              {{dIcon settings.placeholder_icon}}
+            </div>
+          </a>
+        {{/if}}
+
+        <div class="topic-card__meta">
+          <TopicCompactVoteControls @topic={{this.topic}} />
+          <a
+            href={{this.url}}
+            class="topic-card__meta-comments"
+            aria-label={{i18n "post.controls.view_topic"}}
+          >
+            {{dIcon "far-comment"}}
+            {{this.commentsCount}}
+          </a>
+          <span
+            role="button"
+            tabindex="0"
+            class="topic-card__meta-action"
+            {{on "click" this.copyTopicLink}}
+            {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
+          >
+            {{dIcon "share"}}
+            {{i18n "post.controls.share_action"}}
+          </span>
+          <span
+            role="button"
+            tabindex="0"
+            class="topic-card__meta-action"
+            {{on "click" this.toggleSave}}
+            {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
+          >
+            {{#if this.isBookmarked}}
+              {{dIcon "bookmark"}}
+            {{else}}
+              {{dIcon "far-bookmark"}}
+            {{/if}}
+          </span>
+          <span
+            role="button"
+            tabindex="0"
+            class="topic-card__meta-action"
+            {{on "click" this.reportTopic}}
+            {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
+          >
+            {{dIcon "flag"}}
+          </span>
+        </div>
+      </article>
+    {{else if this.topicThumbnails.displayCompactStyle}}
       <a
         href={{this.url}}
         class="topic-thumbnail-compact-link"
@@ -328,6 +432,7 @@ export default class TopicListThumbnail extends Component {
         {{/if}}
 
         <div class="topic-compact-meta">
+          <TopicCompactVoteControls @topic={{this.topic}} />
           <span class="topic-compact-meta__comments">
             {{this.commentsCount}}
             {{this.commentsLabel}}
@@ -368,30 +473,32 @@ export default class TopicListThumbnail extends Component {
           (if this.hasThumbnail "has-thumbnail" "no-thumbnail")
         }}
       >
-        {{#if this.hasThumbnail}}
-          <img
-            class="background-thumbnail"
-            src={{this.fallbackSrc}}
-            srcset={{this.srcSet}}
-            width={{this.width}}
-            height={{this.height}}
-            loading="lazy"
-            alt=""
-          />
-          <img
-            class="main-thumbnail"
-            src={{this.fallbackSrc}}
-            srcset={{this.srcSet}}
-            width={{this.width}}
-            height={{this.height}}
-            loading="lazy"
-            alt=""
-          />
-        {{else}}
-          <div class="thumbnail-placeholder">
-            {{dIcon settings.placeholder_icon}}
-          </div>
-        {{/if}}
+        <a href={{this.url}} role="img" aria-label={{this.topic.title}}>
+          {{#if this.hasThumbnail}}
+            <img
+              class="background-thumbnail"
+              src={{this.fallbackSrc}}
+              srcset={{this.srcSet}}
+              width={{this.width}}
+              height={{this.height}}
+              loading="lazy"
+              alt=""
+            />
+            <img
+              class="main-thumbnail"
+              src={{this.fallbackSrc}}
+              srcset={{this.srcSet}}
+              width={{this.width}}
+              height={{this.height}}
+              loading="lazy"
+              alt=""
+            />
+          {{else}}
+            <div class="thumbnail-placeholder">
+              {{dIcon settings.placeholder_icon}}
+            </div>
+          {{/if}}
+        </a>
       </div>
     {{/if}}
 

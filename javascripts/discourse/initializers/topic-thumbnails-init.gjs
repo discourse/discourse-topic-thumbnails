@@ -19,6 +19,8 @@ export default apiInitializer((api) => {
       value.push("topic-thumbnails-blog-style-grid");
     } else if (ttService.displayCompactStyle) {
       value.push("topic-thumbnails-compact");
+    } else if (ttService.displayCardStyle) {
+      value.push("topic-thumbnails-card-style");
     }
     return value;
   });
@@ -27,7 +29,8 @@ export default apiInitializer((api) => {
     if (
       ttService.enabledForRoute &&
       !ttService.displayList &&
-      !ttService.displayCompactStyle
+      !ttService.displayCompactStyle &&
+      !ttService.displayCardStyle
     ) {
       columns.add(
         "thumbnail",
@@ -41,12 +44,8 @@ export default apiInitializer((api) => {
   api.renderInOutlet(
     "topic-list-before-link",
     <template>
-      {{#if ttService.displayList}}
+      {{#if (or ttService.displayList ttService.displayCompactStyle ttService.displayCardStyle)}}
         <TopicListThumbnail @topic={{@outletArgs.topic}} />
-      {{else}}
-        {{#if ttService.displayCompactStyle}}
-          <TopicListThumbnail @topic={{@outletArgs.topic}} />
-        {{/if}}
       {{/if}}
     </template>
   );
@@ -81,6 +80,7 @@ export default apiInitializer((api) => {
         "isMasonryList:topic-thumbnails-masonry",
         "isBlogStyleGrid:topic-thumbnails-blog-style-grid",
         "isCompactStyle:topic-thumbnails-compact",
+        "isCardStyle:topic-thumbnails-card-style",
       ],
       isMinimalGrid: readOnly("topicThumbnailsService.displayMinimalGrid"),
       isThumbnailGrid: readOnly("topicThumbnailsService.displayGrid"),
@@ -88,6 +88,7 @@ export default apiInitializer((api) => {
       isMasonryList: readOnly("topicThumbnailsService.displayMasonry"),
       isBlogStyleGrid: readOnly("topicThumbnailsService.displayBlogStyle"),
       isCompactStyle: readOnly("topicThumbnailsService.displayCompactStyle"),
+      isCardStyle: readOnly("topicThumbnailsService.displayCardStyle"),
     });
   }
 });

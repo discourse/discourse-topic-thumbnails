@@ -18,6 +18,10 @@ const compactCategories = settings.compact_categories
   .split("|")
   .map((id) => parseInt(id, 10));
 
+const cardCategories = settings.card_categories
+  .split("|")
+  .map((id) => parseInt(id, 10));
+
 const gridCategories = settings.grid_categories
   .split("|")
   .map((id) => parseInt(id, 10));
@@ -33,6 +37,7 @@ const blogStyleCategories = settings.blog_style_categories
 const minimalGridTags = settings.minimal_grid_tags.split("|");
 const listTags = settings.list_tags.split("|");
 const compactTags = settings.compact_tags.split("|");
+const cardTags = settings.card_tags.split("|");
 const gridTags = settings.grid_tags.split("|");
 const masonryTags = settings.masonry_tags.split("|");
 const blogStyleTags = settings.blog_style_tags.split("|");
@@ -115,6 +120,8 @@ export default class TopicThumbnailService extends Service {
       return "minimal-grid";
     } else if (blogStyleCategories.includes(viewingCategoryId)) {
       return "blog-style";
+    } else if (cardCategories.includes(viewingCategoryId)) {
+      return "card-style";
     } else if (masonryCategories.includes(viewingCategoryId)) {
       return "masonry";
     } else if (gridCategories.includes(viewingCategoryId)) {
@@ -129,6 +136,8 @@ export default class TopicThumbnailService extends Service {
       return "minimal-grid";
     } else if (blogStyleTags.includes(viewingTagId)) {
       return "blog-style";
+    } else if (cardTags.includes(viewingTagId)) {
+      return "card-style";
     } else if (gridTags.includes(viewingTagId)) {
       return "grid";
     } else if (listTags.includes(viewingTagId)) {
@@ -191,6 +200,11 @@ export default class TopicThumbnailService extends Service {
     return shouldDisplay && displayMode === "compact-style";
   }
 
+  @discourseComputed("shouldDisplay", "displayMode")
+  displayCardStyle(shouldDisplay, displayMode) {
+    return shouldDisplay && displayMode === "card-style";
+  }
+
   @discourseComputed("displayMinimalGrid")
   showLikes(isMinimalGrid) {
     return isMinimalGrid;
@@ -204,6 +218,7 @@ export default class TopicThumbnailService extends Service {
       "list",
       "blog-style",
       "compact-style",
+      "card-style",
     ];
     const settingValue = (settings.view_selector_modes || "").trim();
     if (!settingValue) {
