@@ -562,6 +562,10 @@
       gap: 0.25em;
       font-weight: 600;
       font-size: var(--font-down-1-rem);
+
+      > a {
+        gap: 0;
+      }
     }
 
     .title,
