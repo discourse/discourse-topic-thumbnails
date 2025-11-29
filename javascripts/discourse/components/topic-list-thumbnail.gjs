@@ -300,12 +300,12 @@ export default class TopicListThumbnail extends Component {
           </a>
         </h3>
 
-        <a
-          href={{this.url}}
-          class="topic-card__thumbnail"
-          aria-label={{this.topic.title}}
-        >
-          {{#if this.hasThumbnail}}
+        {{#if this.hasThumbnail}}
+          <a
+            href={{this.url}}
+            class="topic-card__thumbnail"
+            aria-label={{this.topic.title}}
+          >
             <img
               src={{this.fallbackSrc}}
               srcset={{this.srcSet}}
@@ -314,12 +314,22 @@ export default class TopicListThumbnail extends Component {
               loading="lazy"
               alt=""
             />
-          {{else}}
+          </a>
+        {{else if this.topic.excerpt}}
+          <div class="topic-card__excerpt">
+            {{{this.topic.excerpt}}}
+          </div>
+        {{else}}
+          <a
+            href={{this.url}}
+            class="topic-card__thumbnail"
+            aria-label={{this.topic.title}}
+          >
             <div class="thumbnail-placeholder">
               {{dIcon settings.placeholder_icon}}
             </div>
-          {{/if}}
-        </a>
+          </a>
+        {{/if}}
 
         <div class="topic-card__meta">
           <TopicCompactVoteControls @topic={{this.topic}} />

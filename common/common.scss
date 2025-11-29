@@ -614,6 +614,12 @@
     }
   }
 
+  .topic-card__excerpt {
+    font-size: var(--font-down-1-rem);
+    color: var(--primary-medium);
+    max-width: 540px;
+  }
+
   .topic-card__meta {
     display: flex;
     flex-wrap: wrap;
