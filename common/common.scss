@@ -469,23 +469,24 @@
     display: none !important;
   }
 
-  .topic-list-body,
-  .topic-list-item,
-  .topic-list-data,
-  .topic-list .right {
+  .topic-list-body {
+    display: block;
+  }
+
+  .topic-list-item {
     display: block;
     padding: 0;
     border: none;
-  }
 
-  .topic-list .main-link,
-  .topic-list .topic-item-stats,
-  .topic-list .pull-right,
-  .topic-list .discourse-tags,
-  .topic-list .topic-statuses,
-  .topic-list .topic-excerpt,
-  .topic-list .right > * {
-    display: none !important;
+    > * {
+      display: none;
+    }
+
+    > .topic-list-data {
+      display: block;
+      padding: 0;
+      border: none;
+    }
   }
 
   .topic-card {
