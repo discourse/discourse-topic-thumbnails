@@ -8,10 +8,8 @@ import { htmlSafe } from "@ember/template";
 import concatClass from "discourse/helpers/concat-class";
 import { i18n } from "discourse-i18n";
 
-const POST_VOTE_CONTROLS_PATHS = [
-  "discourse/plugins/discourse-post-voting-reddit-mode/discourse/components/post-votes-vote-controls",
-  "discourse/plugins/discourse-post-voting/discourse/components/post-votes-vote-controls",
-];
+const POST_VOTE_CONTROLS_PATH =
+  "discourse/plugins/discourse-post-voting-reddit-mode/discourse/components/post-votes-vote-controls";
 
 function moduleExists(name) {
   if (typeof requirejs === "undefined") {
@@ -26,23 +24,20 @@ function moduleExists(name) {
 }
 
 function loadPostVoteControls() {
-  for (const path of POST_VOTE_CONTROLS_PATHS) {
-    if (!moduleExists(path)) {
-      continue;
-    }
-
-    try {
-      return requirejs(path).default;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `topic-thumbnails: failed to load post voting controls module at ${path}`,
-        e
-      );
-    }
+  if (!moduleExists(POST_VOTE_CONTROLS_PATH)) {
+    return null;
   }
 
-  return null;
+  try {
+    return requirejs(POST_VOTE_CONTROLS_PATH).default;
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "topic-thumbnails: failed to load post voting controls module",
+      e
+    );
+    return null;
+  }
 }
 
 const BasePostVotesControls = loadPostVoteControls();
