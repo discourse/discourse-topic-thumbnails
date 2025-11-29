@@ -819,6 +819,10 @@
       gap: 0.25em;
       font-weight: 500;
       font-size: inherit;
+
+      & > a {
+        color: var(--d-link-color);
+      }
     }
 
     .topic-card__author-user .title,
