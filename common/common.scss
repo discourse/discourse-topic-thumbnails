@@ -479,17 +479,18 @@
     border: none;
 
     > * {
-      display: none;
-    }
-
-    > .topic-list-data {
-      display: block !important;
+      display: none !important;
       padding: 0;
-      border: none;
+      border: 0;
     }
 
-    > .topic-list-data .pull-left {
+    > td:first-child {
       display: block !important;
+      width: 100%;
+
+      .pull-left {
+        display: block !important;
+      }
     }
   }
 
