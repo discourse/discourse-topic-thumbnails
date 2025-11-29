@@ -333,10 +333,14 @@ export default class TopicListThumbnail extends Component {
 
         <div class="topic-card__meta">
           <TopicCompactVoteControls @topic={{this.topic}} />
-          <span class="topic-card__meta-comments">
+          <a
+            href={{this.url}}
+            class="topic-card__meta-comments"
+            aria-label={{i18n "post.controls.view_topic"}}
+          >
             {{dIcon "far-comment"}}
             {{this.commentsCount}}
-          </span>
+          </a>
           <span
             role="button"
             tabindex="0"
