@@ -16,5 +16,13 @@
     "serialize_topic_op_likes_data": true,
     "serialize_topic_excerpts": true
   },
-  "svg_icons": ["far-comment", "share", "bookmark", "far-bookmark", "flag"]
+  "svg_icons": [
+    "circle-up",
+    "circle-down",
+    "far-comment",
+    "share",
+    "bookmark",
+    "far-bookmark",
+    "flag"
+  ]
 }
