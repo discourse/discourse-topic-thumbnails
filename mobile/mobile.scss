@@ -72,3 +72,23 @@
     max-width: unset;
   }
 }
+
+.topic-thumbnails-card-style {
+  .topic-card {
+    padding: 1em;
+  }
+
+  .topic-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topic-card__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topic-card__thumbnail img {
+    max-width: 100%;
+  }
+}

@@ -17,12 +17,18 @@ export default apiInitializer((api) => {
       value.push("topic-thumbnails-masonry");
     } else if (ttService.displayBlogStyle) {
       value.push("topic-thumbnails-blog-style-grid");
+    } else if (ttService.displayCardStyle) {
+      value.push("topic-thumbnails-card-style");
     }
     return value;
   });
 
   api.registerValueTransformer("topic-list-columns", ({ value: columns }) => {
-    if (ttService.enabledForRoute && !ttService.displayList) {
+    if (
+      ttService.enabledForRoute &&
+      !ttService.displayList &&
+      !ttService.displayCardStyle
+    ) {
       columns.add(
         "thumbnail",
         { item: TopicListThumbnail },
@@ -37,6 +43,10 @@ export default apiInitializer((api) => {
     <template>
       {{#if ttService.displayList}}
         <TopicListThumbnail @topic={{@outletArgs.topic}} />
+      {{else}}
+        {{#if ttService.displayCardStyle}}
+          <TopicListThumbnail @topic={{@outletArgs.topic}} />
+        {{/if}}
       {{/if}}
     </template>
   );
@@ -70,12 +80,14 @@ export default apiInitializer((api) => {
         "isThumbnailList:topic-thumbnails-list",
         "isMasonryList:topic-thumbnails-masonry",
         "isBlogStyleGrid:topic-thumbnails-blog-style-grid",
+        "isCardStyle:topic-thumbnails-card-style",
       ],
       isMinimalGrid: readOnly("topicThumbnailsService.displayMinimalGrid"),
       isThumbnailGrid: readOnly("topicThumbnailsService.displayGrid"),
       isThumbnailList: readOnly("topicThumbnailsService.displayList"),
       isMasonryList: readOnly("topicThumbnailsService.displayMasonry"),
       isBlogStyleGrid: readOnly("topicThumbnailsService.displayBlogStyle"),
+      isCardStyle: readOnly("topicThumbnailsService.displayCardStyle"),
     });
   }
 });

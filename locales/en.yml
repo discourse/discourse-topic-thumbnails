@@ -18,3 +18,18 @@ en:
       placeholder_icon: Icon to display on topics without thumbnail images
       mobile_thumbnails: Enable thumbnails on mobile devices
       list_thumbnail_size: Base size for thumbnails in the 'list' view
+  topic_thumbnails:
+    view_modes:
+      minimal-grid: "Minimal grid"
+      grid: "Grid"
+      masonry: "Masonry"
+      list: "List"
+      blog-style: "Blog style"
+      card-style: "Card"
+    actions:
+      save: "Save"
+      remove_saved: "Remove from saved"
+      report: "Report"
+    votes:
+      upvote: "Upvote topic"
+      downvote: "Downvote topic"

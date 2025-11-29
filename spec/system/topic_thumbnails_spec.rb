@@ -35,4 +35,14 @@ RSpec.describe "Topic Thumbnails", type: :system do
 
     expect(page).to have_css(".topic-list-item.masonry-0")
   end
+
+  it "renders topic thumbnails in card style with metadata actions" do
+    theme.update_setting(:default_thumbnail_mode, "card-style")
+    theme.save!
+
+    visit "/latest"
+
+    expect(page).to have_css(".topic-thumbnails-card-style .topic-card", count: 5)
+    expect(page).to have_css(".topic-card__meta-action", text: "Save")
+  end
 end
