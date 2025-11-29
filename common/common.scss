@@ -561,10 +561,11 @@
       display: inline-flex;
       gap: 0.25em;
       font-weight: 600;
-      font-size: var(--font-down-1-rem);
+      font-size: var(--font-down-2-rem);
 
       > a {
         gap: 0;
+        color: var(--d-link-color);
       }
     }
 
