@@ -483,7 +483,8 @@
   .topic-list .pull-right,
   .topic-list .discourse-tags,
   .topic-list .topic-statuses,
-  .topic-list .topic-excerpt {
+  .topic-list .topic-excerpt,
+  .topic-list .right > * {
     display: none !important;
   }
 
