@@ -638,6 +638,14 @@
 
   .topic-card__meta-comments {
     letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: var(--primary);
+    }
   }
 
   .topic-card__meta-action {
