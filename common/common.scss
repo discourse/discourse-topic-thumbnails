@@ -594,13 +594,17 @@
     font-size: var(--font-0);
 
     a {
-      color: var(--primary-high);
+      color: var(--primary);
       text-decoration: none;
 
       &:hover,
       &:focus {
         text-decoration: underline;
       }
+    }
+
+    a:visited {
+      color: var(--secondary);
     }
   }
 
