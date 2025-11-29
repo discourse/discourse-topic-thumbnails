@@ -465,6 +465,14 @@
     border: none;
   }
 
+  .topic-list-header,
+  .topic-list .bulk-select,
+  .topic-list .posters,
+  .topic-list .num,
+  .topic-list .activity {
+    display: none !important;
+  }
+
   .topic-card {
     display: flex;
     flex-direction: column;
