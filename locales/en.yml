@@ -38,3 +38,6 @@ en:
       save: "Save"
       remove_saved: "Remove from saved"
       report: "Report"
+    votes:
+      upvote: "Upvote topic"
+      downvote: "Downvote topic"
