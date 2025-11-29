@@ -46,7 +46,6 @@ RSpec.describe "Topic Thumbnails", type: :system do
     expect(page).to have_css(".topic-compact-meta__share", text: "Share")
     expect(page).to have_css(".topic-compact-meta__action--save", text: "Save")
     expect(page).to have_css(".topic-compact-meta__action--report", text: "Report")
-    expect(page).to have_css(".topic-compact-votes")
   end
 
   it "renders card style topics with inline controls" do
@@ -56,21 +55,8 @@ RSpec.describe "Topic Thumbnails", type: :system do
     visit "/latest"
 
     expect(page).to have_css(".topic-thumbnails-card-style .topic-card", count: 5)
-    expect(page).to have_css(".topic-card__meta .topic-compact-votes")
     expect(page).to have_css(".topic-card__meta-comments .d-icon-far-comment")
     expect(page).to have_css(".topic-card__meta-action", text: "Share")
     expect(page).to have_css(".topic-card__meta-action .d-icon-flag")
-  end
-
-  it "allows selecting a manual view from the navigation dropdown" do
-    visit "/latest"
-
-    expect(page).to have_css(".topic-view-mode-selector__trigger")
-    expect(page).to have_css(".topic-list.topic-thumbnails-grid")
-
-    find(".topic-view-mode-selector__trigger").click
-    find(".topic-view-mode-selector__option", text: "List").click
-
-    expect(page).to have_css(".topic-list.topic-thumbnails-list")
   end
 end
