@@ -67,7 +67,7 @@ export default class TopicViewModeSelector extends Component {
       <DMenu
         @identifier="topic-view-mode-selector"
         @title={{this.buttonLabel}}
-        @icon="list"
+        @icon="discourse-table"
         @ariaLabel={{this.buttonLabel}}
         @modalForMobile={{true}}
         @onRegisterApi={{this.registerMenu}}
