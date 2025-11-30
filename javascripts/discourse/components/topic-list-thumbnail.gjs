@@ -361,9 +361,33 @@ export default class TopicListThumbnail extends Component {
     this.isCompactOverflowOpen = false;
   }
 
+  @action
+  handleCardClick(event) {
+    // Check if the click target is an interactive element or its child
+    const target = event.target;
+    const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes');
+
+    // Only navigate if not clicking on an interactive element
+    if (!isInteractive) {
+      window.location.href = this.url;
+    }
+  }
+
+  @action
+  handleCompactClick(event) {
+    // Check if the click target is an interactive element or its child
+    const target = event.target;
+    const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes, .d-menu');
+
+    // Only navigate if not clicking on an interactive element
+    if (!isInteractive) {
+      window.location.href = this.url;
+    }
+  }
+
   <template>
     {{#if this.topicThumbnails.displayCardStyle}}
-      <article class="topic-card">
+      <article class="topic-card" {{on "click" this.handleCardClick}}>
         {{#if this.showCardAuthor}}
           <div class="topic-card__header">
             <div class="topic-card__author topic-author">
@@ -393,17 +417,11 @@ export default class TopicListThumbnail extends Component {
         {{/if}}
 
         <h3 class="topic-card__title">
-          <a href={{this.url}}>
-            {{this.topic.title}}
-          </a>
+          {{this.topic.title}}
         </h3>
 
         {{#if this.hasThumbnail}}
-          <a
-            href={{this.url}}
-            class="topic-card__thumbnail"
-            aria-label={{this.topic.title}}
-          >
+          <div class="topic-card__thumbnail">
             <img
               src={{this.fallbackSrc}}
               srcset={{this.srcSet}}
@@ -412,33 +430,25 @@ export default class TopicListThumbnail extends Component {
               loading="lazy"
               alt=""
             />
-          </a>
+          </div>
         {{else if this.topic.excerpt}}
           <div class="topic-card__excerpt">
             {{{this.topic.excerpt}}}
           </div>
         {{else}}
-          <a
-            href={{this.url}}
-            class="topic-card__thumbnail"
-            aria-label={{this.topic.title}}
-          >
+          <div class="topic-card__thumbnail">
             <div class="thumbnail-placeholder">
               {{dIcon settings.placeholder_icon}}
             </div>
-          </a>
+          </div>
         {{/if}}
 
         <div class="topic-card__meta topic-meta">
           <this.topicVoteControlsComponent @topic={{this.topic}} />
-          <a
-            href={{this.url}}
-            class="topic-card__meta-comments topic-meta__comments"
-            aria-label={{i18n "post.controls.view_topic"}}
-          >
+          <span class="topic-card__meta-comments topic-meta__comments">
             {{dIcon "far-comment"}}
             {{this.commentsCount}}
-          </a>
+          </span>
           <div class="topic-card__meta-actions topic-meta__actions">
             <span
               role="button"
@@ -479,6 +489,7 @@ export default class TopicListThumbnail extends Component {
       <div
         class="topic-thumbnail-compact-link"
         aria-label={{this.topic.title}}
+        {{on "click" this.handleCompactClick}}
       >
         <div
           class={{concatClass
