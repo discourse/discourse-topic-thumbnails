@@ -73,7 +73,6 @@ export default class TopicListThumbnail extends Component {
     return !!this.topic.thumbnails;
   }
 
-  // Make sure to update about.json thumbnail sizes if you change these variables
   get displayWidth() {
     return this.topicThumbnails.displayList ||
       this.topicThumbnails.displayCompactStyle ||
@@ -363,11 +362,9 @@ export default class TopicListThumbnail extends Component {
 
   @action
   handleCardClick(event) {
-    // Check if the click target is an interactive element or its child
     const target = event.target;
     const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes');
 
-    // Only navigate if not clicking on an interactive element
     if (!isInteractive) {
       window.location.href = this.url;
     }
@@ -375,11 +372,9 @@ export default class TopicListThumbnail extends Component {
 
   @action
   handleCompactClick(event) {
-    // Check if the click target is an interactive element or its child
     const target = event.target;
     const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes, .d-menu');
 
-    // Only navigate if not clicking on an interactive element
     if (!isInteractive) {
       window.location.href = this.url;
     }
