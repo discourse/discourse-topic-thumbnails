@@ -1100,7 +1100,7 @@
     gap: 0.35em;
     height: 1.75rem;
     padding: 0px 6px;
-    border-radius: 999px;
+    border-radius: var(--d-border-radius);
     border: 1px solid var(--blend-primary-secondary-5);
     background-color: var(--blend-primary-secondary-5);
   }
