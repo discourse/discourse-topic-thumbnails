@@ -4,9 +4,11 @@ import { tracked } from "@glimmer/tracking";
 import { service } from "@ember/service";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
+import DropdownMenu from "discourse/components/dropdown-menu";
 import UserInfo from "discourse/components/user-info";
 import coldAgeClass from "discourse/helpers/cold-age-class";
 import concatClass from "discourse/helpers/concat-class";
+import categoryLink from "discourse/helpers/category-link";
 import dIcon from "discourse/helpers/d-icon";
 import formatDate from "discourse/helpers/format-date";
 import FlagModal from "discourse/components/modal/flag";
@@ -20,6 +22,9 @@ import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import Bookmark from "discourse/models/bookmark";
 import TopicVoteControls from "./topic-vote-controls";
+import DMenu from "discourse/float-kit/components/d-menu";
+
+const OVERFLOW_EVENT = "topic-thumbnails:overflow-open";
 
 export default class TopicListThumbnail extends Component {
   topicVoteControlsComponent = TopicVoteControls;
@@ -32,6 +37,9 @@ export default class TopicListThumbnail extends Component {
   @tracked bookmarkId;
   @tracked isBookmarkedState = false;
   @tracked isBookmarking = false;
+  @tracked isCompactOverflowOpen = false;
+  #overflowListener;
+  #compactOverflowMenu;
 
   responsiveRatios = [1, 1.5, 2];
 
@@ -39,6 +47,18 @@ export default class TopicListThumbnail extends Component {
     super(...arguments);
     this.bookmarkId = this.topic?.bookmark_id;
     this.isBookmarkedState = !!this.topic?.bookmarked;
+    this.#overflowListener = (event) => {
+      const detail = event?.detail;
+      if (detail !== this.#compactOverflowKey()) {
+        this.closeOverflowMenus();
+      }
+    };
+    window.addEventListener(OVERFLOW_EVENT, this.#overflowListener);
+  }
+
+  willDestroy() {
+    super.willDestroy?.();
+    window.removeEventListener(OVERFLOW_EVENT, this.#overflowListener);
   }
 
   get commentsLabel() {
@@ -142,6 +162,20 @@ export default class TopicListThumbnail extends Component {
 
   get reportLabel() {
     return i18n(themePrefix("topic_thumbnails.actions.report"));
+  }
+
+  #compactOverflowKey() {
+    return `compact-${this.topic?.id ?? "unknown"}`;
+  }
+
+  #announceCompactOverflow() {
+    window.dispatchEvent(
+      new CustomEvent(OVERFLOW_EVENT, { detail: this.#compactOverflowKey() })
+    );
+  }
+
+  get compactOverflowIdentifier() {
+    return this.#compactOverflowKey();
   }
 
   get commentsCount() {
@@ -276,6 +310,57 @@ export default class TopicListThumbnail extends Component {
     });
   }
 
+  @action
+  toggleCompactOverflow(event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+    const willOpen = !this.isCompactOverflowOpen;
+    this.closeOverflowMenus();
+    if (willOpen) {
+      this.isCompactOverflowOpen = true;
+      this.#announceCompactOverflow();
+    }
+  }
+
+  closeOverflowMenus() {
+    this.isCompactOverflowOpen = false;
+    this.#compactOverflowMenu?.close?.({ focusTrigger: false });
+  }
+
+  @action
+  overflowShare(event) {
+    this.copyTopicLink(event);
+    this.closeOverflowMenus();
+  }
+
+  @action
+  overflowSave(event) {
+    this.toggleSave(event);
+    this.closeOverflowMenus();
+  }
+
+  @action
+  overflowReport(event) {
+    this.reportTopic(event);
+    this.closeOverflowMenus();
+  }
+
+  @action
+  registerCompactOverflowMenu(menu) {
+    this.#compactOverflowMenu = menu;
+  }
+
+  @action
+  handleCompactOverflowShow() {
+    this.isCompactOverflowOpen = true;
+    this.#announceCompactOverflow();
+  }
+
+  @action
+  handleCompactOverflowClose() {
+    this.isCompactOverflowOpen = false;
+  }
+
   <template>
     {{#if this.topicThumbnails.displayCardStyle}}
       <article class="topic-card">
@@ -290,9 +375,19 @@ export default class TopicListThumbnail extends Component {
                 class="topic-card__author-user topic-author__user"
               />
               <span class="topic-card__activity topic-author__activity">
-                {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
+                <span
+                  class="topic-author__relative-date"
+                  style="font-size: inherit; line-height: inherit;"
+                >
+                  {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
+                </span>
                 ago
               </span>
+              {{#if this.topic.category}}
+                <span class="topic-card__category topic-author__category">
+                  {{categoryLink this.topic.category}}
+                </span>
+              {{/if}}
             </div>
           </div>
         {{/if}}
@@ -344,43 +439,44 @@ export default class TopicListThumbnail extends Component {
             {{dIcon "far-comment"}}
             {{this.commentsCount}}
           </a>
-          <span
-            role="button"
-            tabindex="0"
-            class="topic-card__meta-action topic-meta__action"
-            {{on "click" this.copyTopicLink}}
-            {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
-          >
-            {{dIcon "share"}}
-            {{i18n "post.controls.share_action"}}
-          </span>
-          <span
-            role="button"
-            tabindex="0"
-            class="topic-card__meta-action topic-meta__action"
-            {{on "click" this.toggleSave}}
-            {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
-          >
-            {{#if this.isBookmarked}}
-              {{dIcon "bookmark"}}
-            {{else}}
-              {{dIcon "far-bookmark"}}
-            {{/if}}
-          </span>
-          <span
-            role="button"
-            tabindex="0"
-            class="topic-card__meta-action topic-meta__action"
-            {{on "click" this.reportTopic}}
-            {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
-          >
-            {{dIcon "flag"}}
-          </span>
+          <div class="topic-card__meta-actions topic-meta__actions">
+            <span
+              role="button"
+              tabindex="0"
+              class="topic-card__meta-action topic-meta__action"
+              {{on "click" this.copyTopicLink}}
+              {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
+            >
+              {{dIcon "share"}}
+              {{i18n "post.controls.share_action"}}
+            </span>
+            <span
+              role="button"
+              tabindex="0"
+              class="topic-card__meta-action topic-meta__action"
+              {{on "click" this.toggleSave}}
+              {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
+            >
+              {{#if this.isBookmarked}}
+                {{dIcon "bookmark"}}
+              {{else}}
+                {{dIcon "far-bookmark"}}
+              {{/if}}
+            </span>
+            <span
+              role="button"
+              tabindex="0"
+              class="topic-card__meta-action topic-meta__action"
+              {{on "click" this.reportTopic}}
+              {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
+            >
+              {{dIcon "flag"}}
+            </span>
+          </div>
         </div>
       </article>
     {{else if this.topicThumbnails.displayCompactStyle}}
-      <a
-        href={{this.url}}
+      <div
         class="topic-thumbnail-compact-link"
         aria-label={{this.topic.title}}
       >
@@ -426,9 +522,19 @@ export default class TopicListThumbnail extends Component {
               class="topic-compact-author__user topic-author__user"
             />
             <span class="topic-compact-author__activity topic-author__activity">
-              {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
+              <span
+                class="topic-author__relative-date"
+                style="font-size: inherit; line-height: inherit;"
+              >
+                {{formatDate this.topic.createdAt format="tiny" noTitle="true"}}
+              </span>
               ago
             </span>
+            {{#if this.topic.category}}
+              <span class="topic-compact-author__category topic-author__category">
+                {{categoryLink this.topic.category}}
+              </span>
+            {{/if}}
           </div>
         {{/if}}
 
@@ -438,35 +544,83 @@ export default class TopicListThumbnail extends Component {
             {{this.commentsCount}}
             {{this.commentsLabel}}
           </span>
-          <span
-            role="button"
-            tabindex="0"
-            class="topic-compact-meta__share topic-meta__action"
-            {{on "click" this.copyTopicLink}}
-            {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
+          <div class="topic-compact-meta__actions topic-meta__actions">
+            <span
+              role="button"
+              tabindex="0"
+              class="topic-compact-meta__share topic-meta__action"
+              {{on "click" this.copyTopicLink}}
+              {{on "keydown" (fn this.handleActionKeydown this.copyTopicLink)}}
+            >
+              {{i18n "post.controls.share_action"}}
+            </span>
+            <span
+              role="button"
+              tabindex="0"
+              class="topic-compact-meta__action topic-compact-meta__action--save topic-meta__action"
+              {{on "click" this.toggleSave}}
+              {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
+            >
+              {{if this.isBookmarked this.removeSaveLabel this.saveLabel}}
+            </span>
+            <span
+              role="button"
+              tabindex="0"
+              class="topic-compact-meta__action topic-compact-meta__action--report topic-meta__action"
+              {{on "click" this.reportTopic}}
+              {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
+            >
+              {{this.reportLabel}}
+            </span>
+          </div>
+          <DMenu
+            @identifier={{this.compactOverflowIdentifier}}
+            @icon="ellipsis"
+            @ariaLabel={{i18n "topic_thumbnails.actions.more_actions"}}
+            @triggerClass="topic-compact-meta__overflow"
+            @modalForMobile={{true}}
+            @onRegisterApi={{this.registerCompactOverflowMenu}}
+            @onShow={{this.handleCompactOverflowShow}}
+            @onClose={{this.handleCompactOverflowClose}}
           >
-            {{i18n "post.controls.share_action"}}
-          </span>
-          <span
-            role="button"
-            tabindex="0"
-            class="topic-compact-meta__action topic-compact-meta__action--save topic-meta__action"
-            {{on "click" this.toggleSave}}
-            {{on "keydown" (fn this.handleActionKeydown this.toggleSave)}}
-          >
-            {{if this.isBookmarked this.removeSaveLabel this.saveLabel}}
-          </span>
-          <span
-            role="button"
-            tabindex="0"
-            class="topic-compact-meta__action topic-compact-meta__action--report topic-meta__action"
-            {{on "click" this.reportTopic}}
-            {{on "keydown" (fn this.handleActionKeydown this.reportTopic)}}
-          >
-            {{this.reportLabel}}
-          </span>
+            <:content>
+              <div class="topic-compact-meta__overflow-menu">
+                <DropdownMenu as |dropdown|>
+                  <dropdown.item>
+                    <button
+                      type="button"
+                      class="topic-compact-meta__overflow-item"
+                      {{on "click" this.overflowShare}}
+                    >
+                      {{dIcon "share"}}
+                      {{i18n "post.controls.share_action"}}
+                    </button>
+                  </dropdown.item>
+                  <dropdown.item>
+                    <button
+                      type="button"
+                      class="topic-compact-meta__overflow-item"
+                      {{on "click" this.overflowSave}}
+                    >
+                      {{if this.isBookmarked this.removeSaveLabel this.saveLabel}}
+                    </button>
+                  </dropdown.item>
+                  <dropdown.item>
+                    <button
+                      type="button"
+                      class="topic-compact-meta__overflow-item"
+                      {{on "click" this.overflowReport}}
+                    >
+                      {{dIcon "flag"}}
+                      {{this.reportLabel}}
+                    </button>
+                  </dropdown.item>
+                </DropdownMenu>
+              </div>
+            </:content>
+          </DMenu>
         </div>
-      </a>
+      </div>
     {{else}}
       <div
         class={{concatClass
