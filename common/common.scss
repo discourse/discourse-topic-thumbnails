@@ -365,9 +365,14 @@
     border-radius: 0.75em;
     border: 1px solid var(--primary-low);
     cursor: pointer;
+    transition: background 0.15s ease-in-out;
 
     &:last-of-type {
       margin-bottom: 0;
+    }
+
+    &:hover {
+      background: var(--primary-low);
     }
 
     &.selected,
@@ -884,9 +889,14 @@
     margin-bottom: 1.25em;
     max-width: 700px;
     cursor: pointer;
+    transition: background 0.15s ease-in-out;
 
     &:last-of-type {
       margin-bottom: 0;
+    }
+
+    &:hover {
+      background: var(--primary-very-low);
     }
   }
 
