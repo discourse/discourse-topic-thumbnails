@@ -544,6 +544,10 @@ export default class TopicListThumbnail extends Component {
           </div>
         {{/if}}
 
+        <h3 class="topic-compact__title">
+          {{this.topic.title}}
+        </h3>
+
         <div class="topic-compact-meta topic-meta">
           <this.topicVoteControlsComponent @topic={{this.topic}} />
           <span class="topic-compact-meta__comments topic-meta__comments">
