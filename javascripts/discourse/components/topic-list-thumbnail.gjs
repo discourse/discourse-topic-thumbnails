@@ -14,6 +14,7 @@ import formatDate from "discourse/helpers/format-date";
 import FlagModal from "discourse/components/modal/flag";
 import { getAbsoluteURL } from "discourse/lib/get-url";
 import { clipboardCopy } from "discourse/lib/utilities";
+import DiscourseURL from "discourse/lib/url";
 import { i18n } from "discourse-i18n";
 import TopicFlag from "discourse/lib/flag-targets/topic-flag";
 import { themePrefix } from "virtual:theme";
