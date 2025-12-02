@@ -408,19 +408,22 @@
   }
 
   .link-top-line {
+    display: none;
+  }
+
+  .topic-compact__title {
     grid-area: title;
-    color: var(--primary);
+    margin: 0;
     font-weight: 600;
-    font-size: var(--font-up-1);
+    font-size: var(--font-0-rem);
+  }
 
-    a.title {
-      color: inherit;
-      padding: 0 !important;
-    }
+  .topic-list-item:not(.visited) .topic-compact__title {
+    color: var(--primary);
+  }
 
-    a:visited {
-      color: var(--primary-medium);
-    }
+  .topic-list-item.visited .topic-compact__title {
+    color: var(--primary-medium);
   }
 
   .link-bottom-line,
