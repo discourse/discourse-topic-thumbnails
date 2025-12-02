@@ -380,7 +380,7 @@ export default class TopicListThumbnail extends Component {
     const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes');
 
     if (!isInteractive) {
-      window.location.href = this.firstPostUrl;
+      DiscourseURL.routeTo(this.firstPostUrl);
     }
   }
 
@@ -390,7 +390,7 @@ export default class TopicListThumbnail extends Component {
     const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes, .d-menu');
 
     if (!isInteractive) {
-      window.location.href = this.firstPostUrl;
+      DiscourseURL.routeTo(this.firstPostUrl);
     }
   }
 
