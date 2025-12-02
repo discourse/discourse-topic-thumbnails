@@ -134,6 +134,10 @@ export default class TopicListThumbnail extends Component {
       : this.topic.get("lastUnreadUrl");
   }
 
+  get firstPostUrl() {
+    return this.topic.urlForPostNumber(1);
+  }
+
   get shareUrl() {
     const sharePath = this.topic?.shareUrl || this.topic?.url;
     return sharePath ? getAbsoluteURL(sharePath) : null;
@@ -366,7 +370,7 @@ export default class TopicListThumbnail extends Component {
     const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes');
 
     if (!isInteractive) {
-      window.location.href = this.url;
+      window.location.href = this.firstPostUrl;
     }
   }
 
@@ -376,7 +380,7 @@ export default class TopicListThumbnail extends Component {
     const isInteractive = target.closest('a, button, [role="button"], .topic-vote-button, .topic-votes, .d-menu');
 
     if (!isInteractive) {
-      window.location.href = this.url;
+      window.location.href = this.firstPostUrl;
     }
   }
 
