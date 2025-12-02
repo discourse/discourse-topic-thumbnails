@@ -77,6 +77,11 @@ export default class TopicThumbnailService extends Service {
   }
 
   @dependentKeyCompat
+  get isViewingCategory() {
+    return !!this.viewingCategoryId;
+  }
+
+  @dependentKeyCompat
   get currentContextKey() {
     const url = this.router.currentURL;
     if (!url) {
