@@ -966,20 +966,14 @@
     margin: 0;
     font-size: var(--font-0-rem);
     font-weight: 400;
+  }
 
-    a {
-      color: var(--primary);
-      text-decoration: none;
+  .topic-list-item:not(.visited) .topic-card__title {
+    color: var(--primary);
+  }
 
-      &:hover,
-      &:focus {
-        text-decoration: underline;
-      }
-    }
-
-    a:visited {
-      color: var(--primary-medium);
-    }
+  .topic-list-item.visited .topic-card__title {
+    color: var(--primary-medium);
   }
 
   .topic-card__thumbnail {
