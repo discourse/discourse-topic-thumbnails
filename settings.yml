@@ -136,3 +136,7 @@ view_selector_modes:
     - blog-style
     - compact-style
     - card-style
+
+show_user_feedback:
+  default: false
+  client: true

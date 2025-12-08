@@ -595,6 +595,29 @@
   }
 }
 
+.inline-user-feedback {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25em;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--primary-medium);
+  margin-left: 0.35em;
+
+  .inline-user-feedback__star {
+    color: #ffa500;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .inline-user-feedback__value,
+  .inline-user-feedback__count {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: 500;
+  }
+}
+
 .topic-meta {
   display: flex;
   flex-wrap: wrap;

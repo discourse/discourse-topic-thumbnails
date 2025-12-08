@@ -23,6 +23,7 @@ import { popupAjaxError } from "discourse/lib/ajax-error";
 import Bookmark from "discourse/models/bookmark";
 import TopicVoteControls from "./topic-vote-controls";
 import DMenu from "discourse/float-kit/components/d-menu";
+import InlineUserFeedback from "./inline-user-feedback";
 
 const OVERFLOW_EVENT = "topic-thumbnails:overflow-open";
 
@@ -153,6 +154,10 @@ export default class TopicListThumbnail extends Component {
 
   get showCategory() {
     return !this.topicThumbnails.isViewingCategory && this.topic?.category;
+  }
+
+  get showUserFeedback() {
+    return settings.show_user_feedback && this.topic?.creator;
   }
 
   get isBookmarked() {
@@ -401,6 +406,13 @@ export default class TopicListThumbnail extends Component {
                 @size="small"
                 class="topic-card__author-user topic-author__user"
               />
+              {{#if this.showUserFeedback}}
+                <InlineUserFeedback
+                  @shouldRender={{true}}
+                  @rating={{this.topic.creator.average_rating}}
+                  @count={{this.topic.creator.total_trade_count}}
+                />
+              {{/if}}
               <span class="topic-card__activity topic-author__activity">
                 <span
                   class="topic-author__relative-date"
@@ -535,6 +547,13 @@ export default class TopicListThumbnail extends Component {
               @size="small"
               class="topic-compact-author__user topic-author__user"
             />
+            {{#if this.showUserFeedback}}
+              <InlineUserFeedback
+                @shouldRender={{true}}
+                @rating={{this.topic.creator.average_rating}}
+                @count={{this.topic.creator.total_trade_count}}
+              />
+            {{/if}}
             <span class="topic-compact-author__activity topic-author__activity">
               <span
                 class="topic-author__relative-date"
