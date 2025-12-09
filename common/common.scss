@@ -610,6 +610,10 @@
     line-height: inherit;
   }
 
+  .inline-user-feedback__value {
+    color: var(--primary-very-high);
+  }
+
   .inline-user-feedback__value,
   .inline-user-feedback__count {
     font-size: inherit;
