@@ -599,7 +599,7 @@
   display: inline-flex;
   align-items: baseline;
   gap: 0.25em;
-  font-size: inherit;
+  font-size: var(--font-down-1);
   line-height: inherit;
   color: var(--primary-medium);
   margin-left: 0.35em;
