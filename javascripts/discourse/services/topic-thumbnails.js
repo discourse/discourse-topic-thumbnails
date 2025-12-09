@@ -83,11 +83,7 @@ export default class TopicThumbnailService extends Service {
 
   @dependentKeyCompat
   get currentContextKey() {
-    const url = this.router.currentURL;
-    if (!url) {
-      return null;
-    }
-    return url.split("?")[0];
+    return "global";
   }
 
   @discourseComputed("manualSelectionsVersion", "currentContextKey")
