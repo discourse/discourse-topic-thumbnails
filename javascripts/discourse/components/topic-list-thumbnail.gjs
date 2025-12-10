@@ -193,13 +193,8 @@ export default class TopicListThumbnail extends Component {
   }
 
   get commentsCount() {
-    const replies = this.topic.reply_count;
-    if (typeof replies === "number" && replies > 0) {
-      return replies;
-    }
-
     const posts = this.topic.posts_count;
-    if (typeof posts === "number") {
+    if (typeof posts === "number" && posts > 0) {
       return Math.max(posts - 1, 0);
     }
 
