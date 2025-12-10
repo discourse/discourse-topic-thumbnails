@@ -377,7 +377,6 @@ export default class TopicListThumbnail extends Component {
 
   @action
   handleCardClick(event) {
-    // Allow right-click, middle-click, and modifier keys to work normally
     if (wantsNewWindow(event)) {
       return;
     }
@@ -393,7 +392,6 @@ export default class TopicListThumbnail extends Component {
 
   @action
   handleCompactClick(event) {
-    // Allow right-click, middle-click, and modifier keys to work normally
     if (wantsNewWindow(event)) {
       return;
     }
