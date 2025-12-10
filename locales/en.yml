@@ -9,12 +9,32 @@ en:
       grid_categories: The grid view will be used in these categories
       masonry_categories: The masonry view will be used in these categories
       list_categories: The list view will be used in these categories
+      compact_categories: The compact view will be used in these categories
+      card_categories: The card view will be used in these categories
       minimal_grid_tags: The minimal grid view will be used for these tags
       grid_tags: The grid view will be used for these tags
       masonry_tags: The masonry view will be used for these tags
       list_tags: The list view will be used for these tags
+      compact_tags: The compact view will be used for these tags
+      card_tags: The card view will be used for these tags
       suggested_topics_mode: Which thumbnail display mode should be used for suggested topics? If blank, will follow the 'enable outside topic lists' setting.
       enable_outside_topic_lists: Enable thumbnails on non-topic-list pages (e.g. user activity, personal messages, suggested topics)
       placeholder_icon: Icon to display on topics without thumbnail images
       mobile_thumbnails: Enable thumbnails on mobile devices
       list_thumbnail_size: Base size for thumbnails in the 'list' view
+      view_selector_modes: Which thumbnail modes should appear in the view selector dropdown?
+  topic_thumbnails:
+    view_selector:
+      label: "Change topic view"
+    view_modes:
+      minimal-grid: "Minimal grid"
+      grid: "Grid"
+      masonry: "Masonry"
+      list: "List"
+      blog-style: "Blog style"
+      compact-style: "Compact"
+      card-style: "Card"
+    actions:
+      save: "Save"
+      remove_saved: "Remove from saved"
+      report: "Report"

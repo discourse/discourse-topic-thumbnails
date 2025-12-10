@@ -72,3 +72,149 @@
     max-width: unset;
   }
 }
+
+.topic-thumbnails-compact {
+  .topic-list-data {
+    max-width: unset;
+  }
+
+  .topic-list-item {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "topic"
+      "replies"
+      "activity";
+    padding: 0.5em 0.75em;
+  }
+
+  .main-link {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "author thumbnail"
+      "title thumbnail"
+      "details thumbnail";
+  }
+
+  .topic-list-thumbnail {
+    float: right;
+    margin-left: 10px;
+    margin-right: 0;
+    width: 102px;
+    height: 76px;
+  }
+
+  .num.posts,
+  .activity {
+    justify-self: flex-start;
+    text-align: left;
+  }
+
+  .activity {
+    display: none;
+  }
+}
+
+.topic-thumbnails-card-style {
+  .topic-card {
+    padding: 1em;
+  }
+
+  .topic-card__header {
+    align-items: center;
+  }
+
+  .topic-card__activity {
+    font-size: var(--font-down-2-rem);
+
+    .relative-date {
+      font-size: inherit !important;
+      line-height: inherit !important;
+    }
+  }
+
+  .topic-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .topic-card__thumbnail img {
+    max-width: 100%;
+  }
+
+  .topic-list-data {
+    max-width: unset;
+  }
+}
+
+
+.topic-author {
+  font-size: var(--font-down-2-rem);
+
+  .topic-author__activity,
+  .topic-card__activity,
+  .topic-compact-author__activity {
+    .relative-date {
+      font-size: inherit !important;
+      line-height: inherit !important;
+    
+    font-size: inherit;
+    line-height: inherit;
+  }
+  }
+
+  .topic-author__relative-date .relative-date {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .topic-author__category {
+    font-size: inherit;
+    line-height: inherit;
+    align-content: baseline;
+    display: none;
+
+    .badge-category__wrapper,
+    .badge-category,
+    .badge-category__name {
+      font-size: inherit !important;
+      line-height: inherit;
+    }
+  }
+
+  .topic-author__user .user-detail {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+
+.topic-thumbnails-card-style,
+.topic-thumbnails-compact-style {
+  .topic-card__author,
+  .topic-compact-author,
+  .topic-card__author *,
+  .topic-compact-author * {
+    font-size: var(--font-down-1-rem) !important;
+    line-height: var(--line-height-medium) !important;
+  }
+
+  .topic-card__activity,
+  .topic-compact-author__activity {
+    font-size: var(--font-down-1-rem) !important;
+    line-height: var(--line-height-medium);
+  }
+
+  .topic-card__activity,
+  .topic-compact-author__activity {
+    .relative-date {
+      font-size: inherit !important;
+      line-height: inherit !important;
+    }
+  }
+
+  .topic-author__category {
+    display: none;
+  }
+}
