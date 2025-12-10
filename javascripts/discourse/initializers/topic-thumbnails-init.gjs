@@ -17,12 +17,21 @@ export default apiInitializer((api) => {
       value.push("topic-thumbnails-masonry");
     } else if (ttService.displayBlogStyle) {
       value.push("topic-thumbnails-blog-style-grid");
+    } else if (ttService.displayCompactStyle) {
+      value.push("topic-thumbnails-compact");
+    } else if (ttService.displayCardStyle) {
+      value.push("topic-thumbnails-card-style");
     }
     return value;
   });
 
   api.registerValueTransformer("topic-list-columns", ({ value: columns }) => {
-    if (ttService.enabledForRoute && !ttService.displayList) {
+    if (
+      ttService.enabledForRoute &&
+      !ttService.displayList &&
+      !ttService.displayCompactStyle &&
+      !ttService.displayCardStyle
+    ) {
       columns.add(
         "thumbnail",
         { item: TopicListThumbnail },
@@ -37,6 +46,14 @@ export default apiInitializer((api) => {
     <template>
       {{#if ttService.displayList}}
         <TopicListThumbnail @topic={{@outletArgs.topic}} />
+      {{else}}
+        {{#if ttService.displayCompactStyle}}
+          <TopicListThumbnail @topic={{@outletArgs.topic}} />
+        {{else}}
+          {{#if ttService.displayCardStyle}}
+            <TopicListThumbnail @topic={{@outletArgs.topic}} />
+          {{/if}}
+        {{/if}}
       {{/if}}
     </template>
   );
@@ -70,12 +87,16 @@ export default apiInitializer((api) => {
         "isThumbnailList:topic-thumbnails-list",
         "isMasonryList:topic-thumbnails-masonry",
         "isBlogStyleGrid:topic-thumbnails-blog-style-grid",
+        "isCompactStyle:topic-thumbnails-compact",
+        "isCardStyle:topic-thumbnails-card-style",
       ],
       isMinimalGrid: readOnly("topicThumbnailsService.displayMinimalGrid"),
       isThumbnailGrid: readOnly("topicThumbnailsService.displayGrid"),
       isThumbnailList: readOnly("topicThumbnailsService.displayList"),
       isMasonryList: readOnly("topicThumbnailsService.displayMasonry"),
       isBlogStyleGrid: readOnly("topicThumbnailsService.displayBlogStyle"),
+      isCompactStyle: readOnly("topicThumbnailsService.displayCompactStyle"),
+      isCardStyle: readOnly("topicThumbnailsService.displayCardStyle"),
     });
   }
 });

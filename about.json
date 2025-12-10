@@ -12,6 +12,16 @@
       [400, 400],
       [600, 600],
       [800, 800]
-    ]
-  }
+    ],
+    "serialize_topic_op_likes_data": true
+  },
+  "svg_icons": [
+    "far-comment",
+    "share",
+    "bookmark",
+    "far-bookmark",
+    "flag",
+    "circle-up",
+    "circle-down"
+  ]
 }
