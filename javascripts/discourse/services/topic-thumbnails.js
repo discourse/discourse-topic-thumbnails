@@ -4,7 +4,7 @@ import Service, { service } from "@ember/service";
 import discourseComputed from "discourse/lib/decorators";
 import Site from "discourse/models/site";
 
-const SESSION_STORAGE_KEY = "topic-thumbnails-manual-modes";
+const LOCAL_STORAGE_KEY = "topic-thumbnails-manual-modes";
 
 const minimalGridCategories = settings.minimal_grid_categories
   .split("|")
@@ -265,12 +265,12 @@ export default class TopicThumbnailService extends Service {
   }
 
   #persistManualSelections() {
-    if (typeof sessionStorage === "undefined") {
+    if (typeof localStorage === "undefined") {
       return;
     }
     try {
-      sessionStorage.setItem(
-        SESSION_STORAGE_KEY,
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY,
         JSON.stringify(this.manualSelections || {})
       );
     } catch (e) {
@@ -280,12 +280,12 @@ export default class TopicThumbnailService extends Service {
   }
 
   #loadManualSelections() {
-    if (typeof sessionStorage === "undefined") {
+    if (typeof localStorage === "undefined") {
       return {};
     }
 
     try {
-      const raw = sessionStorage.getItem(SESSION_STORAGE_KEY);
+      const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (!raw) {
         return {};
       }
