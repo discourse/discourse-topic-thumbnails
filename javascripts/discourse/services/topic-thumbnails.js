@@ -57,13 +57,13 @@ export default class TopicThumbnailService extends Service {
   }
 
   @dependentKeyCompat
-  get viewingTagId() {
-    return this.discovery.tag?.id;
+  get viewingTagName() {
+    return this.discovery.tag?.name;
   }
 
   @discourseComputed(
     "viewingCategoryId",
-    "viewingTagId",
+    "viewingTagName",
     "router.currentRoute.metadata.customThumbnailMode",
     "isTopicListRoute",
     "isTopicRoute",
@@ -71,7 +71,7 @@ export default class TopicThumbnailService extends Service {
   )
   displayMode(
     viewingCategoryId,
-    viewingTagId,
+    viewingTagName,
     customThumbnailMode,
     isTopicListRoute,
     isTopicRoute,
@@ -90,15 +90,15 @@ export default class TopicThumbnailService extends Service {
       return "grid";
     } else if (listCategories.includes(viewingCategoryId)) {
       return "list";
-    } else if (masonryTags.includes(viewingTagId)) {
+    } else if (masonryTags.includes(viewingTagName)) {
       return "masonry";
-    } else if (minimalGridTags.includes(viewingTagId)) {
+    } else if (minimalGridTags.includes(viewingTagName)) {
       return "minimal-grid";
-    } else if (blogStyleTags.includes(viewingTagId)) {
+    } else if (blogStyleTags.includes(viewingTagName)) {
       return "blog-style";
-    } else if (gridTags.includes(viewingTagId)) {
+    } else if (gridTags.includes(viewingTagName)) {
       return "grid";
-    } else if (listTags.includes(viewingTagId)) {
+    } else if (listTags.includes(viewingTagName)) {
       return "list";
     } else if (isTopicRoute && settings.suggested_topics_mode) {
       return settings.suggested_topics_mode;
