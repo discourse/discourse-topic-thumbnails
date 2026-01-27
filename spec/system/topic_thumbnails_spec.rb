@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Topic Thumbnails", type: :system do
+RSpec.describe "Topic Thumbnails" do
   fab!(:theme) { upload_theme_component }
   fab!(:topics) { Fabricate.times(5, :topic) }
   fab!(:user)

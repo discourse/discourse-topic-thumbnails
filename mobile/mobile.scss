@@ -37,8 +37,8 @@
 
 .topic-thumbnails-minimal {
   .topic-list-body {
-    grid-column-gap: 10px;
-    grid-row-gap: 5px;
+    column-gap: 10px;
+    row-gap: 5px;
 
     .topic-list-item {
       height: 150px;
