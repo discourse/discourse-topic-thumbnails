@@ -92,8 +92,8 @@
   .topic-list-body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    column-gap: 5px;
+    row-gap: 5px;
     border: 0;
   }
 
@@ -205,8 +205,8 @@
   .topic-list-body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-    grid-column-gap: 1.5em;
-    grid-row-gap: 1.5em;
+    column-gap: 1.5em;
+    row-gap: 1.5em;
     border: 0;
   }
 
@@ -341,8 +341,8 @@
   .topic-list-body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
-    grid-column-gap: 1.5em;
-    grid-row-gap: 1.5em;
+    column-gap: 1.5em;
+    row-gap: 1.5em;
     border: 0;
   }
 
