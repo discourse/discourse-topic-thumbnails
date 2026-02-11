@@ -9,7 +9,7 @@ acceptance("topic thumbnails | tag route integration", function (needs) {
   needs.settings({ tagging_enabled: true });
 
   needs.pretender((server, helper) => {
-    server.get("/tag/important/l/latest.json", () => {
+    server.get("/tag/1/l/latest.json", () => {
       return helper.response(
         cloneJSON(discoveryFixture["/tag/important/l/latest.json"])
       );
@@ -17,7 +17,7 @@ acceptance("topic thumbnails | tag route integration", function (needs) {
   });
 
   test("service correctly identifies tag name from route", async function (assert) {
-    await visit("/tag/important");
+    await visit("/tag/important/1");
 
     const topicThumbnailsService = getOwner(this).lookup(
       "service:topic-thumbnails"
