@@ -1,7 +1,7 @@
 import { tracked } from "@glimmer/tracking";
+import { computed } from "@ember/object";
 import { dependentKeyCompat } from "@ember/object/compat";
 import Service, { service } from "@ember/service";
-import discourseComputed from "discourse/lib/decorators";
 import Site from "discourse/models/site";
 
 const minimalGridCategories = settings.minimal_grid_categories
@@ -41,14 +41,14 @@ export default class TopicThumbnailService extends Service {
     return this.discovery.onDiscoveryRoute;
   }
 
-  @discourseComputed("router.currentRouteName")
-  isTopicRoute(currentRouteName) {
-    return currentRouteName.match(/^topic\./);
+  @computed("router.currentRouteName")
+  get isTopicRoute() {
+    return this.router?.currentRouteName?.match(/^topic\./);
   }
 
-  @discourseComputed("router.currentRouteName")
-  isDocsRoute(currentRouteName) {
-    return currentRouteName.match(/^docs\./);
+  @computed("router.currentRouteName")
+  get isDocsRoute() {
+    return this.router?.currentRouteName?.match(/^docs\./);
   }
 
   @dependentKeyCompat
@@ -61,7 +61,7 @@ export default class TopicThumbnailService extends Service {
     return this.discovery.tag?.name;
   }
 
-  @discourseComputed(
+  @computed(
     "viewingCategoryId",
     "viewingTagName",
     "router.currentRoute.metadata.customThumbnailMode",
@@ -69,90 +69,83 @@ export default class TopicThumbnailService extends Service {
     "isTopicRoute",
     "isDocsRoute"
   )
-  displayMode(
-    viewingCategoryId,
-    viewingTagName,
-    customThumbnailMode,
-    isTopicListRoute,
-    isTopicRoute,
-    isDocsRoute
-  ) {
-    if (customThumbnailMode) {
-      return customThumbnailMode;
+  get displayMode() {
+    if (this.router?.currentRoute?.metadata?.customThumbnailMode) {
+      return this.router?.currentRoute?.metadata?.customThumbnailMode;
     }
-    if (minimalGridCategories.includes(viewingCategoryId)) {
+    if (minimalGridCategories.includes(this.viewingCategoryId)) {
       return "minimal-grid";
-    } else if (blogStyleCategories.includes(viewingCategoryId)) {
+    } else if (blogStyleCategories.includes(this.viewingCategoryId)) {
       return "blog-style";
-    } else if (masonryCategories.includes(viewingCategoryId)) {
+    } else if (masonryCategories.includes(this.viewingCategoryId)) {
       return "masonry";
-    } else if (gridCategories.includes(viewingCategoryId)) {
+    } else if (gridCategories.includes(this.viewingCategoryId)) {
       return "grid";
-    } else if (listCategories.includes(viewingCategoryId)) {
+    } else if (listCategories.includes(this.viewingCategoryId)) {
       return "list";
-    } else if (masonryTags.includes(viewingTagName)) {
+    } else if (masonryTags.includes(this.viewingTagName)) {
       return "masonry";
-    } else if (minimalGridTags.includes(viewingTagName)) {
+    } else if (minimalGridTags.includes(this.viewingTagName)) {
       return "minimal-grid";
-    } else if (blogStyleTags.includes(viewingTagName)) {
+    } else if (blogStyleTags.includes(this.viewingTagName)) {
       return "blog-style";
-    } else if (gridTags.includes(viewingTagName)) {
+    } else if (gridTags.includes(this.viewingTagName)) {
       return "grid";
-    } else if (listTags.includes(viewingTagName)) {
+    } else if (listTags.includes(this.viewingTagName)) {
       return "list";
-    } else if (isTopicRoute && settings.suggested_topics_mode) {
+    } else if (this.isTopicRoute && settings.suggested_topics_mode) {
       return settings.suggested_topics_mode;
-    } else if (isTopicListRoute || settings.enable_outside_topic_lists) {
+    } else if (this.isTopicListRoute || settings.enable_outside_topic_lists) {
       return settings.default_thumbnail_mode;
-    } else if (isDocsRoute) {
+    } else if (this.isDocsRoute) {
       return settings.docs_thumbnail_mode;
     } else {
       return "none";
     }
   }
 
-  @discourseComputed("displayMode")
-  enabledForRoute(displayMode) {
-    return displayMode !== "none";
+  @computed("displayMode")
+  get enabledForRoute() {
+    return this.displayMode !== "none";
   }
 
-  @discourseComputed()
-  enabledForDevice() {
+  @computed()
+  get enabledForDevice() {
     return Site.current().mobileView ? settings.mobile_thumbnails : true;
   }
 
-  @discourseComputed("enabledForRoute", "enabledForDevice")
-  shouldDisplay(enabledForRoute, enabledForDevice) {
-    return enabledForRoute && enabledForDevice;
+  @computed("enabledForRoute", "enabledForDevice")
+  get shouldDisplay() {
+    return this.enabledForRoute && this.enabledForDevice;
   }
 
-  @discourseComputed("shouldDisplay", "displayMode")
-  displayMinimalGrid(shouldDisplay, displayMode) {
-    return shouldDisplay && displayMode === "minimal-grid";
+  @computed("shouldDisplay", "displayMode")
+  get displayMinimalGrid() {
+    return this.shouldDisplay && this.displayMode === "minimal-grid";
   }
 
-  @discourseComputed("shouldDisplay", "displayMode")
-  displayList(shouldDisplay, displayMode) {
-    return shouldDisplay && displayMode === "list";
+  @computed("shouldDisplay", "displayMode")
+  get displayList() {
+    return this.shouldDisplay && this.displayMode === "list";
   }
 
-  @discourseComputed("shouldDisplay", "displayMode")
-  displayGrid(shouldDisplay, displayMode) {
-    return shouldDisplay && displayMode === "grid";
+  @computed("shouldDisplay", "displayMode")
+  get displayGrid() {
+    return this.shouldDisplay && this.displayMode === "grid";
   }
 
-  @discourseComputed("shouldDisplay", "displayMode")
-  displayMasonry(shouldDisplay, displayMode) {
-    return shouldDisplay && displayMode === "masonry";
+  @computed("shouldDisplay", "displayMode")
+  get displayMasonry() {
+    return this.shouldDisplay && this.displayMode === "masonry";
   }
 
-  @discourseComputed("shouldDisplay", "displayMode")
-  displayBlogStyle(shouldDisplay, displayMode) {
-    return shouldDisplay && displayMode === "blog-style";
+  @computed("shouldDisplay", "displayMode")
+  get displayBlogStyle() {
+    return this.shouldDisplay && this.displayMode === "blog-style";
   }
 
-  @discourseComputed("displayMinimalGrid", "displayBlogStyle")
-  showLikes(isMinimalGrid) {
-    return isMinimalGrid;
+  @computed("displayMinimalGrid", "displayBlogStyle")
+  get showLikes() {
+    return this.displayMinimalGrid;
   }
 }
