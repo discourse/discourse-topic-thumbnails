@@ -22,7 +22,7 @@ export default apiInitializer((api) => {
   });
 
   api.registerValueTransformer("topic-list-columns", ({ value: columns }) => {
-    if (ttService.enabledForRoute && !ttService.displayList) {
+    if (ttService.shouldDisplay && !ttService.displayList) {
       columns.add(
         "thumbnail",
         { item: TopicListThumbnail },
@@ -42,7 +42,7 @@ export default apiInitializer((api) => {
   );
 
   api.registerValueTransformer("topic-list-item-mobile-layout", ({ value }) => {
-    if (ttService.enabledForRoute && !ttService.displayList) {
+    if (ttService.shouldDisplay && !ttService.displayList) {
       // Force the desktop layout
       return false;
     }
