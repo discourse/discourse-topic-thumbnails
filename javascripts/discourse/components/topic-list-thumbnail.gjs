@@ -143,7 +143,7 @@ export default class TopicListThumbnail extends Component {
         <div class="topic-thumbnail-blog-data-comments">
           {{dIcon "comment"}}
           <span class="number">
-            {{this.topic.reply_count}}
+            {{this.topic.replyCount}}
           </span>
         </div>
         <div
