@@ -66,11 +66,12 @@ export default class TopicListThumbnail extends Component {
       if (!t.url) {
         return false;
       }
-      return t.max_width > this.displayWidth * this.responsiveRatios.lastObject;
+      return t.max_width > this.displayWidth * this.responsiveRatios.at(-1);
     });
 
-    if (largeEnough.lastObject) {
-      return largeEnough.lastObject.url;
+    const largest = largeEnough.at(-1);
+    if (largest) {
+      return largest.url;
     }
 
     return this.original.url;
